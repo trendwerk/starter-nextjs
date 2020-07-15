@@ -1,17 +1,11 @@
-import Head from 'next/head'
+import Layout from '../components/Layout'
 
 export default function () {
   return (
-    <>
-      <Head>
-        <title>Hello world 🙂</title>
-      </Head>
-
-      <main>
+    <Layout>
         <h1>
           Hello World 🙂
         </h1>
-      </main>
-    </>
+    </Layout>
   )
 }
