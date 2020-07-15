@@ -8,17 +8,13 @@ export default function ({ children }) {
         <meta type="description" value="Default description" key="description" />
       </Head>
 
-      <header>
-        [header]
-      </header>
+      <header/>
 
       <main>
         { children }
       </main>
 
-      <footer>
-        [footer]
-      </footer>
+      <footer/>
     </>
   )
 }
