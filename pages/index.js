@@ -1,8 +1,9 @@
+import { getPages } from 'lib/pages'
+import { getPosts } from 'lib/blog'
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import Wrap from '../components/Wrap'
-import { getPosts } from '../lib/posts'
-import { getPages } from '../lib/pages'
+import Layout from 'components/Layout'
+import Link from 'next/link'
+import Wrap from 'components/Wrap'
 
 export default function ({ pages, posts }) {
   return (
