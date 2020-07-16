@@ -32,12 +32,12 @@ export default function ({ post, site }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await getPost(params.slug)
+  const post = await getPost(params.slug)
   const site = await getSite()
 
   return {
     props: {
-      post: data.post,
+      post,
       site
     },
   }
