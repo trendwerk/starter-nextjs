@@ -8,7 +8,9 @@ export default function ({ children, site }) {
     <div className="flex flex-col min-h-screen">
       <Head>
         <title>{site.title}</title>
-        <meta type="description" value={site.description} key="description" />
+        <meta type="description" value={site.description} key="description"/>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet"/>
+
       </Head>
 
       <Header site={site} />

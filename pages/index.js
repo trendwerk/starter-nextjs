@@ -12,7 +12,6 @@ export default function ({ pages, posts, site }) {
         <Head>
           <title>Page title &middot; {site.title }</title>
           <meta type="description" value="Page description" key="description" />
-          <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet"/>
         </Head>
 
         <>
