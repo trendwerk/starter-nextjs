@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from 'components/Layout'
-import Wrap from 'components/Wrap'
 import { getAllPosts, getPost } from 'lib/blog'
 
 export default function ({ post }) {
@@ -11,13 +10,13 @@ export default function ({ post }) {
           <meta type="description" value="Page description" key="description" />
         </Head>
 
-        <Wrap>
+        <>
           <h1>
             {post.title}
           </h1>
 
           <div dangerouslySetInnerHTML={{__html: post.content}} />
-        </Wrap>
+        </>
     </Layout>
   )
 }

@@ -3,7 +3,6 @@ import { getPosts } from 'lib/blog'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Link from 'next/link'
-import Wrap from 'components/Wrap'
 
 export default function ({ pages, posts }) {
   return (
@@ -13,7 +12,7 @@ export default function ({ pages, posts }) {
           <meta type="description" value="Page description" key="description" />
         </Head>
 
-        <Wrap>
+        <>
           <h1>
             Hello there 🙂
           </h1>
@@ -43,7 +42,7 @@ export default function ({ pages, posts }) {
               </li>
             ))}
           </ul>
-        </Wrap>
+        </>
     </Layout>
   )
 }
