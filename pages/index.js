@@ -3,6 +3,7 @@ import { getPosts } from 'lib/blog'
 import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
+import Title from 'components/Title'
 import Link from 'next/link'
 
 export default function ({ pages, posts, site }) {
@@ -11,12 +12,13 @@ export default function ({ pages, posts, site }) {
         <Head>
           <title>Page title &middot; {site.title }</title>
           <meta type="description" value="Page description" key="description" />
+          <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet"/>
         </Head>
 
         <>
-          <h1>
-            Hello there 🙂
-          </h1>
+          <Title>
+            Home
+          </Title>
 
           <h2>
             Here are some pages

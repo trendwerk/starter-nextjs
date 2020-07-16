@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 export default function ({ site }) {
   return (
-    <Wrap className=" bg-gray-800 mb-8 py-6 text-white">
+    <Wrap className="bg-gray-800 mb-8 py-6 text-white">
       <Link href="/">
-        <a className="font-semibold text-xl">
+        <a className="font-serif font-bold text-xl">
           {site.title}
         </a>
       </Link>
