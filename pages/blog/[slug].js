@@ -23,7 +23,7 @@ export default function ({ post, site }) {
             dangerouslySetInnerHTML={{__html: post.content}}
           />
 
-          <Link href="/blog">
+          <Link href="/blog" back>
             Back to blog overview
           </Link>
         </>
