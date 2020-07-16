@@ -19,10 +19,6 @@ export default function ({ pages, posts, site }) {
             Home
           </Title>
 
-          <h2>
-            Here are some pages
-          </h2>
-
           <ul>
             {pages.edges.map(({ node }) => (
               <li key={node.id}>
@@ -30,10 +26,6 @@ export default function ({ pages, posts, site }) {
               </li>
             ))}
           </ul>
-
-          <h2>
-            And here are some posts
-          </h2>
 
           <ul>
             {posts.edges.map(({ node }) => (

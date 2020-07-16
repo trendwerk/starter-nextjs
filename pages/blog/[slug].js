@@ -2,6 +2,8 @@ import { getAllPosts, getPost } from 'lib/blog'
 import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
+import Title from 'components/Title'
+import Link from 'components/Link'
 
 export default function ({ post, site }) {
   return (
@@ -12,11 +14,18 @@ export default function ({ post, site }) {
         </Head>
 
         <>
-          <h1>
+          <Title>
             {post.title}
-          </h1>
+          </Title>
 
-          <div dangerouslySetInnerHTML={{__html: post.content}} />
+          <div
+            className="mb-8 last:border-b-0"
+            dangerouslySetInnerHTML={{__html: post.content}}
+          />
+
+          <Link href="/blog">
+            Back
+          </Link>
         </>
     </Layout>
   )

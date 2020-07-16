@@ -4,6 +4,9 @@ module.exports = {
   theme: {
     colors,
     extend: {
+      colors: {
+        brand: colors.blue
+      },
       fontFamily: {
         serif: ['Merriweather', 'serif'],
       },
