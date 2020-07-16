@@ -3,21 +3,21 @@ import Head from 'next/head'
 import Header from 'components/Header'
 import Wrap from 'components/Wrap'
 
-export default function ({ children }) {
+export default function ({ children, site }) {
   return (
-    <div className=" bg-gray-100 flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Head>
-        <title>Default title</title>
-        <meta type="description" value="Default description" key="description" />
+        <title>{site.title}</title>
+        <meta type="description" value={site.description} key="description" />
       </Head>
 
-      <Header/>
+      <Header site={site} />
 
       <Wrap className="mb-8">
         {children}
       </Wrap>
 
-      <Footer/>
+      <Footer site={site} />
     </div>
   )
 }

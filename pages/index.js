@@ -1,14 +1,15 @@
 import { getPages } from 'lib/pages'
 import { getPosts } from 'lib/blog'
+import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Link from 'next/link'
 
-export default function ({ pages, posts }) {
+export default function ({ pages, posts, site }) {
   return (
-    <Layout>
+    <Layout site={site}>
         <Head>
-          <title>Page title</title>
+          <title>Page title &middot; {site.title }</title>
           <meta type="description" value="Page description" key="description" />
         </Head>
 
@@ -50,8 +51,9 @@ export default function ({ pages, posts }) {
 export async function getStaticProps() {
   const pages = await getPages()
   const posts = await getPosts()
+  const site = await getSite()
 
   return {
-    props: { pages, posts }
+    props: { pages, posts, site }
   }
 }

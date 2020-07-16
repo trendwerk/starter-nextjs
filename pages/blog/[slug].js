@@ -1,12 +1,13 @@
+import { getAllPosts, getPost } from 'lib/blog'
+import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
-import { getAllPosts, getPost } from 'lib/blog'
 
-export default function ({ post }) {
+export default function ({ post, site }) {
   return (
-    <Layout>
+    <Layout site={site}>
         <Head>
-          <title>{post.title} - [sitename]</title>
+          <title>{post.title} &middot; {site.title}</title>
           <meta type="description" value="Page description" key="description" />
         </Head>
 
@@ -23,10 +24,12 @@ export default function ({ post }) {
 
 export async function getStaticProps({ params }) {
   const data = await getPost(params.slug)
+  const site = await getSite()
 
   return {
     props: {
       post: data.post,
+      site
     },
   }
 }
