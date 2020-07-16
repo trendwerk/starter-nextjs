@@ -7,7 +7,7 @@ export default function ({ post }) {
   return (
     <Layout>
         <Head>
-          <title>Page title</title>
+          <title>{post.title} - [sitename]</title>
           <meta type="description" value="Page description" key="description" />
         </Head>
 
@@ -15,6 +15,8 @@ export default function ({ post }) {
           <h1>
             {post.title}
           </h1>
+
+          <div dangerouslySetInnerHTML={{__html: post.content}} />
         </Wrap>
     </Layout>
   )
