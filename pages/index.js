@@ -1,12 +1,10 @@
-import { getPages } from 'lib/pages'
-import { getPosts } from 'lib/blog'
 import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
-import Link from 'next/link'
+import Link from 'components/Link'
 
-export default function ({ pages, posts, site }) {
+export default function ({ site }) {
   return (
     <Layout site={site}>
         <Head>
@@ -19,34 +17,18 @@ export default function ({ pages, posts, site }) {
             Home
           </Title>
 
-          <ul>
-            {pages.edges.map(({ node }) => (
-              <li key={node.id}>
-                {node.title}
-              </li>
-            ))}
-          </ul>
-
-          <ul>
-            {posts.edges.map(({ node }) => (
-              <li key={node.id}>
-                <Link href="/blog/[slug]" as={`/blog/${node.slug}`}>
-                  <a>{node.title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Link href="/blog">
+            Visit our blog
+          </Link>
         </>
     </Layout>
   )
 }
 
 export async function getStaticProps() {
-  const pages = await getPages()
-  const posts = await getPosts()
   const site = await getSite()
 
   return {
-    props: { pages, posts, site }
+    props: { site }
   }
 }

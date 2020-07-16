@@ -24,7 +24,7 @@ export default function ({ post, site }) {
           />
 
           <Link href="/blog">
-            Back
+            Back to blog overview
           </Link>
         </>
     </Layout>
