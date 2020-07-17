@@ -1,3 +1,5 @@
+// API: <Img src="2020/07/oats.jpg" width={400} height={300} alt="Oats" />
+
 const theme = require('tailwindcss/defaultTheme')
 
 export default ({ src, width, height, alt = '', screens }) => {
