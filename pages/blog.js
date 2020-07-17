@@ -1,4 +1,4 @@
-import { getPosts } from 'lib/blog'
+import { get } from 'lib/api'
 import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
@@ -20,7 +20,7 @@ export default function ({ posts, site }) {
           <ul>
             {posts.edges.map(({ node }) => (
               <li key={node.id}>
-                <Link href="/blog/[slug]" as={`/blog/${node.slug}`} more>
+                <Link href="/blog/[slug]" as={`/blog/${node.slug}`} arrowright>
                   {node.title}
                 </Link>
               </li>
@@ -32,10 +32,26 @@ export default function ({ posts, site }) {
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts()
+  const data = await get(`
+    {
+      posts(first: 10) {
+        edges {
+          node {
+            slug
+            title
+            id
+          }
+        }
+      }
+    }
+  `)
+
   const site = await getSite()
 
   return {
-    props: { posts, site }
+    props: {
+      posts: data.posts,
+      site
+    }
   }
 }

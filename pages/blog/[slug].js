@@ -1,4 +1,4 @@
-import { getAllPosts, getPost } from 'lib/blog'
+import { get } from 'lib/api'
 import { getSite } from 'lib/site'
 import Head from 'next/head'
 import Layout from 'components/Layout'
@@ -23,7 +23,7 @@ export default function ({ post, site }) {
             dangerouslySetInnerHTML={{__html: post.content}}
           />
 
-          <Link href="/blog" back>
+          <Link href="/blog" arrowleft>
             Back to blog overview
           </Link>
         </>
@@ -32,22 +32,46 @@ export default function ({ post, site }) {
 }
 
 export async function getStaticProps({ params }) {
-  const post = await getPost(params.slug)
+  const data = await get(`
+    query GET_POST($id: ID!) {
+      post(id: $id, idType: SLUG) {
+        title
+        content
+      }
+    }
+  `,
+    {
+      variables: {
+        id: params.slug,
+      },
+    }
+  )
+
   const site = await getSite()
 
   return {
     props: {
-      post,
+      post: data.post,
       site
     },
   }
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts()
+  const data = await get(`
+    {
+      posts(first: 10000) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
 
   return {
-    paths: posts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
+    paths: data.posts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
     fallback: true,
   }
 }
