@@ -1,5 +1,5 @@
 import { fetchData, siteQuery } from 'lib/api'
-import Head from 'next/head'
+import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Link from 'components/Link'
@@ -7,25 +7,24 @@ import Link from 'components/Link'
 export default function ({ post, site }) {
   return (
     <Layout site={site}>
-        <Head>
-          <title>{post.title} - {site.title}</title>
-          <meta type="description" value="Page description" key="description" />
-        </Head>
+      <Head
+        title={post?.fields?.seoTitle || post?.title}
+        description={post?.fields?.seoDescription}
+        site={site}
+      />
 
-        <>
-          <Title>
-            {post.title}
-          </Title>
+      <Title>
+        {post.title}
+      </Title>
 
-          <div
-            className="mb-8 last:border-b-0"
-            dangerouslySetInnerHTML={{__html: post.content}}
-          />
+      <div
+        className="mb-8 last:border-b-0"
+        dangerouslySetInnerHTML={{__html: post.content}}
+      />
 
-          <Link href="/" arrowleft>
-            Back to home
-          </Link>
-        </>
+      <Link href="/" arrowleft>
+        Back to home
+      </Link>
     </Layout>
   )
 }
@@ -33,9 +32,13 @@ export default function ({ post, site }) {
 export async function getStaticProps({ params }) {
   const data = await fetchData(`
     query Page($id: ID!) {
-      post(id: $id, idType: SLUG) {
+      post: page(id: $id, idType: URI) {
         title
         content
+        fields {
+          seoTitle
+          seoDescription
+        }
       }
       ${siteQuery}
     }
