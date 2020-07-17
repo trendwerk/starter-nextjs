@@ -1,5 +1,4 @@
-import { get } from 'lib/api'
-import { getSite } from 'lib/site'
+import { get, siteQuery } from 'lib/api'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
@@ -9,7 +8,7 @@ export default function ({ posts, site }) {
   return (
     <Layout site={site}>
         <Head>
-          <title>Blog &middot; {site.title }</title>
+          <title>Blog &middot; {site.title}</title>
         </Head>
 
         <>
@@ -43,15 +42,8 @@ export async function getStaticProps() {
           }
         }
       }
+      ${siteQuery}
     }
   `)
-
-  const site = await getSite()
-
-  return {
-    props: {
-      posts: data.posts,
-      site
-    }
-  }
+  return { props: data }
 }

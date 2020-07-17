@@ -26,9 +26,10 @@ export default function ({ site }) {
 }
 
 export async function getStaticProps() {
-  const site = await getSite()
-
-  return {
-    props: { site }
-  }
+  const data = await get(`
+    {
+      ${siteQuery}
+    }
+  `)
+  return { props: data }
 }

@@ -1,5 +1,4 @@
-import { get } from 'lib/api'
-import { getSite } from 'lib/site'
+import { get, siteQuery } from 'lib/api'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
@@ -38,6 +37,7 @@ export async function getStaticProps({ params }) {
         title
         content
       }
+      ${siteQuery}
     }
   `,
     {
@@ -46,15 +46,7 @@ export async function getStaticProps({ params }) {
       },
     }
   )
-
-  const site = await getSite()
-
-  return {
-    props: {
-      post: data.post,
-      site
-    },
-  }
+  return { props: data }
 }
 
 export async function getStaticPaths() {
