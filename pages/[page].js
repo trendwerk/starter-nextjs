@@ -1,8 +1,9 @@
 import { fetchData, siteQuery } from 'lib/api'
+import Content from 'components/Content'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Title from 'components/Title'
 import Link from 'components/Link'
+import Title from 'components/Title'
 
 export default function({ post, site }) {
   return (
@@ -15,14 +16,7 @@ export default function({ post, site }) {
 
       <Title>{post.title}</Title>
 
-      <div
-        className="mb-8 last:border-b-0"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-
-      <Link href="/" arrowleft>
-        Back to home
-      </Link>
+      <Content content={post.content} />
     </Layout>
   )
 }

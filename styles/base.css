@@ -10,21 +10,14 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-serif;
 }
 
-h1 {
-  @apply text-4xl;
+.prose a {
+  @apply duration-200;
+  @apply transition;
 }
 
-h2 {
-  @apply text-2xl;
+.prose a:hover {
+  @apply text-blue-700;
 }
 
-h3 {
-  @apply text-xl;
-}
-
-p {
-  @apply leading-relaxed;
-  @apply text-gray-600;
-}
-
+@import "tailwindcss/components";
 @import "tailwindcss/utilities";
