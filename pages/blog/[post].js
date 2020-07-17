@@ -8,7 +8,7 @@ export default function ({ post, site }) {
   return (
     <Layout site={site}>
         <Head>
-          <title>{post.title} &middot; {site.title}</title>
+          <title>{post.title} - {site.title}</title>
           <meta type="description" value="Page description" key="description" />
         </Head>
 
