@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function ({ as, arrowleft=false, arrowright=false, children, className, href }) {
   return (
       <Link href={href} as={as}>
-        <a className={`text-brand-500 hover:text-brand-600 transition-color duration-200 flex items-center ${className}`}>
+        <a className={`text-brand-600 hover:text-brand-700 transition-color duration-200 flex items-center ${className}`}>
           {arrowleft && (
             <svg className="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd"></path></svg>
           )}
