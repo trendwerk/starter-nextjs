@@ -3,19 +3,24 @@ import Content from 'components/Content'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
+import Wrap from 'components/Wrap'
 
 export default function({ post, site }) {
   return (
     <Layout site={site}>
       <Head
-        title={post?.fields?.seoTitle || post?.title}
-        description={post?.fields?.seoDescription}
+        title={post?.fields?.title || post?.title}
+        description={post?.fields?.metaDescription}
         site={site}
       />
 
-      <Title>{post.title}</Title>
+      <Header image={post.fields.headerImage} />
 
-      <Content content={post.content} />
+      <Wrap width="800">
+        <Title>{post.title}</Title>
+
+        <Content content={post.content} />
+      </Wrap>
     </Layout>
   )
 }
@@ -28,8 +33,10 @@ export async function getStaticProps({ params }) {
         title
         content
         fields {
-          seoTitle
-          seoDescription
+          headerImage
+          title
+          metaDescription
+          ogImage
         }
       }
       ${siteQuery}
