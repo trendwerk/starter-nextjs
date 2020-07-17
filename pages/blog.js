@@ -19,7 +19,7 @@ export default function ({ posts, site }) {
           <ul>
             {posts.edges.map(({ node }) => (
               <li key={node.id}>
-                <Link href="/blog/[post]" as={`/blog/${node.slug}`} arrowright>
+                <Link href="/blog/[slug]" as={`/blog/${node.slug}`} arrowright>
                   {node.title}
                 </Link>
               </li>
