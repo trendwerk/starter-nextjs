@@ -5,7 +5,7 @@ module.exports = {
     colors,
     extend: {
       colors: {
-        brand: colors.blue
+        brand: colors.blue,
       },
       fontFamily: {
         serif: ['Merriweather', 'serif'],
