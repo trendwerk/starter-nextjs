@@ -1,4 +1,5 @@
 import { fetchData, siteQuery } from 'lib/api'
+import Button from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
@@ -8,9 +9,9 @@ export default function({ pages, site }) {
     <Layout site={site}>
       <Title>Home</Title>
 
-      <Link href="/blog">Visit our blog</Link>
+      <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
 
-      <h2>Pages</h2>
+      <h2 className="mb-4">Pages</h2>
 
       <ul>
         {pages.edges.map(({ node }) => (
