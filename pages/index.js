@@ -1,8 +1,8 @@
-import { getSite } from 'lib/site'
+import { get, siteQuery } from 'lib/api'
 import Head from 'next/head'
 import Layout from 'components/Layout'
-import Title from 'components/Title'
 import Link from 'components/Link'
+import Title from 'components/Title'
 
 export default function ({ site }) {
   return (
