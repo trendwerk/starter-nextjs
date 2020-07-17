@@ -1,7 +1,7 @@
 const theme = require('tailwindcss/defaultTheme')
-const url = `${process.env.WORDPRESS_API_URL}/images`
+const base = `${process.env.WORDPRESS_API_URL}/static`
 
-export default ({ id, width, height, alt = '', screens }) => {
+export default ({ url, width, height, alt = '', screens }) => {
   const ratio = width / height
   const screensList = screens ? { ...theme.screens, ...screens } : theme.screens
   const widths = Object.values(screensList).map((breakpoint) =>
@@ -16,7 +16,7 @@ export default ({ id, width, height, alt = '', screens }) => {
     widths
       .map((w) => {
         const h = Math.round(w / ratio)
-        return `${url}/${id}?w=${w}&h=${h}${append} ${w}w`
+        return `${base}/${url}?w=${w}&h=${h}${append} ${w}w`
       })
       .join(', ')
 
@@ -29,7 +29,7 @@ export default ({ id, width, height, alt = '', screens }) => {
         height={height}
         loading="lazy"
         sizes={sizes}
-        src={`${url}/${id}?w=${width}&h=${height}`}
+        src={`${base}/${url}?w=${width}&h=${height}`}
         srcSet={srcSet()}
         width={width}
       />
