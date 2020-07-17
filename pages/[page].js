@@ -22,8 +22,8 @@ export default function ({ post, site }) {
             dangerouslySetInnerHTML={{__html: post.content}}
           />
 
-          <Link href="/blog" arrowleft>
-            Back to blog overview
+          <Link href="/" arrowleft>
+            Back to home
           </Link>
         </>
     </Layout>
@@ -32,7 +32,7 @@ export default function ({ post, site }) {
 
 export async function getStaticProps({ params }) {
   const data = await fetchData(`
-    query Post($id: ID!) {
+    query Page($id: ID!) {
       post(id: $id, idType: SLUG) {
         title
         content
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
   `,
     {
       variables: {
-        id: params.post,
+        id: params.page,
       },
     }
   )
@@ -51,8 +51,8 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const data = await fetchData(`
-  query PostPaths {
-      posts(first: 10000) {
+  query PagePaths {
+      pages(first: 10000) {
         edges {
           node {
             slug
@@ -63,7 +63,7 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.posts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
+    paths: data.pages.edges.map(({ node }) => `/${node.slug}`) || [],
     fallback: true,
   }
 }

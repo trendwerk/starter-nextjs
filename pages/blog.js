@@ -32,7 +32,7 @@ export default function ({ posts, site }) {
 
 export async function getStaticProps() {
   const data = await fetchData(`
-    {
+    query Blog {
       posts(first: 10) {
         edges {
           node {
