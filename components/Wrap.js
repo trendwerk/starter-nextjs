@@ -3,9 +3,10 @@ export default function({ children, className, width=false }) {
     <section className={`px-5 w-full ${className}`}>
       <div
         className={`
-          w-full
-          ${!width && 'max-w-screen-xl'}
+          ${width ? '' : 'max-w-screen-xl'}
+          last:mb-0
           mx-auto
+          w-full
         `}
         style={{maxWidth: width ? width + 'px' : null}}
       >

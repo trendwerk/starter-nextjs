@@ -10,7 +10,7 @@ export default function({ children, site }) {
 
       <Header site={site} />
 
-      <Wrap className="mb-8" width="800">{children}</Wrap>
+      <Wrap className="mb-8 sm:mb-12" width="800">{children}</Wrap>
 
       <Footer site={site} />
     </div>
