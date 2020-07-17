@@ -8,11 +8,9 @@ export default ({
   height,
   alt = '',
   className = '',
-  screens = null,
 }) => {
   const ratio = width / height
-  const screensList = screens ? { ...theme.screens, ...screens } : theme.screens
-  const allWidths = { ...screensList, img: width }
+  const allWidths = { ...theme.screens, img: width }
   const dpi1 = Object.values(allWidths).map((w) => parseInt(w))
   const dpi2 = Object.values(allWidths).map((w) => parseInt(w) * 2)
   const wrapPadding = 40 * 2
@@ -38,6 +36,7 @@ export default ({
     widths
       .map((w) => {
         const h = Math.round(w / ratio)
+
         return `${process.env.STATIC_URL}/${src}?w=${w}&h=${h}${append} ${w}w`
       })
       .join(', ')
