@@ -4,34 +4,35 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Link from 'components/Link'
 
-export default function ({ post, site }) {
+export default function({ post, site }) {
   return (
     <Layout site={site}>
-        <Head>
-          <title>{post.title} - {site.title}</title>
-          <meta type="description" value="Page description" key="description" />
-        </Head>
+      <Head>
+        <title>
+          {post.title} - {site.title}
+        </title>
+        <meta type="description" value="Page description" key="description" />
+      </Head>
 
-        <>
-          <Title>
-            {post.title}
-          </Title>
+      <>
+        <Title>{post.title}</Title>
 
-          <div
-            className="mb-8 last:border-b-0"
-            dangerouslySetInnerHTML={{__html: post.content}}
-          />
+        <div
+          className="mb-8 last:border-b-0"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
 
-          <Link href="/blog" arrowleft>
-            Back to blog overview
-          </Link>
-        </>
+        <Link href="/blog" arrowleft>
+          Back to blog overview
+        </Link>
+      </>
     </Layout>
   )
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(`
+  const data = await fetchData(
+    `
     query Post($id: ID!) {
       post(id: $id, idType: SLUG) {
         title
@@ -42,8 +43,8 @@ export async function getStaticProps({ params }) {
   `,
     {
       variables: {
-        id: params.post,
-      },
+        id: params.post
+      }
     }
   )
   return { props: data }
@@ -64,6 +65,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.posts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
-    fallback: true,
+    fallback: true
   }
 }

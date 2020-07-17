@@ -3,5 +3,5 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 module.exports = {
-  env: { STATIC_URL: process.env.STATIC_URL },
+  env: { STATIC_URL: process.env.STATIC_URL }
 }

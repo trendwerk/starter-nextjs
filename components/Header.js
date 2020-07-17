@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Logo from 'components/Logo'
 import Wrap from 'components/Wrap'
 
-export default function ({ site }) {
+export default function({ site }) {
   return (
     <Wrap className="mb-8 py-4 border-b border-gray-200">
       <Link href="/">

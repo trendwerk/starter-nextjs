@@ -4,7 +4,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Link from 'components/Link'
 
-export default function ({ post, site }) {
+export default function({ post, site }) {
   return (
     <Layout site={site}>
       <Head
@@ -13,13 +13,11 @@ export default function ({ post, site }) {
         site={site}
       />
 
-      <Title>
-        {post.title}
-      </Title>
+      <Title>{post.title}</Title>
 
       <div
         className="mb-8 last:border-b-0"
-        dangerouslySetInnerHTML={{__html: post.content}}
+        dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
       <Link href="/" arrowleft>
@@ -30,7 +28,8 @@ export default function ({ post, site }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(`
+  const data = await fetchData(
+    `
     query Page($id: ID!) {
       post: page(id: $id, idType: URI) {
         title
@@ -45,8 +44,8 @@ export async function getStaticProps({ params }) {
   `,
     {
       variables: {
-        id: params.page,
-      },
+        id: params.page
+      }
     }
   )
   return { props: data }
@@ -67,6 +66,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.pages.edges.map(({ node }) => `/${node.slug}`) || [],
-    fallback: true,
+    fallback: true
   }
 }
