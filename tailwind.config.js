@@ -1,8 +1,13 @@
 const colors = require('@tailwindcss/ui/colors')
+const theme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
     colors: { ...colors, brand: colors.blue },
+    screens: {
+      'xs': '480px',
+      ...theme.screens,
+    },
     extend: {
       fontFamily: {
         serif: ['Merriweather', 'serif'],
