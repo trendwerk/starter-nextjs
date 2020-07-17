@@ -1,4 +1,4 @@
-import { get, siteQuery } from 'lib/api'
+import { fetchData, siteQuery } from 'lib/api'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
@@ -26,7 +26,7 @@ export default function ({ site }) {
 }
 
 export async function getStaticProps() {
-  const data = await get(`
+  const data = await fetchData(`
     {
       ${siteQuery}
     }

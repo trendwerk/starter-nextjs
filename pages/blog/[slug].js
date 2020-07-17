@@ -1,4 +1,4 @@
-import { get, siteQuery } from 'lib/api'
+import { fetchData, siteQuery } from 'lib/api'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
@@ -31,7 +31,7 @@ export default function ({ post, site }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await get(`
+  const data = await fetchData(`
     query GET_POST($id: ID!) {
       post(id: $id, idType: SLUG) {
         title
@@ -50,7 +50,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const data = await get(`
+  const data = await fetchData(`
     {
       posts(first: 10000) {
         edges {
