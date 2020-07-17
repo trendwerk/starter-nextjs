@@ -1,4 +1,4 @@
-// API: <Img src="2020/07/oats.jpg" width={480} height={320} alt="Oats" className="mb-8" />
+// API: <Image src="2020/07/oats.jpg" width={480} height={320} alt="Oats" className="mb-8" />
 
 const theme = require('../tailwind.config').theme
 
