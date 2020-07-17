@@ -2,11 +2,8 @@ const colors = require('@tailwindcss/ui/colors')
 
 module.exports = {
   theme: {
-    colors,
+    colors: { ...colors, brand: colors.blue },
     extend: {
-      colors: {
-        brand: colors.blue,
-      },
       fontFamily: {
         serif: ['Merriweather', 'serif'],
       },
