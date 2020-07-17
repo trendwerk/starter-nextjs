@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     colors: { ...colors, brand: colors.blue },
     screens: {
+      '2xs': '360px',
       'xs': '480px',
       ...theme.screens,
     },
