@@ -24,6 +24,7 @@ h3 {
 
 p {
   @apply leading-relaxed;
+  @apply text-gray-600;
 }
 
 @import "tailwindcss/utilities";
