@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
   `,
     {
       variables: {
-        id: params.slug,
+        id: params.post,
       },
     }
   )
