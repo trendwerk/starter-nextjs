@@ -1,17 +1,13 @@
 import Footer from 'components/Footer'
 import Head from 'components/Head'
-import Header from 'components/Header'
-import Wrap from 'components/Wrap'
+import Menu from 'components/Menu'
 
 export default function({ children, site }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Head site={site} />
-
-      <Header site={site} />
-
-      <Wrap className="mb-8 sm:mb-12" width="800">{children}</Wrap>
-
+      <Menu site={site} />
+      {children}
       <Footer site={site} />
     </div>
   )
