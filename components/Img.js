@@ -22,7 +22,7 @@ export default ({ url, width, height, alt = '', screens }) => {
 
   return (
     <picture>
-      <source type="image/webp" sizes={sizes} srcSet={srcSet('?fm=webp')} />
+      <source type="image/webp" sizes={sizes} srcSet={srcSet('&fm=webp')} />
       <img
         alt={alt}
         className="bg-gray-200"
