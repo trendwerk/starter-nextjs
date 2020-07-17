@@ -2,7 +2,6 @@ import { fetchData, siteQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Link from 'components/Link'
 import Title from 'components/Title'
 
 export default function({ post, site }) {

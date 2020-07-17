@@ -1,22 +1,13 @@
 @import "tailwindcss/base";
 
 body {
-  @apply text-gray-800;
   @apply leading-tight;
+  @apply text-gray-800;
 }
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-bold;
   @apply font-serif;
-}
-
-.prose a {
-  @apply duration-200;
-  @apply transition;
-}
-
-.prose a:hover {
-  @apply text-blue-700;
 }
 
 @import "tailwindcss/components";

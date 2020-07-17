@@ -10,6 +10,11 @@ const headingStyle = {
 module.exports = {
   theme: {
     colors: { ...colors, brand: brandColor },
+    extend: {
+      fontFamily: {
+        serif: ['Merriweather', 'serif']
+      }
+    },
     screens: {
       '2xs': '360px',
       xs: '480px',
@@ -22,6 +27,11 @@ module.exports = {
           a: {
             color: brandColor[600],
             textDecoration: 'none',
+            transitionDuration: '200ms',
+            transitionProperty: 'color',
+            '&:hover': {
+              color: brandColor[700],
+            },
           },
           h2: headingStyle,
           h3: headingStyle,
@@ -31,11 +41,9 @@ module.exports = {
         },
       },
     },
-    extend: {
-      fontFamily: {
-        serif: ['Merriweather', 'serif']
-      }
-    },
+  },
+  variants: {
+    margin: ['responsive', 'last'],
   },
   plugins: [
     require('@tailwindcss/typography')
