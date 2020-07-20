@@ -1,5 +1,5 @@
 import 'styles/base.css'
 
-export default function MyApp({ Component, pageProps }) {
+export default function ({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
