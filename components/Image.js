@@ -1,8 +1,8 @@
-// API: <Image src="2020/07/oats.jpg" width={480} height={320} alt="Oats" className="mb-8" />
+// API: <Image src="https://api.app/endpoint/image.jpg" width={480} height={320} fit="fill" alt="Oats" className="mb-8" />
 
 const theme = require('../tailwind.config').theme
 
-export default ({ src, width, height, alt = '', className = '' }) => {
+export default ({ alt='', className='', fit='crop', height, src, width }) => {
   const ratio = width / height
   const allWidths = { ...theme.screens, img: width }
   const dpi1 = Object.values(allWidths).map(w => parseInt(w))
@@ -31,7 +31,7 @@ export default ({ src, width, height, alt = '', className = '' }) => {
       .map(w => {
         const h = Math.round(w / ratio)
 
-        return `${process.env.STATIC_URL}/${src}?w=${w}&h=${h}${append} ${w}w`
+        return `${src}?w=${w}&h=${h}${append}&fit=${fit} ${w}w`
       })
       .join(', ')
 
@@ -44,7 +44,7 @@ export default ({ src, width, height, alt = '', className = '' }) => {
         height={height}
         loading="lazy"
         sizes={sizes}
-        src={`${process.env.STATIC_URL}/${src}?w=${width}&h=${height}`}
+        src={`${src}?w=${width}&h=${height}`}
         srcSet={srcSet()}
         width={width}
       />
