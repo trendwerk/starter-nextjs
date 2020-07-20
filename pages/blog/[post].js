@@ -1,16 +1,16 @@
-import { fetchData, siteQuery } from 'lib/api'
+import { fetchData, appQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 
-export default function({ post, site }) {
+export default function({ app, post }) {
   return (
-    <Layout site={site}>
+    <Layout app={app}>
       <Head>
         <title>
-          {post.title} - {site.title}
+          {post.title} - {app.title}
         </title>
         <meta type="description" value="Page description" key="description" />
       </Head>
@@ -36,7 +36,7 @@ export async function getStaticProps({ params }) {
         title
         content
       }
-      ${siteQuery}
+      ${appQuery}
     }
   `,
     {

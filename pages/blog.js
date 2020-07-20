@@ -1,11 +1,11 @@
-import { fetchData, siteQuery } from 'lib/api'
+import { fetchData, appQuery } from 'lib/api'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Link from 'components/Link'
 
-export default function({ posts, site }) {
+export default function({ app, posts }) {
   return (
-    <Layout site={site}>
+    <Layout app={app}>
       <Title>Blog</Title>
 
       <ul>
@@ -33,7 +33,7 @@ export async function getStaticProps() {
           }
         }
       }
-      ${siteQuery}
+      ${appQuery}
     }
   `)
   return { props: data }

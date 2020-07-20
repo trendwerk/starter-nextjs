@@ -1,20 +1,20 @@
-import { fetchData, siteQuery } from 'lib/api'
+import { fetchData, appQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function({ post, site }) {
+export default function({ app, post }) {
   return (
-    <Layout site={site}>
+    <Layout app={app}>
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
-        site={site}
+        app={app}
       />
 
-      <Header image={post.fields.headerImage} />
+      {/* <Header image={post.fields.headerImage} /> */}
 
       <Wrap width="800">
         <Title>{post.title}</Title>
@@ -33,13 +33,11 @@ export async function getStaticProps({ params }) {
         title
         content
         fields {
-          headerImage
           title
           metaDescription
-          ogImage
         }
       }
-      ${siteQuery}
+      ${appQuery}
     }
   `,
     {

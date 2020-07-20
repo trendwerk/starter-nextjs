@@ -2,13 +2,13 @@ import Footer from 'components/Footer'
 import Head from 'components/Head'
 import Menu from 'components/Menu'
 
-export default function({ children, site }) {
+export default function({ app, children }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Head site={site} />
-      <Menu site={site} />
+      <Head app={app} />
+      <Menu app={app} />
       {children}
-      <Footer site={site} />
+      <Footer app={app} />
     </div>
   )
 }

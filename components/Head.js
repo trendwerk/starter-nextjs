@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
 
-export default function({ title, description, image, site }) {
+export default function({ app, title, description, image }) {
   image = image || 'share.png'
-  title = title ? `${title} - ${site.title}` : site.title
+  title = title ? `${title} - ${app.title}` : app.title
 
   const canonical = '#'
   const color = tailwind.theme.colors.brand[600]
-  const language = site?.language
+  const language = app?.language
 
   return (
     <Head>
@@ -40,7 +40,7 @@ export default function({ title, description, image, site }) {
       <meta key="og:image:type" property="og:image:type" content="image/png" />
       <meta key="og:image:url" property="og:image:url" content={image} />
       <meta key="og:image:width" property="og:image:width" content="1200" />
-      <meta key="og:site_name" property="og:site_name" content={site.title} />
+      <meta key="og:site_name" property="og:site_name" content={app.title} />
       <meta key="og:title" property="og:title" content={title} />
       <meta key="og:type" property="og:type" content="website" />
       <meta key="og:url" property="og:url" content={canonical} />
@@ -53,7 +53,7 @@ export default function({ title, description, image, site }) {
       <meta
         key="twitter:creator"
         property="twitter:creator"
-        content={site.title}
+        content={app.title}
       />
       <meta key="twitter:title" property="twitter:title" content={title} />
       <link

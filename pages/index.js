@@ -1,12 +1,12 @@
-import { fetchData, siteQuery } from 'lib/api'
+import { fetchData, appQuery } from 'lib/api'
 import Button from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 
-export default function({ pages, site }) {
+export default function({ app, pages }) {
   return (
-    <Layout site={site}>
+    <Layout app={app}>
       <Title>Home</Title>
 
       <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
@@ -38,7 +38,7 @@ export async function getStaticProps() {
           }
         }
       }
-      ${siteQuery}
+      ${appQuery}
     }
   `)
   return { props: data }
