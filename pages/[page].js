@@ -14,7 +14,7 @@ export default function({ app, post }) {
         description={post?.fields?.metaDescription}
       />
 
-      <Header image={post.fields.headerImage} />
+      <Header image={post?.fields?.headerImage} />
 
       <Wrap width="800">
         <Title>{post.title}</Title>
