@@ -3,15 +3,17 @@ import Context from 'components/Context'
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
 
-export default function({ title, description, image }) {
-  const { app } = useContext(Context)
+export default function({ title, description }) {
+  const { app, post } = useContext(Context)
 
-  image = image || 'share.png'
   title = title ? `${title} - ${app.title}` : app.title
 
   const canonical = '#'
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
+
+  let image = post?.fields?.ogImage?.url || post?.fields?.headerImage?.url || 'share.png'
+  image = image + '?w=1200&h=630'
 
   return (
     <Head>

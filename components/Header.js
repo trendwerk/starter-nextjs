@@ -11,7 +11,7 @@ export default function({ image }) {
 
   return (
     <Image
-      alt={post.title}
+      alt={post?.title}
       className="w-full h-auto mb-8 sm:mb-10 lg:mb-16 object-cover"
       height='800'
       src={image.url}
