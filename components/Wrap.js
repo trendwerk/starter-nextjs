@@ -4,6 +4,7 @@ export default function({ children, className, width=false, noMargin=false }) {
         ${className}
         ${noMargin ? '' : 'my-10 sm:my-16 lg:my-24'}
         px-5
+        sm:px-10
         w-full
       `}>
       <div
