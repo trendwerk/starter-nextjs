@@ -12,7 +12,7 @@ export default class extends Document {
     return (
       <Html lang={LANGUAGE}>
         <Head />
-        <body className="flex flex-col min-h-screen bg-red-500">
+        <body className="flex flex-col min-h-screen">
           <Main />
           <NextScript />
         </body>
