@@ -7,7 +7,7 @@ import Wrap from 'components/Wrap'
 
 export default function({ app, post }) {
   return (
-    <Layout app={app}>
+    <Layout context={{ app, post }}>
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}

@@ -2,7 +2,7 @@ export default function({ children, className, width=false, noMargin=false }) {
   return (
     <section className={`
         ${className}
-        ${noMargin ? '' : 'mb-8 sm:mb-10 lg:mb-16'}
+        ${noMargin ? '' : 'my-10 sm:my-16 lg:my-24'}
         px-5
         w-full
       `}>

@@ -6,7 +6,7 @@ import Wrap from 'components/Wrap'
 
 export default function({ app, posts }) {
   return (
-    <Layout app={app}>
+    <Layout context={{ app }}>
       <Head title='Blog' />
 
       <Wrap width="800">

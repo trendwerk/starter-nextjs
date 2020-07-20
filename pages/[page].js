@@ -1,19 +1,20 @@
 import { fetchData, appQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
+import Header from 'components/Header'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function({ app, post }) {
   return (
-    <Layout app={app}>
+    <Layout context={{ app, post }}>
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
       />
 
-      {/* <Header image={post.fields.headerImage} /> */}
+      <Header image={post.fields.headerImage} />
 
       <Wrap width="800">
         <Title>{post.title}</Title>
@@ -32,6 +33,9 @@ export async function getStaticProps({ params }) {
         title
         content
         fields {
+          headerImage {
+            url:sourceUrl
+          }
           title
           metaDescription
         }

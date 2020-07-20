@@ -8,7 +8,7 @@ export default function() {
   const { app } = useContext(Context)
 
   return (
-    <Wrap className="py-4 border-b border-gray-200">
+    <Wrap className="py-4 shadow-md" noMargin>
       <Link href="/">
         <a className="font-serif font-bold text-lg flex items-center">
           <Logo className="text-brand-600 h-8 w-8 mr-3 flex-none" />

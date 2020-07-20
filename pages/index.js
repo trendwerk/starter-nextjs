@@ -8,7 +8,7 @@ import Wrap from 'components/Wrap'
 
 export default function({ app, pages }) {
   return (
-    <Layout app={app}>
+    <Layout context={{ app }}>
       <Head title='Home' />
 
       <Wrap width="800">
