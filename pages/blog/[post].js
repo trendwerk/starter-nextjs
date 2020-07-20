@@ -2,6 +2,7 @@ import { fetchData, appQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
+import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
