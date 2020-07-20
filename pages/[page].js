@@ -11,7 +11,6 @@ export default function({ app, post }) {
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
-        app={app}
       />
 
       {/* <Header image={post.fields.headerImage} /> */}

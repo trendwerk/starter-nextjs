@@ -1,21 +1,19 @@
 import { fetchData, appQuery } from 'lib/api'
 import Content from 'components/Content'
-import Head from 'next/head'
+import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Link from 'components/Link'
 import Title from 'components/Title'
+import Wrap from 'components/Wrap'
 
 export default function({ app, post }) {
   return (
     <Layout app={app}>
-      <Head>
-        <title>
-          {post.title} - {app.title}
-        </title>
-        <meta type="description" value="Page description" key="description" />
-      </Head>
+      <Head
+        title={post?.fields?.title || post?.title}
+        description={post?.fields?.metaDescription}
+      />
 
-      <>
+      <Wrap width="800">
         <Title>{post.title}</Title>
 
         <Content content={post.content} />
@@ -23,7 +21,7 @@ export default function({ app, post }) {
         <Link href="/blog" arrowleft>
           Back to blog overview
         </Link>
-      </>
+      </Wrap>
     </Layout>
   )
 }

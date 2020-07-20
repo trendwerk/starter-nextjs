@@ -1,27 +1,33 @@
 import { fetchData, appQuery } from 'lib/api'
 import Button from 'components/Button'
+import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
+import Wrap from 'components/Wrap'
 
 export default function({ app, pages }) {
   return (
     <Layout app={app}>
-      <Title>Home</Title>
+      <Head title='Home' />
 
-      <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
+      <Wrap width="800">
+        <Title>Home</Title>
 
-      <h2 className="mb-4">Pages</h2>
+        <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
 
-      <ul>
-        {pages.edges.map(({ node }) => (
-          <li key={node.id}>
-            <Link href="/[page]" as={`/${node.slug}`} arrowright>
-              {node.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <h2 className="mb-4">Pages</h2>
+
+        <ul>
+          {pages.edges.map(({ node }) => (
+            <li key={node.id}>
+              <Link href="/[page]" as={`/${node.slug}`} arrowright>
+                {node.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Wrap>
     </Layout>
   )
 }

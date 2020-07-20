@@ -1,22 +1,27 @@
 import { fetchData, appQuery } from 'lib/api'
+import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
-import Link from 'components/Link'
+import Wrap from 'components/Wrap'
 
 export default function({ app, posts }) {
   return (
     <Layout app={app}>
-      <Title>Blog</Title>
+      <Head title='Blog' />
 
-      <ul>
-        {posts.edges.map(({ node }) => (
-          <li key={node.id}>
-            <Link href="/blog/[post]" as={`/blog/${node.slug}`} arrowright>
-              {node.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Wrap width="800">
+        <Title>Blog</Title>
+
+        <ul>
+          {posts.edges.map(({ node }) => (
+            <li key={node.id}>
+              <Link href="/blog/[post]" as={`/blog/${node.slug}`} arrowright>
+                {node.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Wrap>
     </Layout>
   )
 }

@@ -1,7 +1,11 @@
+import { useContext } from 'react'
+import Context from 'components/Context'
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
 
-export default function({ app, title, description, image }) {
+export default function({ title, description, image }) {
+  const { app } = useContext(Context)
+
   image = image || 'share.png'
   title = title ? `${title} - ${app.title}` : app.title
 

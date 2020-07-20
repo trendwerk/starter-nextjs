@@ -1,8 +1,12 @@
+import { useContext } from 'react'
+import Context from 'components/Context'
 import Link from 'next/link'
 import Logo from 'components/Logo'
 import Wrap from 'components/Wrap'
 
-export default function({ app }) {
+export default function() {
+  const { app } = useContext(Context)
+
   return (
     <Wrap className="py-4 border-b border-gray-200">
       <Link href="/">
