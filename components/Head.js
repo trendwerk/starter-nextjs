@@ -2,13 +2,15 @@ import { useContext } from 'react'
 import Context from 'components/Context'
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
+import { useRouter } from 'next/router'
 
 export default function({ title, description }) {
   const { app, post } = useContext(Context)
+  const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title
 
-  const canonical = '#'
+  const canonical = (asPath === '/') ? process.env.URL : process.env.URL + asPath
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
 
