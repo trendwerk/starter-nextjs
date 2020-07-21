@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Context from 'components/Context'
+import Context from 'lib/Context'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
 import Wrap from 'components/Wrap'

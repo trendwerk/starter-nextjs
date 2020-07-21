@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Context from 'components/Context'
+import Context from 'lib/Context'
 import Image from 'components/Image'
 
 export default function({ image }) {
