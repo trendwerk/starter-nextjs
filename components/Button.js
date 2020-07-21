@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Router from 'components/Router'
 
 export default function({
   as,
@@ -8,7 +8,7 @@ export default function({
   large=false
 }) {
   return (
-    <Link href={href} as={as}>
+    <Router href={href}>
       <a className={`
           bg-brand-600
           duration-200
@@ -32,6 +32,6 @@ export default function({
       `}>
         {children}
       </a>
-    </Link>
+    </Router>
   )
 }

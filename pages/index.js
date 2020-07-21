@@ -6,7 +6,7 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function({ app, pages }) {
+export default function({ mainMenu, app, pages }) {
   return (
     <Layout context={{ app }}>
       <Head title='Home' />
@@ -21,7 +21,7 @@ export default function({ app, pages }) {
         <ul>
           {pages.edges.map(({ node }) => (
             <li key={node.id}>
-              <Link href="/[page]" as={`/${node.slug}`} arrowright>
+              <Link href={`/${node.slug}`} arrowright>
                 {node.title}
               </Link>
             </li>
@@ -45,6 +45,15 @@ export async function getStaticProps() {
         }
       }
       ${appQuery}
+      mainMenu: menuItems(where:{location: MAIN}) {
+        edges {
+          node {
+            id
+            label
+            url
+          }
+        }
+      }
     }
   `)
   return { props: data }
