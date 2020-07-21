@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
   const data = await fetchData(
     `
     query Post($id: ID!) {
-      post(id: $id, idType: SLUG) {
+      post(id: $id, idType: URI) {
         title
         content
       }
