@@ -3,6 +3,7 @@ import Button from 'components/Button'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
+import Menu from 'components/Menu'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
@@ -10,7 +11,7 @@ export default function({ mainMenu, app, pages }) {
   return (
     <Layout context={{ app }}>
       <Head title='Home' />
-
+      <Menu menu={mainMenu} />
       <Wrap width="800">
         <Title>Home</Title>
 
