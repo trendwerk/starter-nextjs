@@ -2,7 +2,7 @@ import { fetchData, appQuery } from 'lib/api'
 import Button from 'components/Button'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Link from 'components/Link'
+import Link from 'next/link'
 import Menu from 'components/Menu'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
@@ -14,7 +14,7 @@ export default function ({ mainMenu, app, pages }) {
       <Wrap width="800">
         <Title>Home</Title>
 
-        {/* <Menu menu={mainMenu} /> */}
+        <Menu menu={mainMenu} />
 
         <Button className="mb-8 w-full" href="/blog" large>
           Visit our blog
@@ -24,9 +24,9 @@ export default function ({ mainMenu, app, pages }) {
         <ul>
           {pages.edges.map(({ node }) => (
             <li key={node.id}>
-              <Link href={`/${node.slug}`} className="link" arrowright>
+              {/* <Link href={`/${node.slug}`} className="link" arrowright>
                 {node.title}
-              </Link>
+              </Link> */}
             </li>
           ))}
         </ul>

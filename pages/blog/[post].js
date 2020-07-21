@@ -19,7 +19,7 @@ export default function ({ app, post }) {
 
         <Content content={post.content} />
 
-        <Link href="/blog" className="link" arrowleft>
+        <Link href="/blog" className="link" arrow="left">
           Back to blog overview
         </Link>
       </Wrap>
