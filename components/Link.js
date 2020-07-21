@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getLink } from 'lib/router'
 
 export default ({
   arrowleft = false,
@@ -7,37 +8,14 @@ export default ({
   className,
   href
 }) => {
-  // Remove app URL or WordPress URL from links
-  href = (href.indexOf(process.env.URL) == 0) ? href.replace(process.env.URL, '') : href
-  href = (href.indexOf(process.env.WP_URL) == 0) ? href.replace(process.env.WP_URL, '') : href
-
-  // Remove trailing slash
-  href = (href == '/') ? href : href.replace(/\/$/, '');
-
-  const as = href;
-  let rel = undefined;
-  let target = undefined;
-
-  // Set template based on href attribute
-  if (href.indexOf('/blog/') == 0) {
-    href = '/blog/[post]'
-  } else if (href.indexOf('/blog') == 0) {
-    href = '/blog'
-  } else if (href.indexOf('/') == 0) {
-    href = '/[page]'
-  } else if (href === '/') {
-    href = '/'
-  }else {
-    rel="noopener"
-    target="_blank"
-  }
+  const link = getLink(href)
 
   return (
-    <Link href={href} as={as}>
+    <Link href={link.href} as={link.as}>
       <a
         className={className}
-        rel={rel}
-        target={target}
+        rel={link.rel}
+        target={link.target}
       >
         {arrowleft && (
         <svg className="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
