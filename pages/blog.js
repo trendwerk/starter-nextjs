@@ -16,7 +16,7 @@ export default function ({ app, posts }) {
         <ul>
           {posts.edges.map(({ node }) => (
             <li key={node.id}>
-              <Link href={`/blog/${node.slug}`} className="link" arrowright>
+              <Link href={`/blog/${node.slug}`} className="link" arrow="right">
                 {node.title}
               </Link>
             </li>
