@@ -1,24 +1,24 @@
 const colors = require('@tailwindcss/ui/colors')
 const theme = require('tailwindcss/defaultTheme')
 
-const brandColor = colors.blue;
+const brandColor = colors.blue
 
 const headingStyle = {
   color: colors.gray[800],
-};
+}
 
 module.exports = {
   theme: {
     colors: { ...colors, brand: brandColor },
     extend: {
       fontFamily: {
-        serif: ['Merriweather', 'serif']
-      }
+        serif: ['Merriweather', 'serif'],
+      },
     },
     screens: {
       '2xs': '360px',
       xs: '480px',
-      ...theme.screens
+      ...theme.screens,
     },
     typography: {
       default: {
@@ -45,11 +45,9 @@ module.exports = {
   variants: {
     margin: ['responsive', 'last'],
   },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
+  plugins: [require('@tailwindcss/typography')],
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
-    mode: 'all'
-  }
+    mode: 'all',
+  },
 }

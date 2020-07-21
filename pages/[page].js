@@ -6,7 +6,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function({ app, post }) {
+export default function ({ app, post }) {
   return (
     <Layout context={{ app, post }}>
       <Head
@@ -45,8 +45,8 @@ export async function getStaticProps({ params }) {
   `,
     {
       variables: {
-        id: params.page
-      }
+        id: params.page,
+      },
     }
   )
   return { props: data }
@@ -67,6 +67,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.pages.edges.map(({ node }) => `/${node.slug}`) || [],
-    fallback: true
+    fallback: true,
   }
 }

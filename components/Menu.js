@@ -1,6 +1,6 @@
 import Link from 'components/Link'
 
-export default function({ menu }) {
+export default function ({ menu }) {
   return (
     <ul>
       {menu.edges.map(({ node }) => (

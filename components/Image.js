@@ -2,11 +2,19 @@
 
 const theme = require('../tailwind.config').theme
 
-export default ({ alt='', className='', fit='crop', height, src, style, width }) => {
+export default ({
+  alt = '',
+  className = '',
+  fit = 'crop',
+  height,
+  src,
+  style,
+  width,
+}) => {
   const ratio = width / height
   const allWidths = { ...theme.screens, img: width }
-  const dpi1 = Object.values(allWidths).map(w => parseInt(w))
-  const dpi2 = Object.values(allWidths).map(w => parseInt(w) * 2)
+  const dpi1 = Object.values(allWidths).map((w) => parseInt(w))
+  const dpi2 = Object.values(allWidths).map((w) => parseInt(w) * 2)
   const wrapPadding = 40 * 2
 
   const widths = [...dpi1, ...dpi2]
@@ -28,7 +36,7 @@ export default ({ alt='', className='', fit='crop', height, src, style, width })
 
   const srcSet = (append = '') =>
     widths
-      .map(w => {
+      .map((w) => {
         const h = Math.round(w / ratio)
 
         return `${src}?w=${w}&h=${h}${append}&fit=${fit} ${w}w`

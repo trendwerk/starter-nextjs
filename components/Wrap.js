@@ -1,12 +1,19 @@
-export default function({ children, className, width=false, noMargin=false }) {
+export default function ({
+  children,
+  className,
+  width = false,
+  noMargin = false,
+}) {
   return (
-    <section className={`
+    <section
+      className={`
         ${className}
         ${noMargin ? '' : 'my-10 sm:my-16 lg:my-24'}
         px-5
         sm:px-10
         w-full
-      `}>
+      `}
+    >
       <div
         className={`
           ${width ? '' : 'max-w-screen-xl'}
@@ -14,7 +21,7 @@ export default function({ children, className, width=false, noMargin=false }) {
           mx-auto
           w-full
         `}
-        style={{maxWidth: width ? width + 'px' : null}}
+        style={{ maxWidth: width ? width + 'px' : null }}
       >
         {children}
       </div>

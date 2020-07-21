@@ -1,14 +1,9 @@
 import Link from 'components/Link'
 
-export default function({
-  children,
-  className,
-  href,
-  large=false
-}) {
+export default function ({ children, className, href, large = false }) {
   return (
     <Link
-    className={`
+      className={`
           bg-brand-600
           duration-200
           font-semibold
@@ -19,19 +14,23 @@ export default function({
           text-center
           text-white
           transition-bg
-          ${large ? `
+          ${
+            large
+              ? `
             px-8
             py-4
-          ` : `
+          `
+              : `
             px-6
             py-3
             text-sm
-          `}
+          `
+          }
           ${className}
       `}
       href={href}
-      >
-        {children}
+    >
+      {children}
     </Link>
   )
 }

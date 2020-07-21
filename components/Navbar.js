@@ -4,7 +4,7 @@ import Link from 'components/Link'
 import Logo from 'components/Logo'
 import Wrap from 'components/Wrap'
 
-export default function() {
+export default function () {
   const { app } = useContext(Context)
 
   return (

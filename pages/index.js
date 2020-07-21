@@ -7,16 +7,18 @@ import Menu from 'components/Menu'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function({ mainMenu, app, pages }) {
+export default function ({ mainMenu, app, pages }) {
   return (
     <Layout context={{ app }}>
-      <Head title='Home' />
+      <Head title="Home" />
       <Wrap width="800">
         <Title>Home</Title>
 
         {/* <Menu menu={mainMenu} /> */}
 
-        <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
+        <Button className="mb-8 w-full" href="/blog" large>
+          Visit our blog
+        </Button>
 
         <h2 className="mb-4">Pages</h2>
         <ul>

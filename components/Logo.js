@@ -1,4 +1,4 @@
-export default function({ className }) {
+export default function ({ className }) {
   return (
     <svg
       className={className}
