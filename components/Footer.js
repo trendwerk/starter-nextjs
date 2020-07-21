@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Context from 'lib/Context'
 import Wrap from 'components/Wrap'
 
-export default function () {
+export default () => {
   const { app } = useContext(Context)
 
   return (

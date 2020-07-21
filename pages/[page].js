@@ -6,9 +6,9 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ app, post }) {
+export default function ({ app, menu, post }) {
   return (
-    <Layout context={{ app, post }}>
+    <Layout context={{ app, menu, post }}>
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}

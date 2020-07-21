@@ -3,18 +3,15 @@ import Button from 'components/Button'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
-import Menu from 'components/Menu'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ mainMenu, app, pages }) {
+export default function ({ app, menu, pages }) {
   return (
-    <Layout context={{ app }}>
+    <Layout context={{ app, menu }}>
       <Head title="Home" />
       <Wrap width="800">
         <Title>Home</Title>
-
-        <Menu menu={mainMenu} />
 
         <Button className="mb-8 w-full" href="/blog" large>
           Visit our blog
@@ -48,15 +45,6 @@ export async function getStaticProps() {
         }
       }
       ${appQuery}
-      mainMenu: menuItems(where:{location: MAIN}) {
-        edges {
-          node {
-            id
-            label
-            url
-          }
-        }
-      }
     }
   `)
   return { props: data }

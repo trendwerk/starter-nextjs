@@ -5,9 +5,9 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ app, posts }) {
+export default function ({ app, menu, posts }) {
   return (
-    <Layout context={{ app }}>
+    <Layout context={{ app, menu }}>
       <Head title="Blog" />
 
       <Wrap width="800">
