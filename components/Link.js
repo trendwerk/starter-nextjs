@@ -10,12 +10,12 @@ export default ({
   const link = getLink(href)
 
   return link.external ? (
-    <a className={`${className} bg-red-600`} href={link.href} rel="noopener" target="_blank">
+    <a className={className} href={link.href} rel="noopener" target="_blank">
       <Content arrow={arrow}>{children}</Content>
     </a>
   ) : (
     <Link href={link.href} as={link.as}>
-      <a className={`${className} bg-green-600`}>
+      <a className={className}>
         <Content arrow={arrow}>{children}</Content>
       </a>
     </Link>
