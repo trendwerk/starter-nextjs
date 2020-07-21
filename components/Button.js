@@ -1,15 +1,14 @@
-import Router from 'components/Router'
+import Link from 'components/Link'
 
 export default function({
-  as,
   children,
   className,
   href,
   large=false
 }) {
   return (
-    <Router href={href}>
-      <a className={`
+    <Link
+    className={`
           bg-brand-600
           duration-200
           font-semibold
@@ -29,9 +28,10 @@ export default function({
             text-sm
           `}
           ${className}
-      `}>
+      `}
+      href={href}
+      >
         {children}
-      </a>
-    </Router>
+    </Link>
   )
 }

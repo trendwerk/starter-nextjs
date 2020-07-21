@@ -11,18 +11,18 @@ export default function({ mainMenu, app, pages }) {
   return (
     <Layout context={{ app }}>
       <Head title='Home' />
-      <Menu menu={mainMenu} />
       <Wrap width="800">
         <Title>Home</Title>
+
+        {/* <Menu menu={mainMenu} /> */}
 
         <Button className="mb-8 w-full" href="/blog" large>Visit our blog</Button>
 
         <h2 className="mb-4">Pages</h2>
-
         <ul>
           {pages.edges.map(({ node }) => (
             <li key={node.id}>
-              <Link href={`/${node.slug}`} arrowright>
+              <Link href={`/${node.slug}`} className="link" arrowright>
                 {node.title}
               </Link>
             </li>

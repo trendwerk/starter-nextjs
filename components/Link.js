@@ -1,18 +1,45 @@
-import Router from 'components/Router'
+import Link from 'next/link'
 
-export default function({
+export default ({
   arrowleft = false,
   arrowright = false,
   children,
   className,
   href
-}) {
+}) => {
+  // Remove app URL or WordPress URL from links
+  href = (href.indexOf(process.env.URL) == 0) ? href.replace(process.env.URL, '') : href
+  href = (href.indexOf(process.env.WP_URL) == 0) ? href.replace(process.env.WP_URL, '') : href
+
+  // Remove trailing slash
+  href = (href == '/') ? href : href.replace(/\/$/, '');
+
+  const as = href;
+  let rel = undefined;
+  let target = undefined;
+
+  // Set template based on href attribute
+  if (href.indexOf('/blog/') == 0) {
+    href = '/blog/[post]'
+  } else if (href.indexOf('/blog') == 0) {
+    href = '/blog'
+  } else if (href.indexOf('/') == 0) {
+    href = '/[page]'
+  } else if (href === '/') {
+    href = '/'
+  }else {
+    rel="noopener"
+    target="_blank"
+  }
+
   return (
-    <Router
-      className={`text-brand-600 hover:text-brand-700 transition-color duration-200 flex items-center ${className}`}
-      href={href}
-    >
-      {arrowleft && (
+    <Link href={href} as={as}>
+      <a
+        className={className}
+        rel={rel}
+        target={target}
+      >
+        {arrowleft && (
         <svg className="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
           <path
             fillRule="evenodd"
@@ -31,6 +58,7 @@ export default function({
           />
         </svg>
       )}
-    </Router>
+      </a>
+    </Link>
   )
 }

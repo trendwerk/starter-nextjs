@@ -1,0 +1,4 @@
+body {
+  @apply leading-tight;
+  @apply text-gray-800;
+}

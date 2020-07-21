@@ -10,13 +10,13 @@ export default function({ app, posts }) {
     <Layout context={{ app }}>
       <Head title='Blog' />
 
-      <Wrap width="800">
+      <Wrap width='800'>
         <Title>Blog</Title>
 
         <ul>
           {posts.edges.map(({ node }) => (
             <li key={node.id}>
-              <Link href={`/blog/${node.slug}`} arrowright>
+              <Link href={`/blog/${node.slug}`} className='link' arrowright>
                 {node.title}
               </Link>
             </li>

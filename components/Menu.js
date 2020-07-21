@@ -5,7 +5,7 @@ export default function({ menu }) {
     <ul>
       {menu.edges.map(({ node }) => (
         <li key={node.id}>
-          <Link href={node.url} arrowright>
+          <Link href={node.url} className="link" arrowright>
             {node.label}
           </Link>
         </li>
