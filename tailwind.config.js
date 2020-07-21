@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         serif: ['Merriweather', 'serif'],
       },
+      inset: {
+        '16': '4rem',
+      },
     },
     screens: {
       '2xs': '360px',

@@ -1,116 +1,95 @@
 import { useContext } from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Context from 'lib/Context'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
-import Wrap from 'components/Wrap'
+import tailwind from 'tailwind.config'
 
 export default () => {
   const [isOpen, setOpen] = useState(false)
   const { menu } = useContext(Context)
 
-  useEffect(() => {
-    if (isOpen) {
-      window.scrollTo(0, 0)
-      document.body.classList.add('h-full', 'overflow-y-hidden')
-      document.documentElement.classList.add('h-full', 'overflow-y-hidden')
-    } else {
-      document.body.classList.remove('h-full', 'overflow-y-hidden')
-      document.documentElement.classList.remove('h-full', 'overflow-y-hidden')
-    }
-
-    return () => {
-      document.body.classList.remove('h-full', 'overflow-y-hidden')
-      document.documentElement.classList.remove('h-full', 'overflow-y-hidden')
-    }
-  }, [isOpen])
-
   return (
-    <Wrap className="py-4 shadow-md flex" noMargin>
+    <div className="
+      flex
+      h-16
+      items-center
+      justify-between
+      py-2
+      pl-5
+      shadow-md
+    ">
       <Logo />
 
-      <div
-        className="
-        md:hidden
-        z-30
-      "
-      >
+      <div className="pr-2 lg:hidden">
         <Hamburger
-          duration={0.3}
-          size={18}
-          rounded
+          color={tailwind.theme.colors.gray[800]}
           direction="right"
-          toggled={isOpen}
+          size={24}
+          rounded
+          duration={0.3}
           toggle={setOpen}
-          color={isOpen ? 'white' : '#2d3748'}
+          toggled={isOpen}
         />
       </div>
+
       <div
-        className={`${isOpen ? 'translate-x-0 shadow-2xl' : 'translate-x-full'}
-        bg-gray-800
-        duration-300
-        ease-out
-        fixed
-        flex
-        flex-col
-        font-semibold
-        h-full
-        md:bg-transparent
-        md:flex-row
-        md:h-auto
-        md:items-center
-        md:mr-6
-        md:p-0
-        md:shadow-none
-        md:static
-        md:text-sm
-        md:translate-x-0
-        md:w-auto
-        px-8
-        py-16
-        right-0
-        top-0
-        transform
-        transition-transform
-        w-64
-        z-20
-      `}
+        className={`
+          ${isOpen ? 'opacity-1' : 'opacity-0 pointer-events-none'}
+          absolute
+          bg-gray-800
+          duration-300
+          flex
+          flex-col
+          last:border-none
+          left-0
+          top-16
+          transition-opacity
+          w-full
+          lg:bg-transparent
+          lg:flex-row
+          lg:mr-4
+          lg:opacity-1
+          lg:pointer-events-auto
+          lg:static
+          lg:w-auto
+        `}
       >
         {menu.edges.map(({ node }) => (
-          <Item href={node.url} className="link" arrow="right">
+          <MenuItem
+            close={() => setOpen(false)}
+            href={node.url}
+            key={node.id}
+          >
             {node.label}
-          </Item>
+          </MenuItem>
         ))}
       </div>
-      <div
-        onClick={() => setOpen(false)}
-        className={`z-10 fixed md:hidden transition-opacity duration-300 top-0 left-0 w-full h-full bg-black ${
-          isOpen ? 'opacity-50' : 'opacity-0 pointer-events-none'
-        }`}
-      />
-    </Wrap>
+    </div>
   )
 }
 
-
-export const Item = ({ children, className = '', href, normalCase, close }) => (
-  <Link href={href}
+export const MenuItem = ({ children, href, close }) => (
+  <Link
+    href={href}
     onClick={() => close()}
-    className={`
-      ${!normalCase && 'lowercase'}
-      flex
-      hover:text-red-500
-      items-center
-      md:mx-0
-      md:text-gray-800
-      md:text-sm
-      md:px-2
-      py-2
-      rounded-full
-      text-white
-      ${className}
-    `}
+    className="
+      border-b
+      border-gray-600
+      font-semibold
+      hover:bg-gray-900
+      hover:text-white
+      justify-between
+      px-5
+      py-4
+      text-gray-300
+      lg:border-none
+      lg:hover:bg-transparent
+      lg:hover:text-brand-600
+      lg:p-3
+      lg:text-gray-800
+    "
   >
     {children}
   </Link>

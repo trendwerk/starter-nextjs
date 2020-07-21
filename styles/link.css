@@ -1,7 +1,5 @@
 .link {
   @apply duration-200;
-  @apply flex;
-  @apply items-center;
   @apply text-brand-600;
   @apply transition;
 }
