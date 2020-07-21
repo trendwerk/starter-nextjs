@@ -11,7 +11,8 @@ export default () => {
   const { menu } = useContext(Context)
 
   return (
-    <div className="
+    <div
+      className="
       flex
       h-16
       items-center
@@ -19,7 +20,8 @@ export default () => {
       py-2
       pl-5
       shadow-md
-    ">
+    "
+    >
       <Logo />
 
       <div className="pr-2 lg:hidden">
@@ -57,11 +59,7 @@ export default () => {
         `}
       >
         {menu.edges.map(({ node }) => (
-          <MenuItem
-            close={() => setOpen(false)}
-            href={node.url}
-            key={node.id}
-          >
+          <MenuItem close={() => setOpen(false)} href={node.url} key={node.id}>
             {node.label}
           </MenuItem>
         ))}
@@ -94,4 +92,3 @@ export const MenuItem = ({ children, href, close }) => (
     {children}
   </Link>
 )
-
