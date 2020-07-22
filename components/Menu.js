@@ -14,12 +14,12 @@ export default () => {
     <div
       className="
       flex
-      h-16
       items-center
       justify-between
       py-2
       pl-5
       shadow-md
+      lg:py-4
     "
     >
       <Logo />
@@ -28,7 +28,7 @@ export default () => {
         <Hamburger
           color={tailwind.theme.colors.gray[800]}
           direction="right"
-          size={24}
+          size={18}
           rounded
           duration={0.3}
           toggle={setOpen}
@@ -38,7 +38,7 @@ export default () => {
 
       <div
         className={`
-          ${isOpen ? 'opacity-1' : 'opacity-0 pointer-events-none'}
+          ${isOpen ? 'opacity-1' : 'opacity-1 pointer-events-none'}
           absolute
           bg-gray-800
           duration-300
@@ -49,9 +49,10 @@ export default () => {
           top-16
           transition-opacity
           w-full
+          flex-wrap
           lg:bg-transparent
           lg:flex-row
-          lg:mr-4
+          lg:mx-4
           lg:opacity-1
           lg:pointer-events-auto
           lg:static
@@ -80,12 +81,14 @@ export const MenuItem = ({ children, href, close }) => (
       hover:text-white
       justify-between
       px-5
+      flex-none
       py-4
       text-gray-300
       lg:border-none
       lg:hover:bg-transparent
       lg:hover:text-brand-600
-      lg:p-3
+      lg:px-4
+      lg:py-2
       lg:text-gray-800
     "
   >
