@@ -1,18 +1,18 @@
 import Link from 'next/link'
 import { getLink } from 'lib/router'
 
-export default ({ arrow = false, children, className, href }) => {
+export default ({ arrow = false, children, className, href, onClick }) => {
   const link = getLink(href)
 
   className = arrow ? `flex items-center ${className}` : className
 
   return link.external ? (
-    <a className={className} href={link.href} rel="noopener" target="_blank">
+    <a className={className} href={link.href} onClick={onClick} rel="noopener" target="_blank">
       <Content arrow={arrow}>{children}</Content>
     </a>
   ) : (
     <Link href={link.href} as={link.as}>
-      <a className={className}>
+      <a className={className} onClick={onClick} >
         <Content arrow={arrow}>{children}</Content>
       </a>
     </Link>
