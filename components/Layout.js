@@ -7,7 +7,7 @@ export default function ({ data, children }) {
   return (
     <Context.Provider value={{
       app: data.app,
-      menu: data.menu,
+      menuItems: data.menuItems,
     }}>
       <Head />
       <div className="flex flex-col min-h-screen">

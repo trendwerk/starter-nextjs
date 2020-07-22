@@ -4,11 +4,12 @@ import Context from 'lib/Context'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
+import { getMenu } from 'lib/menu'
 import tailwind from 'tailwind.config'
 
 export default () => {
   const [isOpen, setOpen] = useState(false)
-  const { menu } = useContext(Context)
+  const { menuItems } = useContext(Context)
 
   return (
     <div
@@ -59,9 +60,9 @@ export default () => {
           lg:w-auto
         `}
       >
-        {menu.edges.map(({ node }) => (
-          <MenuItem close={() => setOpen(false)} href={node.url} key={node.id}>
-            {node.label}
+        {getMenu('MAIN', menuItems).map((item) => (
+          <MenuItem close={() => setOpen(false)} href={item.path} key={item.id}>
+            {item.label}
           </MenuItem>
         ))}
       </div>
