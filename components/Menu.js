@@ -51,6 +51,9 @@ export default () => {
           transition-opacity
           w-full
           flex-wrap
+          divide-y
+          divide-gray-600
+          lg:divide-y-0
           lg:bg-transparent
           lg:flex-row
           lg:mx-4
@@ -70,18 +73,13 @@ export default () => {
 
 export const MenuItem = ({ item, close }) => (
   <div className="
-    border-b
-    border-gray-600
-    lg:border-none
-    py-2
-    px-5
+
     flex
     flex-col
+    py-2
+    relative
     text-gray-300
-    lg:hover:bg-transparent
-    lg:hover:text-brand-600
-    lg:px-4
-    lg:py-2
+
     lg:text-gray-800
   ">
     <Link
@@ -90,27 +88,49 @@ export const MenuItem = ({ item, close }) => (
       className="
         font-semibold
         hover:text-white
+        px-5
         py-2
+        lg:hover:text-brand-600
+        lg:px-4
       "
     >
       {item.label}
     </Link>
 
-    {item.childItems.nodes.map((item) => (
-      <Link
-        href={item.href}
-        onClick={() => close()}
-        className="
-          hover:text-white
-          last:mb-1
-          py-2
-          text-sm
-          pl-3
-        "
-        key={item.id}
-      >
-        {item.label}
-      </Link>
-    ))}
+    {(item.childItems.nodes.length > 0) && (
+      <div className="
+        flex
+        flex-col
+        lg:absolute
+        lg:top-16
+        lg:px-6
+        lg:py-3
+        lg:bg-gray-800
+        lg:rounded-lg
+        lg:w-64
+        lg:divide-y
+        lg:divide-gray-600
+      ">
+        {item.childItems.nodes.map((item) => (
+          <Link
+            href={item.href}
+            onClick={() => close()}
+            className="
+              hover:text-white
+              last:mb-1
+              px-5
+              py-2
+              text-sm
+              lg:text-gray-300
+              lg:px-0
+              lg:py-3
+            "
+            key={item.id}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    )}
   </div>
 )
