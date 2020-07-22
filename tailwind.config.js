@@ -16,6 +16,8 @@ module.exports = {
       },
       inset: {
         '16': '4rem',
+        '20': '5rem',
+        '1/2': '50%',
       },
     },
     screens: {
@@ -46,6 +48,7 @@ module.exports = {
     },
   },
   variants: {
+    display: ['responsive', 'group-hover'],
     margin: ['responsive', 'last'],
   },
   plugins: [require('@tailwindcss/typography')],

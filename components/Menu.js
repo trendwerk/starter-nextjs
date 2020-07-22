@@ -10,16 +10,17 @@ import tailwind from 'tailwind.config'
 export default () => {
   const [isOpen, setOpen] = useState(false)
   const { menuItems } = useContext(Context)
+  const menu = getMenu('MAIN', menuItems)
 
   return (
     <div className="
       flex
+      h-16
       items-center
       justify-between
-      py-2
+      lg:h-20
       pl-5
-      shadow-md
-      lg:py-4
+      shadow
     ">
       <Logo />
 
@@ -37,100 +38,106 @@ export default () => {
 
       <div
         className={`
-          ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+          ${isOpen ? 'flex' : 'hidden'}
           absolute
           bg-gray-800
           divide-gray-600
           divide-y
-          duration-300
-          flex
           flex-col
           flex-wrap
           last:border-none
           left-0
           top-16
-          transition-opacity
           w-full
           lg:bg-transparent
           lg:divide-y-0
+          lg:flex
           lg:flex-row
+          lg:h-full
           lg:mx-4
-          lg:opacity-100
-          lg:pointer-events-auto
           lg:static
           lg:w-auto
         `}
       >
-        {getMenu('MAIN', menuItems).map((item) => (
-          <MenuItem item={item} close={() => setOpen(false)} key={item.id} />
-        ))}
+        {menu.map((item) => {
+          const children = (item.childItems.nodes.length > 0) && item.childItems.nodes
+
+          return (
+            <div className="
+              flex
+              flex-col
+              group
+              justify-center
+              py-2
+              relative
+              text-gray-300
+              lg:h-full
+              lg:py-0
+              lg:text-gray-800
+            " key={item.id}>
+              <Link
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="
+                  flex
+                  font-semibold
+                  hover:text-white
+                  items-center
+                  px-5
+                  py-2
+                  lg:h-full
+                  lg:hover:text-brand-600
+                  lg:px-4
+                  lg:py-0
+                "
+              >
+                {item.label}
+              </Link>
+
+              {children && (
+                <div className="
+                  flex
+                  flex-col
+                  lg:-translate-x-1/2
+                  lg:absolute
+                  lg:bg-gray-800
+                  lg:divide-gray-600
+                  lg:divide-y
+                  lg:group-hover:flex
+                  lg:hidden
+                  lg:left-1/2
+                  lg:px-6
+                  lg:py-3
+                  lg:rounded
+                  lg:top-16
+                  lg:transform
+                  lg:w-64
+                ">
+                  {children.map((item) => (
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="
+                        hover:text-white
+                        last:mb-1
+                        px-5
+                        py-2
+                        text-sm
+                        lg:px-0
+                        lg:py-3
+                        lg:text-gray-300
+                      "
+                      key={item.id}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
-    </div>
-  )
-}
-
-export const MenuItem = ({ item, close }) => {
-  const children = (item.childItems.nodes.length > 0) && item.childItems.nodes
-
-  return (
-    <div className="
-      flex
-      flex-col
-      py-2
-      relative
-      text-gray-300
-      lg:text-gray-800
-    ">
-      <Link
-        href={item.href}
-        onClick={() => close()}
-        className="
-          font-semibold
-          hover:text-white
-          px-5
-          py-2
-          lg:hover:text-brand-600
-          lg:px-4
-        "
-      >
-        {item.label}
-      </Link>
-
-      {children && (
-        <div className="
-          flex
-          flex-col
-          lg:absolute
-          lg:bg-gray-800
-          lg:divide-gray-600
-          lg:divide-y
-          lg:px-6
-          lg:py-3
-          lg:rounded-lg
-          lg:top-16
-          lg:w-64
-        ">
-          {children.map((item) => (
-            <Link
-              href={item.href}
-              onClick={() => close()}
-              className="
-                hover:text-white
-                last:mb-1
-                px-5
-                py-2
-                text-sm
-                lg:px-0
-                lg:py-3
-                lg:text-gray-300
-              "
-              key={item.id}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
