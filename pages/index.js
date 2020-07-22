@@ -1,4 +1,4 @@
-import { fetchData, appQuery } from 'lib/api'
+import { fetchData, mainQuery } from 'lib/api'
 import Button from 'components/Button'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
@@ -6,9 +6,11 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ app, menu, pages }) {
+export default function (data) {
+  const pages = data.pages.edges;
+
   return (
-    <Layout context={{ app, menu }}>
+    <Layout data={data}>
       <Head title="Home" />
       <Wrap width="800">
         <Title>Home</Title>
@@ -19,7 +21,7 @@ export default function ({ app, menu, pages }) {
 
         <h2 className="mb-4">Pages</h2>
         <ul>
-          {pages.edges.map(({ node }) => (
+          {pages.map(({ node }) => (
             <li key={node.id}>
               <Link href={`/${node.slug}`} className="link" arrow="right">
                 {node.title}
@@ -44,7 +46,7 @@ export async function getStaticProps() {
           }
         }
       }
-      ${appQuery}
+      ${mainQuery}
     }
   `)
   return { props: data }

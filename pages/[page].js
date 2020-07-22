@@ -1,4 +1,4 @@
-import { fetchData, appQuery } from 'lib/api'
+import { fetchData, mainQuery } from 'lib/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -6,9 +6,11 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ app, menu, post }) {
+export default function (data) {
+  const post = data.post;
+
   return (
-    <Layout context={{ app, menu, post }}>
+    <Layout data={data}>
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
@@ -40,7 +42,7 @@ export async function getStaticProps({ params }) {
           metaDescription
         }
       }
-      ${appQuery}
+      ${mainQuery}
     }
   `,
     {

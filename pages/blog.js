@@ -1,20 +1,22 @@
-import { fetchData, appQuery } from 'lib/api'
+import { fetchData, mainQuery } from 'lib/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function ({ app, menu, posts }) {
+export default function (data) {
+  const posts = data.posts.edges;
+
   return (
-    <Layout context={{ app, menu }}>
+    <Layout data={data}>
       <Head title="Blog" />
 
       <Wrap width="800">
         <Title>Blog</Title>
 
         <ul>
-          {posts.edges.map(({ node }) => (
+          {posts.map(({ node }) => (
             <li key={node.id}>
               <Link href={`/blog/${node.slug}`} className="link" arrow="right">
                 {node.title}
@@ -39,7 +41,7 @@ export async function getStaticProps() {
           }
         }
       }
-      ${appQuery}
+      ${mainQuery}
     }
   `)
   return { props: data }
