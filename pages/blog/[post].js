@@ -21,8 +21,8 @@ export default function (data) {
 
         <Content content={post.content} />
 
-        <Link href="/blog" className="link" arrow="left">
-          Back to blog overview
+        <Link  href="/blog" arrow="left" className="link">
+          Back to the blog
         </Link>
       </Wrap>
     </Layout>
