@@ -38,7 +38,7 @@ export default () => {
 
       <div
         className={`
-          ${isOpen ? 'opacity-1' : 'opacity-1 pointer-events-none'}
+          ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
           absolute
           bg-gray-800
           duration-300
@@ -53,7 +53,7 @@ export default () => {
           lg:bg-transparent
           lg:flex-row
           lg:mx-4
-          lg:opacity-1
+          lg:opacity-100
           lg:pointer-events-auto
           lg:static
           lg:w-auto
