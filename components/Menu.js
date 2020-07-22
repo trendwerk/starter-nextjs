@@ -61,38 +61,56 @@ export default () => {
         `}
       >
         {getMenu('MAIN', menuItems).map((item) => (
-          <MenuItem close={() => setOpen(false)} href={item.path} key={item.id}>
-            {item.label}
-          </MenuItem>
+          <MenuItem item={item} close={() => setOpen(false)} key={item.id} />
         ))}
       </div>
     </div>
   )
 }
 
-export const MenuItem = ({ children, href, close }) => (
-  <Link
-    href={href}
-    onClick={() => close()}
-    className="
-      border-b
-      border-gray-600
-      font-semibold
-      hover:bg-gray-900
-      hover:text-white
-      justify-between
-      px-5
-      flex-none
-      py-4
-      text-gray-300
-      lg:border-none
-      lg:hover:bg-transparent
-      lg:hover:text-brand-600
-      lg:px-4
-      lg:py-2
-      lg:text-gray-800
-    "
-  >
-    {children}
-  </Link>
+export const MenuItem = ({ item, close }) => (
+  <div className="
+    border-b
+    border-gray-600
+    lg:border-none
+    py-2
+    px-5
+    flex
+    flex-col
+    text-gray-300
+    lg:hover:bg-transparent
+    lg:hover:text-brand-600
+    lg:px-4
+    lg:py-2
+    lg:text-gray-800
+  ">
+    <Link
+      href={item.href}
+      onClick={() => close()}
+      className="
+        font-semibold
+        hover:text-white
+        py-2
+      "
+    >
+      {item.label}
+    </Link>
+
+    {item.childItems.nodes.map((item) => (
+      <Link
+        href={item.href}
+        onClick={() => close()}
+        className="
+          hover:text-white
+          last:mb-1
+          py-2
+          text-sm
+          pl-3
+        "
+        key={item.id}
+      >
+        {item.label}
+      </Link>
+    ))}
+  </div>
 )
