@@ -17,7 +17,6 @@ export default function ({
       <div
         className={`
           ${width ? '' : 'max-w-screen-xl'}
-          last:mb-0
           mx-auto
           w-full
         `}
