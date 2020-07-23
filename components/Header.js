@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Context from 'components/Context'
+import Data from 'components/Data'
 import Image from 'components/Image'
 
 export default function ({ image }) {
@@ -7,7 +7,7 @@ export default function ({ image }) {
     return null
   }
 
-  const { post } = useContext(Context)
+  const { post } = useContext(Data)
 
   return (
     <Image

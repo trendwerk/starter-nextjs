@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import Context from 'components/Context'
+import Data from 'components/Data'
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
 export default function ({ title, description }) {
-  const { app, post } = useContext(Context)
+  const { app, post } = useContext(Data)
   const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title

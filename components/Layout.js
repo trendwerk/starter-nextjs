@@ -1,10 +1,10 @@
-import Context from 'components/Context'
+import Data from 'components/Data'
 import Footer from 'components/Footer'
 import Menu from 'components/Menu'
 
 export default function ({ data, children }) {
   return (
-    <Context.Provider
+    <Data.Provider
       value={{
         app: data.app,
         menuItems: data.menuItems,
@@ -15,6 +15,6 @@ export default function ({ data, children }) {
         {children}
         <Footer />
       </div>
-    </Context.Provider>
+    </Data.Provider>
   )
 }

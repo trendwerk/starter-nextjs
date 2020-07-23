@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import Context from 'components/Context'
+import Data from 'components/Data'
 import Link from 'components/Link'
 
 export default () => {
-  const { app } = useContext(Context)
+  const { app } = useContext(Data)
 
   return (
     <Link
