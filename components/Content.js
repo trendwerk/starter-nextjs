@@ -1,3 +1,4 @@
+import Button from 'components/Button'
 import Link from 'components/Link'
 import parse, { domToReact } from 'html-react-parser'
 
@@ -9,6 +10,10 @@ export default ({ content }) => (
 
 const parser = {
   replace: ({ name, attribs, children }) => {
+    if (name === 'a' && attribs.class === 'wp-block-button__link') {
+      return <Button href={attribs.href}>{domToReact(children, parser)}</Button>
+    }
+
     if (name === 'a') {
       return <Link href={attribs.href}>{domToReact(children, parser)}</Link>
     }
