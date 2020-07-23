@@ -36,7 +36,7 @@ const parser = {
       )
     }
 
-    // Anchor
+    // Link
     if (name === 'a') {
       return (
         <Link
@@ -46,6 +46,10 @@ const parser = {
           {domToReact(children, parser)}
         </Link>
       )
+    }
+
+    // Image
+    if (name === 'img') {
     }
   },
 }
