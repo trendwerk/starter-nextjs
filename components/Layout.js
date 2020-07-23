@@ -1,6 +1,5 @@
 import Context from 'components/Context'
 import Footer from 'components/Footer'
-import Head from 'components/Head'
 import Menu from 'components/Menu'
 
 export default function ({ data, children }) {
