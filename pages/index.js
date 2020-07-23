@@ -12,6 +12,7 @@ export default function (data) {
   return (
     <Layout data={data}>
       <Head title="Home" />
+
       <Wrap width="800">
         <Title>Home</Title>
 
