@@ -1,15 +1,12 @@
-import { useContext } from 'react'
 import { useState } from 'react'
-import Data from 'components/Data'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
 import getMenu from 'utils/getMenu'
 
-export default () => {
+export default ({ items }) => {
   const [isOpen, setOpen] = useState(false)
-  const { menuItems } = useContext(Data)
-  const menu = getMenu('MAIN', menuItems)
+  const menu = getMenu('MAIN', items)
 
   return (
     <div

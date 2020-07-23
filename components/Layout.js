@@ -4,14 +4,9 @@ import Menu from 'components/Menu'
 
 export default function ({ data, children }) {
   return (
-    <Data.Provider
-      value={{
-        app: data.app,
-        menuItems: data.menuItems,
-      }}
-    >
+    <Data.Provider value={{ app: data.app }}>
       <div className="flex flex-col min-h-screen">
-        <Menu />
+        <Menu items={data.menuItems} />
         {children}
         <Footer />
       </div>
