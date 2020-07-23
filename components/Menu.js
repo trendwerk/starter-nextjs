@@ -26,7 +26,6 @@ export default () => {
 
       <div className="pr-2 lg:hidden">
         <Hamburger
-          color={tailwind.theme.colors.gray[800]}
           direction="right"
           size={18}
           rounded
