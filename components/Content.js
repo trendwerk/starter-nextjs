@@ -3,7 +3,7 @@ import Link from 'components/Link'
 import parse, { domToReact } from 'html-react-parser'
 
 export default ({ content }) => (
-  <article className="max-w-none last:mb-0 break-words leading-7">
+  <article className="max-w-none break-words leading-7">
     {parse(content, parser)}
   </article>
 )
