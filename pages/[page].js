@@ -22,7 +22,7 @@ export default function (data) {
       <Wrap width="800">
         <Title>{post.title}</Title>
 
-        <Content content={post.content} />
+        <Content blocks={post.blocks} />
       </Wrap>
     </Layout>
   )
@@ -34,7 +34,13 @@ export async function getStaticProps({ params }) {
     query Page($id: ID!) {
       post: page(id: $id, idType: URI) {
         title
-        content
+        blocks {
+          name
+          saveContent
+          innerBlocks {
+            saveContent
+          }
+        }
         fields {
           headerImage {
             url:sourceUrl

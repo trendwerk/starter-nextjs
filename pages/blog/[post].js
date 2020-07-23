@@ -20,7 +20,7 @@ export default function (data) {
       <Wrap width="800">
         <Title>{post.title}</Title>
 
-        <Content content={post.content} />
+        <Content blocks={post.blocks} />
 
         <Link href="/blog" arrow="left" className="link">
           Back to the blog
@@ -36,7 +36,13 @@ export async function getStaticProps({ params }) {
     query Post($id: ID!) {
       post(id: $id, idType: URI) {
         title
-        content
+        blocks {
+          name
+          saveContent
+          innerBlocks {
+            saveContent
+          }
+        }
       }
       ${mainQuery}
     }
