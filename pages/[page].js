@@ -7,7 +7,7 @@ import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function (data) {
-  const post = data.post;
+  const post = data.post
 
   return (
     <Layout data={data}>

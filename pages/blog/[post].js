@@ -7,7 +7,7 @@ import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function (data) {
-  const post = data.post;
+  const post = data.post
 
   return (
     <Layout data={data}>
@@ -21,7 +21,7 @@ export default function (data) {
 
         <Content content={post.content} />
 
-        <Link  href="/blog" arrow="left" className="link">
+        <Link href="/blog" arrow="left" className="link">
           Back to the blog
         </Link>
       </Wrap>

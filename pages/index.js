@@ -7,7 +7,7 @@ import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function (data) {
-  const pages = data.pages.edges;
+  const pages = data.pages.edges
 
   return (
     <Layout data={data}>

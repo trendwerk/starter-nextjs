@@ -12,7 +12,8 @@ export default () => {
   const menu = getMenu('MAIN', menuItems)
 
   return (
-    <div className="
+    <div
+      className="
       flex
       h-16
       items-center
@@ -20,7 +21,8 @@ export default () => {
       lg:h-20
       pl-5
       shadow
-    ">
+    "
+    >
       <Logo />
 
       <div className="pr-2 lg:hidden">
@@ -58,10 +60,12 @@ export default () => {
         `}
       >
         {menu.map((item) => {
-          const children = (item.childItems.nodes.length > 0) && item.childItems.nodes
+          const children =
+            item.childItems.nodes.length > 0 && item.childItems.nodes
 
           return (
-            <div className="
+            <div
+              className="
               flex
               flex-col
               group
@@ -70,7 +74,9 @@ export default () => {
               text-gray-300
               lg:h-full
               lg:text-gray-800
-            " key={item.id}>
+            "
+              key={item.id}
+            >
               <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
@@ -91,7 +97,8 @@ export default () => {
               </Link>
 
               {children && (
-                <div className="
+                <div
+                  className="
                   -mt-2
                   flex
                   flex-col
@@ -113,7 +120,8 @@ export default () => {
                   lg:top-16
                   lg:transform
                   lg:w-64
-                ">
+                "
+                >
                   {children.map((item) => (
                     <Link
                       href={item.href}

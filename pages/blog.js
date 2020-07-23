@@ -6,7 +6,7 @@ import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function (data) {
-  const posts = data.posts.edges;
+  const posts = data.posts.edges
 
   return (
     <Layout data={data}>

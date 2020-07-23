@@ -6,7 +6,10 @@ export default () => {
   const { app } = useContext(Context)
 
   return (
-    <Link href="/" className="font-serif font-bold text-lg flex items-center flex-none">
+    <Link
+      href="/"
+      className="font-serif font-bold text-lg flex items-center flex-none"
+    >
       <svg
         className="text-brand-600 h-8 w-8 mr-3 flex-none"
         viewBox="0 0 100 100"
