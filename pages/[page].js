@@ -14,9 +14,10 @@ export default function (data) {
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
+        image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
       />
 
-      <Header image={post?.fields?.headerImage} />
+      <Header image={post?.fields?.headerImage} title={post?.title} />
 
       <Wrap width="800">
         <Title>{post.title}</Title>
