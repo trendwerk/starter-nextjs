@@ -14,6 +14,7 @@ export default function (data) {
       <Head
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
+        image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
       />
 
       <Wrap width="800">

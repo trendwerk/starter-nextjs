@@ -4,8 +4,8 @@ import Head from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
-export default function ({ title, description }) {
-  const { app, post } = useContext(Data)
+export default function ({ title, description, image }) {
+  const { app } = useContext(Data)
   const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title
@@ -14,9 +14,8 @@ export default function ({ title, description }) {
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
 
-  let image =
-    post?.fields?.ogImage?.url || post?.fields?.headerImage?.url || 'share.png'
-  image = image + '?w=1200&h=630'
+  image = image ?? 'share.png'
+  image = image + '?w=1200&h=630&fit=crop'
 
   return (
     <Head>
