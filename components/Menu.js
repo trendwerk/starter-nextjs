@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useState } from 'react'
-import Context from 'lib/Context'
+import Context from 'components/Context'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'

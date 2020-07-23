@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Context from 'lib/Context'
+import Context from 'components/Context'
 import Link from 'components/Link'
 
 export default () => {

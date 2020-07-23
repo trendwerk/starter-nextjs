@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import Context from 'lib/Context'
+import Context from 'components/Context'
 import Head from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'

@@ -1,4 +1,4 @@
-import Context from 'lib/Context'
+import Context from 'components/Context'
 import Footer from 'components/Footer'
 import Head from 'components/Head'
 import Menu from 'components/Menu'
