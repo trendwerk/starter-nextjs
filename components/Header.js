@@ -4,7 +4,7 @@ import Image from 'components/Image'
 
 export default function ({ image }) {
   if (!image) {
-    return false
+    return null
   }
 
   const { post } = useContext(Context)
