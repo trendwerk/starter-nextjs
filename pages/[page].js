@@ -1,4 +1,4 @@
-import { fetchData, mainQuery } from 'lib/api'
+import { fetchData, mainQuery } from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'

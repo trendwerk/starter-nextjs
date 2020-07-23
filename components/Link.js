@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import getLink from 'lib/getLink'
+import getLink from 'utils/getLink'
 
 export default ({ arrow = false, children, className = '', href, onClick }) => {
   const link = getLink(href)

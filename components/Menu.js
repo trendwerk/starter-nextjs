@@ -4,7 +4,7 @@ import Context from 'components/Context'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
-import getMenu from 'lib/getMenu'
+import getMenu from 'utils/getMenu'
 
 export default () => {
   const [isOpen, setOpen] = useState(false)
