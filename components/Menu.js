@@ -5,7 +5,6 @@ import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
 import { getMenu } from 'lib/menu'
-import tailwind from 'tailwind.config'
 
 export default () => {
   const [isOpen, setOpen] = useState(false)
@@ -26,7 +25,6 @@ export default () => {
 
       <div className="pr-2 lg:hidden">
         <Hamburger
-          color={tailwind.theme.colors.gray[800]}
           direction="right"
           size={18}
           rounded
