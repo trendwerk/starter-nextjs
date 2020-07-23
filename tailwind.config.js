@@ -1,5 +1,6 @@
 const colors = require('@tailwindcss/ui/colors')
 const theme = require('tailwindcss/defaultTheme')
+const config = require('tailwindcss/defaultConfig')
 
 module.exports = {
   theme: {
@@ -21,8 +22,8 @@ module.exports = {
     },
   },
   variants: {
-    display: ['responsive', 'group-hover'],
-    margin: ['responsive', 'last'],
+    display: [...config.variants.display, 'group-hover'],
+    margin: [...config.variants.margin, 'last'],
   },
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
