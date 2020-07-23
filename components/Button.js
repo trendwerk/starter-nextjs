@@ -1,6 +1,6 @@
 import Link from 'components/Link'
 
-export default function ({ children, className, href, large = false }) {
+export default function ({ children, className = '', href, large = false }) {
   return (
     <Link
       className={`
