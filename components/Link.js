@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getLink } from 'lib/router'
 
-export default ({ arrow = false, children, className, href, onClick }) => {
+export default ({ arrow = false, children, className = '', href, onClick }) => {
   const link = getLink(href)
 
   className = arrow ? `flex items-center ${className}` : className
