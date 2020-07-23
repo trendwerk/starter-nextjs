@@ -39,7 +39,7 @@ export default ({
       .map((w) => {
         const h = Math.round(w / ratio)
 
-        return `${src}?w=${w}&h=${h}${append}&fit=${fit} ${w}w`
+        return `${src}?w=${w}&h=${h}&fit=${fit}${append} ${w}w`
       })
       .join(', ')
 
