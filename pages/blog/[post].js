@@ -1,6 +1,8 @@
 import { fetchData, mainQuery } from 'utils/api'
 import Content from 'components/Content'
+import Date from 'components/Date'
 import Head from 'components/Head'
+import Header from 'components/Header'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
@@ -17,7 +19,11 @@ export default function (data) {
         image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
       />
 
+      <Header image={post?.fields?.headerImage} title={post?.title} />
+
       <Wrap width="800">
+        <Date className="mb-2 text-sm lg:text-base" timestamp={post.date} />
+
         <Title>{post.title}</Title>
 
         <Content content={post.content} />
@@ -36,6 +42,7 @@ export async function getStaticProps({ params }) {
       post(id: $id, idType: URI) {
         title
         content
+        date
         fields {
           headerImage {
             url:sourceUrl

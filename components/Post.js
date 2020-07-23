@@ -1,6 +1,6 @@
 import Link from 'components/Link'
 import ImageLink from 'components/ImageLink'
-import formatDate from 'utils/formatDate'
+import Date from 'components/Date'
 
 export default ({ post }) => {
   const image = post.fields.summaryImage?.url || post.fields.headerImage?.url
@@ -29,16 +29,7 @@ export default ({ post }) => {
       />
 
       <div>
-        <div className="
-          mb-2
-          text-gray-400
-          text-sm
-          uppercase
-          font-semibold
-          tracking-wide
-        ">
-          {formatDate(post.date)}
-        </div>
+        <Date className="mb-2 text-sm" timestamp={post.date} />
 
         <h2 className="mb-4">
           <Link className="hover:text-brand-700 transition-colors duration-200" href={post.uri}>
