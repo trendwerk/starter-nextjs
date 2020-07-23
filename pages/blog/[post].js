@@ -31,22 +31,23 @@ export default function (data) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(
-    `
+  const data = await fetchData(`
     query Post($id: ID!) {
       post(id: $id, idType: URI) {
         title
         content
+        fields {
+          headerImage {
+            url:sourceUrl
+          }
+          title
+          metaDescription
+        }
       }
       ${mainQuery}
     }
-  `,
-    {
-      variables: {
-        id: params.post,
-      },
-    }
-  )
+  `, {variables: { id: '/blog/' + params.post }})
+
   return { props: data }
 }
 
@@ -54,17 +55,15 @@ export async function getStaticPaths() {
   const data = await fetchData(`
   query PostPaths {
       posts(first: 10000) {
-        edges {
-          node {
-            slug
-          }
+        nodes {
+          uri
         }
       }
     }
   `)
 
   return {
-    paths: data.posts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
+    paths: data.posts.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
     fallback: true,
   }
 }

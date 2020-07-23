@@ -24,7 +24,7 @@ export default function (data) {
         <ul>
           {pages.map(({ node }) => (
             <li key={node.id}>
-              <Link href={`/${node.slug}`} className="link" arrow="right">
+              <Link href={node.uri} className="link" arrow="right">
                 {node.title}
               </Link>
             </li>
@@ -41,9 +41,9 @@ export async function getStaticProps() {
       pages(first: 10) {
         edges {
           node {
-            slug
-            title
             id
+            title
+            uri
           }
         }
       }
