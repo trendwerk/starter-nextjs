@@ -68,11 +68,9 @@ export default () => {
               flex-col
               group
               justify-center
-              py-2
               relative
               text-gray-300
               lg:h-full
-              lg:py-0
               lg:text-gray-800
             " key={item.id}>
               <Link
@@ -84,7 +82,7 @@ export default () => {
                   hover:text-white
                   items-center
                   px-5
-                  py-2
+                  py-4
                   lg:h-full
                   lg:hover:text-brand-600
                   lg:px-4
@@ -96,8 +94,10 @@ export default () => {
 
               {children && (
                 <div className="
+                  -mt-2
                   flex
                   flex-col
+                  mb-3
                   lg:-translate-x-1/2
                   lg:absolute
                   lg:bg-gray-800
@@ -106,8 +106,11 @@ export default () => {
                   lg:group-hover:flex
                   lg:hidden
                   lg:left-1/2
-                  lg:px-6
-                  lg:py-3
+                  lg:mb-0
+                  lg:mt-2
+                  lg:px-5
+                  lg:pt-3
+                  lg:pb-4
                   lg:rounded
                   lg:top-16
                   lg:transform
@@ -119,7 +122,6 @@ export default () => {
                       onClick={() => setOpen(false)}
                       className="
                         hover:text-white
-                        last:mb-1
                         px-5
                         py-2
                         text-sm
