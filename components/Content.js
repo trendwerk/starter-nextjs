@@ -8,15 +8,9 @@ export default ({ content }) => (
 )
 
 const parser = {
-  replace: (node) => {
-    if (node.name === 'a') {
-      return (
-        <Link href={node.attribs.href}>
-          {domToReact(node.children, parser)}
-        </Link>
-      )
+  replace: ({ name, attribs, children }) => {
+    if (name === 'a') {
+      return <Link href={attribs.href}>{domToReact(children, parser)}</Link>
     }
-
-    return node
   },
 }
