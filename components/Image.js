@@ -15,7 +15,6 @@ export default ({
   const allWidths = { ...theme.screens, img: width }
   const dpi1 = Object.values(allWidths).map((w) => parseInt(w))
   const dpi2 = Object.values(allWidths).map((w) => parseInt(w) * 2)
-  const wrapPadding = 40 * 2
 
   const widths = [...dpi1, ...dpi2]
     .filter((w, index, all) => {
@@ -30,7 +29,7 @@ export default ({
     .map((w, i) => {
       const last = i === widths.length - 1
 
-      return last ? `${w}px` : `(max-width: ${w + wrapPadding}px) ${w}px`
+      return last ? `${w}px` : `(max-width: ${w}px) ${w}px`
     })
     .join(', ')
 
