@@ -8,6 +8,8 @@ export default function (href) {
   // Remove app URL or WordPress URL from link
   if (link.as.indexOf(process.env.URL) === 0) {
     link.as = link.as.replace(process.env.URL, '')
+  } else if (link.as.indexOf(process.env.WP_URL + '/wp/') === 0) {
+    link.external = true
   } else if (link.as.indexOf(process.env.WP_URL) === 0) {
     link.as = link.as.replace(process.env.WP_URL, '')
   }
