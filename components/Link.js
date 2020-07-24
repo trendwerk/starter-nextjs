@@ -34,10 +34,10 @@ export const Content = ({ arrow, children }) => {
     duration-100
     flex-none
     h-4
+    mx-1
     transform
     transition
     w-4
-    mx-1
   `
 
   return (
