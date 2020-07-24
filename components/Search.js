@@ -6,6 +6,7 @@ export default () => {
   const [results, setResults] = useState([])
   const [error, setError] = useState(false)
   const [visible, setVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const reset = () => {
     setError(false)
@@ -14,17 +15,23 @@ export default () => {
   }
 
   const onChange = debounce((value) => {
-    reset()
+    (async () => {
+      reset()
+      setLoading(true)
 
-    try {
-      // Fetch
+      try {
+        const response = await fetch(`${process.env.WP_URL}/search?q=${value}`)
 
-      setResults([1, 2, 3])
-    } catch (e) {
-      // setError(true)
-    }
+        // Todo: set results from response
 
-    setVisible(true)
+        setResults([1, 2, 3])
+      } catch (e) {
+        setError(true)
+      }
+
+      setLoading(false)
+      setVisible(true)
+    })()
   }, 250)
 
   return (
