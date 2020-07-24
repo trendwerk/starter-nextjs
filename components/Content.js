@@ -1,5 +1,6 @@
 import Button from 'components/Button'
 import Link from 'components/Link'
+import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
 
 export default ({ content }) => (
@@ -20,6 +21,14 @@ const parser = {
 
     // Image
     if (name === 'img') {
+      return (
+        <Image
+          width={800}
+          height={600}
+          alt={attribs.alt}
+          src={attribs.src.replace('app/uploads', 'static')}
+        />
+      )
     }
   },
 }
