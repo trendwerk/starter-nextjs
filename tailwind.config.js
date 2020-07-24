@@ -53,6 +53,7 @@ module.exports = {
   variants: {
     display: ['responsive', 'group-hover'],
     margin: ['responsive', 'last'],
+    translate: ['responsive', 'group-hover', 'hover'],
   },
   plugins: [require('@tailwindcss/typography')],
   purge: {
