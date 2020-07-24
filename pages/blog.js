@@ -29,10 +29,10 @@ export async function getStaticProps() {
       posts(first: 10) {
         edges {
           node {
-            title
-            id
             dateFormatted
+            id
             summary
+            title
             uri
             fields {
               summaryTitle
