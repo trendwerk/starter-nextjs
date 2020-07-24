@@ -32,7 +32,7 @@ export async function getStaticProps() {
             title
             id
             date
-            excerpt
+            summary
             uri
             fields {
               summaryTitle
