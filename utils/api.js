@@ -33,7 +33,7 @@ export const mainQuery = `
     language
     title
   }
-  menuItems {
+  menuItems(first: 10000) {
     nodes {
       id
       label
