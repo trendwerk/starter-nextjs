@@ -117,6 +117,7 @@ export default ({ items }) => {
                   lg:top-16
                   lg:transform
                   lg:w-64
+                  lg:z-10
                 "
                 >
                   {children.map((item) => (
