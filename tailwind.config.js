@@ -1,5 +1,6 @@
 const colors = require('@tailwindcss/ui/colors')
 const theme = require('tailwindcss/defaultTheme')
+const config = require('tailwindcss/defaultConfig')
 
 const brandColor = colors.blue
 
@@ -51,9 +52,9 @@ module.exports = {
     },
   },
   variants: {
-    display: ['responsive', 'group-hover'],
-    margin: ['responsive', 'last'],
-    translate: ['responsive', 'group-hover', 'hover'],
+    display: [...config.variants.display, 'group-hover'],
+    margin: [...config.variants.margin, 'last'],
+    translate: [...config.variants.display, 'group-hover'],
   },
   plugins: [require('@tailwindcss/typography')],
   purge: {
