@@ -31,7 +31,7 @@ export async function getStaticProps() {
           node {
             title
             id
-            date
+            dateFormatted
             summary
             uri
             fields {

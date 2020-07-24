@@ -29,7 +29,7 @@ export default ({ post }) => {
       />
 
       <div>
-        <Date className="mb-2 text-sm" timestamp={post.date} />
+        <Date className="mb-2 text-sm" date={post.dateFormatted} />
 
         <h2 className="mb-4">
           <Link className="hover:text-brand-700 transition-colors duration-200" href={post.uri}>

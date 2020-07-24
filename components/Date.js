@@ -1,24 +1,4 @@
-export default ({ className = '', timestamp }) => {
-  const date = new Date(timestamp)
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
-
+export default ({ className = '', date }) => {
   return (
     <div className={`
       ${className}
@@ -27,7 +7,7 @@ export default ({ className = '', timestamp }) => {
       tracking-wide
       uppercase
     `}>
-      {day} {month} {year}
+      {date}
     </div>
   )
 }

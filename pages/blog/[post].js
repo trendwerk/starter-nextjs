@@ -22,7 +22,7 @@ export default function (data) {
       <Header image={post?.fields?.headerImage} title={post?.title} />
 
       <Wrap width="800">
-        <Date className="mb-2 text-sm lg:text-base" timestamp={post.date} />
+        <Date className="mb-2 text-sm lg:text-base" date={post.dateFormatted} />
 
         <Title>{post.title}</Title>
 
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
       post(id: $id, idType: URI) {
         title
         content
-        date
+        dateFormatted
         fields {
           headerImage {
             url:sourceUrl
