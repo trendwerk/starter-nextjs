@@ -4,5 +4,4 @@
 @import "typography.css";
 @import "link.css";
 
-@import "tailwindcss/components";
 @import "tailwindcss/utilities";
