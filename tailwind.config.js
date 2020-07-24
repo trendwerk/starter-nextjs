@@ -2,15 +2,9 @@ const colors = require('@tailwindcss/ui/colors')
 const theme = require('tailwindcss/defaultTheme')
 const config = require('tailwindcss/defaultConfig')
 
-const brandColor = colors.blue
-
-const headingStyle = {
-  color: colors.gray[800],
-}
-
 module.exports = {
   theme: {
-    colors: { ...colors, brand: brandColor },
+    colors: { ...colors, brand: colors.blue },
     extend: {
       fontFamily: {
         serif: ['Merriweather', 'serif'],
@@ -29,34 +23,12 @@ module.exports = {
       xs: '480px',
       ...theme.screens,
     },
-    typography: {
-      default: {
-        css: {
-          color: colors.gray[500],
-          a: {
-            color: brandColor[600],
-            textDecoration: 'none',
-            transitionDuration: '200ms',
-            transitionProperty: 'color',
-            '&:hover': {
-              color: brandColor[700],
-            },
-          },
-          h2: headingStyle,
-          h3: headingStyle,
-          h4: headingStyle,
-          h5: headingStyle,
-          h6: headingStyle,
-        },
-      },
-    },
   },
   variants: {
     display: [...config.variants.display, 'group-hover'],
     margin: [...config.variants.margin, 'last'],
     translate: [...config.variants.display, 'group-hover'],
   },
-  plugins: [require('@tailwindcss/typography')],
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',
