@@ -1,7 +1,7 @@
 import { fetchData, mainQuery } from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Link from 'components/Link'
+import Post from 'components/Post'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
@@ -15,15 +15,9 @@ export default function (data) {
       <Wrap width="800">
         <Title>Blog</Title>
 
-        <ul>
-          {posts.map(({ node }) => (
-            <li key={node.id}>
-              <Link href={`/blog/${node.slug}`} className="link" arrow="right">
-                {node.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {posts.map(({ node }) => (
+          <Post post={node} key={node.id} />
+        ))}
       </Wrap>
     </Layout>
   )
@@ -35,14 +29,27 @@ export async function getStaticProps() {
       posts(first: 10) {
         edges {
           node {
-            slug
-            title
+            dateFormatted
             id
+            summary
+            title
+            uri
+            fields {
+              summaryTitle
+              summary
+              summaryImage {
+                url:sourceUrl
+              }
+              headerImage {
+                url:sourceUrl
+              }
+            }
           }
         }
       }
       ${mainQuery}
     }
   `)
+
   return { props: data }
 }

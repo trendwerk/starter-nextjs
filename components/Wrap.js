@@ -8,7 +8,7 @@ export default function ({
     <section
       className={`
         ${className}
-        ${noMargin ? '' : 'my-10 sm:my-16 lg:my-24'}
+        ${noMargin ? '' : 'mt-10 mb-16 sm:mt-16 sm:mb-20 lg:mt-24 lg:mb-32'}
         px-5
         sm:px-10
         w-full
