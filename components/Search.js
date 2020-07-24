@@ -21,7 +21,7 @@ export default () => {
 
       setResults([1, 2, 3])
     } catch (e) {
-      setError(true)
+      // setError(true)
     }
 
     setVisible(true)
@@ -44,22 +44,28 @@ export default () => {
         />
         {visible && (
           <ul className="absolute top-full bg-white rounded-md shadow-md right-0 w-96 leading-snug">
-            {results.map((result, key) => (
-              <li key={key}>
-                <Link
-                  href="/"
-                  className="border-b border-gray-200 py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
-                >
-                  <strong className="text-sm font-bold mb-2 block">
-                    Result
-                  </strong>
-                  <p className="text-gray-400 text-xs">
-                    Proin vel nunc non velit rutrum euismod. Aenean et nulla
-                    efficitur, tempor turpis sed…
-                  </p>
-                </Link>
-              </li>
-            ))}
+            {error ? (
+              <p className="p-8 text-sm">
+                Something went wrong… Please try again later.
+              </p>
+            ) : (
+              results.map((result, key) => (
+                <li key={key}>
+                  <Link
+                    href="/"
+                    className="border-b border-gray-200 py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
+                  >
+                    <strong className="text-sm font-bold mb-2 block">
+                      Result
+                    </strong>
+                    <p className="text-gray-400 text-xs">
+                      Proin vel nunc non velit rutrum euismod. Aenean et nulla
+                      efficitur, tempor turpis sed…
+                    </p>
+                  </Link>
+                </li>
+              ))
+            )}
           </ul>
         )}
       </div>
