@@ -1,0 +1,40 @@
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+  @apply font-serif;
+}
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+h3 {
+  @apply text-lg;
+}
+
+@screen sm {
+  h1 {
+    @apply text-3xl
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+}
+
+@screen lg {
+  h1 {
+    @apply text-4xl
+  }
+}

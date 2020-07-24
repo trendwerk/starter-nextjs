@@ -1,0 +1,4 @@
+ol {
+  @apply list;
+  @apply list-decimal;
+}

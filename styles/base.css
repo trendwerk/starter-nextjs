@@ -1,8 +1,10 @@
 @import "tailwindcss/base";
 
-@import "body.css";
-@import "typography.css";
-@import "link.css";
+/* purgecss start ignore */
+@import 'utilities/**/*';
+@import 'elements/**/*';
+@import 'components/**/*';
+/* purgecss end ignore */
 
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";

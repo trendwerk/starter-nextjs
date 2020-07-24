@@ -1,0 +1,5 @@
+.list {
+  @apply text-gray-500;
+  @apply list-inside;
+  @apply list-decimal;
+}

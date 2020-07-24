@@ -1,0 +1,36 @@
+.content h2 {
+  @apply mb-6;
+  @apply mt-8;
+}
+
+.content h3 {
+  @apply mb-6;
+  @apply mt-8;
+}
+
+.content h4 {
+  @apply mb-6;
+  @apply mt-8;
+}
+
+.content h5 {
+  @apply mb-6;
+  @apply mt-8;
+}
+
+.content h6 {
+  @apply mt-8;
+}
+
+.content p {
+  @apply mb-6;
+}
+
+.content ol,
+.content ul {
+  @apply mb-6;
+}
+
+.content blockquote {
+  @apply mb-6;
+}
