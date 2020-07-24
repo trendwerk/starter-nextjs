@@ -15,7 +15,7 @@ export default () => {
   }
 
   const onChange = debounce((value) => {
-    (async () => {
+    ;(async () => {
       reset()
       setLoading(true)
 
