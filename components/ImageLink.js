@@ -16,7 +16,7 @@ export default ({ alt, className = '', height, href, image, width }) =>
             alt={alt}
             className="
               duration-300
-              ease-out
+              ease-in-out
               hover:scale-105
               transform
               transition-transform
