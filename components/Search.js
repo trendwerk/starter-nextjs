@@ -20,11 +20,10 @@ export default () => {
       setLoading(true)
 
       try {
-        const response = await fetch(`${process.env.WP_URL}/search?q=${value}`)
+        const response = await fetch(`${process.env.WP_URL}/search/?q=${value}`)
+        const data = await response.json()
 
-        // Todo: set results from response
-
-        setResults([1, 2, 3])
+        setResults(data.results)
       } catch (e) {
         setError(true)
       }
@@ -59,11 +58,11 @@ export default () => {
               results.map((result, key) => (
                 <li key={key}>
                   <Link
-                    href="/"
+                    href={`/${result.post_name}`}
                     className="border-b border-gray-200 py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
                   >
                     <strong className="text-sm font-bold mb-2 block">
-                      Result
+                      {result.post_title}
                     </strong>
                     <p className="text-gray-400 text-xs">
                       Proin vel nunc non velit rutrum euismod. Aenean et nulla
