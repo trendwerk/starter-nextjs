@@ -16,7 +16,7 @@ const parser = {
 
     // Link
     if (name === 'a') {
-      return <Link href={attribs.href}>{domToReact(children, parser)}</Link>
+      return <Link className="link" href={attribs.href}>{domToReact(children, parser)}</Link>
     }
 
     // Image
