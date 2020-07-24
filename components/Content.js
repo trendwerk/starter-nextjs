@@ -11,7 +11,7 @@ const parser = {
   replace: ({ name, attribs, children }) => {
     // Button
     if (name === 'a' && attribs.class === 'wp-block-button__link') {
-      return <Button className="mb-8" href={attribs.href}>{domToReact(children, parser)}</Button>
+      return <Button className="mb-6" href={attribs.href}>{domToReact(children, parser)}</Button>
     }
 
     // Link
@@ -23,7 +23,6 @@ const parser = {
     if (name === 'img') {
       return (
         <Image
-          className="mb-6"
           width={800}
           alt={attribs.alt}
           src={attribs.src.replace('app/uploads', 'static')}
