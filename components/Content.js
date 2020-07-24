@@ -24,7 +24,6 @@ const parser = {
       return (
         <Image
           width={800}
-          height={600}
           alt={attribs.alt}
           src={attribs.src.replace('app/uploads', 'static')}
         />
