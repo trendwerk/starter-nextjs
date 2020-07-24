@@ -10,6 +10,7 @@ export default ({ post }) => {
       flex
       flex-col
       mb-16
+      last:mb-0
       sm:flex-row-reverse
       sm:items-center
     ">
