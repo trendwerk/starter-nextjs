@@ -27,6 +27,7 @@ module.exports = {
     },
   },
   variants: {
+    borderRadius: [...config.variants.borderRadius, 'first', 'last'],
     borderWidth: [...config.variants.borderWidth, 'last'],
     display: [...config.variants.display, 'group-hover'],
     margin: [...config.variants.margin, 'last'],

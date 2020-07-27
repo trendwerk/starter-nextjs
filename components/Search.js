@@ -54,10 +54,10 @@ export default () => {
               </p>
             ) : (
               results.map((result) => (
-                <li key={result.slug} className="border-b last:border-b-0 border-gray-200">
+                <li key={result.slug} className="transition-colors duration-200 border-b last:border-b-0 border-gray-200 hover:bg-gray-50 last:rounded-b-md first:rounded-t-md">
                   <Link
                     href={result.slug}
-                    className="py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
+                    className="py-4 px-5 block"
                   >
                     <strong className="text-sm font-bold mb-2 block">
                       {result.title}
