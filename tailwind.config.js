@@ -4,6 +4,7 @@ const config = require('tailwindcss/defaultConfig')
 
 module.exports = {
   theme: {
+    borderColor: { ...colors, default: colors.gray[200] },
     colors: { ...colors, brand: colors.blue },
     extend: {
       fontFamily: {

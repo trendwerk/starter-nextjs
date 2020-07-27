@@ -67,7 +67,7 @@ export default () => {
           type="search"
           className="
           border
-          focus:border-gray-400
+          focus:border-gray-300
           focus:outline-none
           ml-4
           pl-4
@@ -97,7 +97,8 @@ export default () => {
             leading-snug
             right-0
             rounded-md
-            shadow-md
+            mt-2
+            shadow
             top-full
             w-96
           "
