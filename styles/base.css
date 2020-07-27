@@ -1,8 +1,8 @@
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 
-@import "body.css";
-@import "typography.css";
-@import "link.css";
+@import 'body.css';
+@import 'form.css';
+@import 'typography.css';
+@import 'link.css';
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/utilities';
