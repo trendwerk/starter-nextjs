@@ -4,7 +4,7 @@
 @import 'utilities/**/*';
 @import 'elements/**/*';
 @import 'components/**/*';
-@import 'form.css';
+@import 'wordpress/**/*';
 /* purgecss end ignore */
 
 @import 'tailwindcss/utilities';

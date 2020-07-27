@@ -1,7 +1,6 @@
 .link {
   @apply duration-200;
   @apply inline-flex;
-  @apply py-1;
   @apply text-brand-600;
   @apply transition;
 }

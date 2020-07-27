@@ -2,3 +2,8 @@ ol {
   @apply list;
   @apply list-decimal;
 }
+
+ol ol {
+  @apply mb-0;
+  @apply mt-1;
+}
