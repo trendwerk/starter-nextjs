@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash-es/debounce'
 import Link from 'components/Link'
+import Router from 'next/router'
 
 export default () => {
   const [results, setResults] = useState([])
@@ -53,6 +54,11 @@ export default () => {
       setVisible(true)
     })()
   }, 250)
+
+  Router.events.on('routeChangeStart', () => {
+    reset()
+    clear()
+  })
 
   return (
     <div className="hidden lg:flex items-center relative" ref={wrapper}>
