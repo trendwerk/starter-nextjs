@@ -1,12 +1,12 @@
 import debounce from 'lodash-es/debounce'
 import { useState } from 'react'
 import Link from 'components/Link'
+import { result } from 'lodash-es'
 
 export default () => {
   const [results, setResults] = useState([])
   const [error, setError] = useState(false)
   const [visible, setVisible] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   const reset = () => {
     setError(false)
@@ -17,7 +17,6 @@ export default () => {
   const onChange = debounce((value) => {
     ;(async () => {
       reset()
-      setLoading(true)
 
       try {
         const response = await fetch(`${process.env.WP_URL}/search/?q=${value}`)
@@ -28,7 +27,6 @@ export default () => {
         setError(true)
       }
 
-      setLoading(false)
       setVisible(true)
     })()
   }, 250)
@@ -40,7 +38,7 @@ export default () => {
           type="search"
           className="w-40 border pl-4 pr-10 py-2 ml-4 rounded-full shadow-inner focus:outline-none focus:border-gray-400"
           onChange={(e) => {
-            if (!e.target.value) {
+            if (!e.target.value || e.target.value.length < 3) {
               reset()
               return
             }
@@ -50,23 +48,22 @@ export default () => {
         />
         {visible && (
           <ul className="absolute top-full bg-white rounded-md shadow-md right-0 w-96 leading-snug">
-            {error ? (
-              <p className="p-8 text-sm">
-                Something went wrong… Please try again later.
+            {error || !results.length ? (
+              <p className="px-5 py-8 text-sm text-center">
+                {error ? 'Something went wrong… Please try again later.' : 'No results found… Please try another query.'}
               </p>
             ) : (
-              results.map((result, key) => (
-                <li key={key}>
+              results.map((result) => (
+                <li key={result.slug} className="border-b last:border-b-0 border-gray-200">
                   <Link
-                    href={`/${result.post_name}`}
-                    className="border-b border-gray-200 py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
+                    href={result.slug}
+                    className="py-4 hover:bg-gray-50 transition-colors duration-200 px-5 block"
                   >
                     <strong className="text-sm font-bold mb-2 block">
-                      {result.post_title}
+                      {result.title}
                     </strong>
                     <p className="text-gray-400 text-xs">
-                      Proin vel nunc non velit rutrum euismod. Aenean et nulla
-                      efficitur, tempor turpis sed…
+                      {result.summary}
                     </p>
                   </Link>
                 </li>
