@@ -47,6 +47,7 @@ export default ({ items }) => {
           left-0
           top-16
           w-full
+          z-10
           lg:bg-transparent
           lg:divide-y-0
           lg:flex
