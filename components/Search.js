@@ -13,7 +13,7 @@ export default () => {
 
   useEffect(() => {
     const listener = (e) => {
-      if (wrapper.current && ! wrapper.current.contains(e.target)) {
+      if (wrapper.current && !wrapper.current.contains(e.target)) {
         reset()
         clear()
       }
@@ -65,7 +65,18 @@ export default () => {
       <div className="relative">
         <input
           type="search"
-          className="w-40 border pl-4 pr-10 py-2 ml-4 rounded-full shadow-inner focus:outline-none focus:border-gray-400"
+          className="
+          border
+          focus:border-gray-400
+          focus:outline-none
+          ml-4
+          pl-4
+          pr-10
+          py-2
+          rounded-full
+          shadow-inner
+          w-40
+          "
           onChange={(e) => {
             if (!e.target.value || e.target.value.length < 3) {
               reset()
@@ -77,29 +88,48 @@ export default () => {
           ref={input}
         />
         {visible && (
-          <ul className="absolute top-full bg-white rounded-md shadow-md right-0 w-96 leading-snug">
+          <div
+            className="
+            absolute
+            bg-white
+            divide-gray-200
+            divide-y
+            leading-snug
+            right-0
+            rounded-md
+            shadow-md
+            top-full
+            w-96
+          "
+          >
             {error || !results.length ? (
               <p className="px-5 py-8 text-sm text-center">
-                {error ? 'Something went wrong… Please try again later.' : 'No results found… Please try another query.'}
+                {error
+                  ? 'Something went wrong… Please try again later.'
+                  : 'No results found… Please try another query.'}
               </p>
             ) : (
               results.map((result) => (
-                <li key={result.slug} className="transition-colors duration-200 border-b last:border-b-0 border-gray-200 hover:bg-gray-50 last:rounded-b-md first:rounded-t-md">
-                  <Link
-                    href={result.slug}
-                    className="py-4 px-5 block"
-                  >
+                <div
+                  key={result.slug}
+                  className="
+                  duration-200
+                  first:rounded-t-md
+                  hover:bg-gray-50
+                  last:rounded-b-md
+                  transition-colors
+                "
+                >
+                  <Link href={result.slug} className="py-4 px-5 block">
                     <strong className="text-sm font-bold mb-2 block">
                       {result.title}
                     </strong>
-                    <p className="text-gray-400 text-xs">
-                      {result.summary}
-                    </p>
+                    <p className="text-gray-400 text-xs">{result.summary}</p>
                   </Link>
-                </li>
+                </div>
               ))
             )}
-          </ul>
+          </div>
         )}
       </div>
       <Icon />

@@ -6,14 +6,16 @@ export default ({ post }) => {
   const image = post.fields.summaryImage?.url || post.fields.headerImage?.url
 
   return (
-    <div className="
+    <div
+      className="
       flex
       flex-col
       mb-16
       last:mb-0
       sm:flex-row-reverse
       sm:items-center
-    ">
+    "
+    >
       <ImageLink
         className="
           flex-none
@@ -33,8 +35,11 @@ export default ({ post }) => {
         <Date className="mb-2 text-sm" date={post.dateFormatted} />
 
         <h2 className="mb-4">
-          <Link className="hover:text-brand-700 transition-colors duration-200" href={post.uri}>
-          {post.title}
+          <Link
+            className="hover:text-brand-700 transition-colors duration-200"
+            href={post.uri}
+          >
+            {post.title}
           </Link>
         </h2>
 
