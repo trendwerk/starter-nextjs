@@ -1,12 +1,35 @@
+import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash-es/debounce'
-import { useState } from 'react'
 import Link from 'components/Link'
-import { result } from 'lodash-es'
 
 export default () => {
   const [results, setResults] = useState([])
   const [error, setError] = useState(false)
   const [visible, setVisible] = useState(false)
+
+  const wrapper = useRef()
+  const input = useRef()
+
+  useEffect(() => {
+    const listener = (e) => {
+      if (wrapper.current && ! wrapper.current.contains(e.target)) {
+        reset()
+        clear()
+      }
+    }
+
+    document.addEventListener('click', listener)
+
+    return () => {
+      document.removeEventListener(listener)
+    }
+  }, [])
+
+  const clear = () => {
+    if (input.current) {
+      input.current.value = ''
+    }
+  }
 
   const reset = () => {
     setError(false)
@@ -32,7 +55,7 @@ export default () => {
   }, 250)
 
   return (
-    <div className="hidden lg:flex items-center relative">
+    <div className="hidden lg:flex items-center relative" ref={wrapper}>
       <div className="relative">
         <input
           type="search"
@@ -45,6 +68,7 @@ export default () => {
 
             onChange(e.target.value)
           }}
+          ref={input}
         />
         {visible && (
           <ul className="absolute top-full bg-white rounded-md shadow-md right-0 w-96 leading-snug">
