@@ -1,0 +1,8 @@
+ul {
+  @apply list;
+  @apply list-disc;
+}
+
+ul ul {
+  @apply ml-6;
+}

@@ -43,10 +43,10 @@ export default ({ items }) => {
           divide-y
           flex-col
           flex-wrap
-          last:border-none
           left-0
           top-16
           w-full
+          z-10
           lg:bg-transparent
           lg:divide-y-0
           lg:flex
@@ -144,6 +144,7 @@ export default ({ items }) => {
             </div>
           )
         })}
+
         <Search />
       </div>
     </div>

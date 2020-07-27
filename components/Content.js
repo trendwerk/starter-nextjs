@@ -4,19 +4,29 @@ import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
 
 export default ({ content }) => (
-  <article className="max-w-none break-words">{parse(content, parser)}</article>
+  <article className="content max-w-none break-words">
+    {parse(content, parser)}
+  </article>
 )
 
 const parser = {
   replace: ({ name, attribs, children }) => {
     // Button
     if (name === 'a' && attribs.class === 'wp-block-button__link') {
-      return <Button href={attribs.href}>{domToReact(children, parser)}</Button>
+      return (
+        <Button className="mb-6" href={attribs.href}>
+          {domToReact(children, parser)}
+        </Button>
+      )
     }
 
     // Link
     if (name === 'a') {
-      return <Link href={attribs.href}>{domToReact(children, parser)}</Link>
+      return (
+        <Link className="link" href={attribs.href}>
+          {domToReact(children, parser)}
+        </Link>
+      )
     }
 
     // Image

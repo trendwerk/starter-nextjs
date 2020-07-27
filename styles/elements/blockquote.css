@@ -1,0 +1,10 @@
+blockquote {
+  @apply border-gray-800;
+  @apply border-l-2;
+  @apply italic;
+  @apply pl-6;
+}
+
+blockquote p {
+  @apply mb-2;
+}

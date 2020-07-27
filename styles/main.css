@@ -1,0 +1,10 @@
+@import 'tailwindcss/base';
+
+/* purgecss start ignore */
+@import 'utilities/**/*';
+@import 'elements/**/*';
+@import 'components/**/*';
+@import 'wordpress/**/*';
+/* purgecss end ignore */
+
+@import 'tailwindcss/utilities';

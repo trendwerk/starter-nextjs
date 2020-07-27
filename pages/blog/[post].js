@@ -37,7 +37,8 @@ export default function (data) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(`
+  const data = await fetchData(
+    `
     query Post($id: ID!) {
       post(id: $id, idType: URI) {
         title
@@ -53,7 +54,9 @@ export async function getStaticProps({ params }) {
       }
       ${mainQuery}
     }
-  `, {variables: { id: '/blog/' + params.post }})
+  `,
+    { variables: { id: '/blog/' + params.post } }
+  )
 
   return { props: data }
 }

@@ -1,0 +1,8 @@
+ol {
+  @apply list;
+  @apply list-decimal;
+}
+
+ol ol {
+  @apply ml-6;
+}
