@@ -27,6 +27,7 @@ module.exports = {
     },
   },
   variants: {
+    borderWidth: [...config.variants.borderWidth, 'last'],
     display: [...config.variants.display, 'group-hover'],
     margin: [...config.variants.margin, 'last'],
     translate: [...config.variants.display, 'group-hover'],
