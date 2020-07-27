@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
+import Search from 'components/Search'
 import Logo from 'components/Logo'
 import getMenu from 'utils/getMenu'
 
@@ -143,6 +144,7 @@ export default ({ items }) => {
             </div>
           )
         })}
+        <Search />
       </div>
     </div>
   )

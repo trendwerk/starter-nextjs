@@ -1,10 +1,10 @@
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 
 /* purgecss start ignore */
 @import 'utilities/**/*';
 @import 'elements/**/*';
 @import 'components/**/*';
+@import 'form.css';
 /* purgecss end ignore */
 
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/utilities';
