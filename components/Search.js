@@ -22,7 +22,7 @@ export default () => {
     document.addEventListener('click', listener)
 
     return () => {
-      document.removeEventListener(listener)
+      document.removeEventListener('click', listener)
     }
   }, [])
 
