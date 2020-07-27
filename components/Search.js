@@ -92,9 +92,7 @@ export default () => {
             className="
             absolute
             bg-white
-            divide-gray-200
             divide-y
-            leading-snug
             right-0
             rounded-md
             mt-2
