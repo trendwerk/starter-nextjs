@@ -29,6 +29,11 @@
 .content ol,
 .content ul {
   @apply mb-6;
+
+  ol,
+  ul {
+    @apply mb-0;
+  }
 }
 
 .content blockquote {

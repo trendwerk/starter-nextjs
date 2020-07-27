@@ -4,7 +4,5 @@ ul {
 }
 
 ul ul {
-  @apply mb-0;
-  @apply mt-1;
   @apply ml-6;
 }
