@@ -6,7 +6,7 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function (data) {
+const Pages = function (data) {
   const pages = data.pages.edges
 
   return (
@@ -34,6 +34,8 @@ export default function (data) {
     </Layout>
   )
 }
+
+export default Pages
 
 export async function getStaticProps() {
   const data = await fetchData(`

@@ -1,6 +1,6 @@
 import Image from 'components/Image'
 
-export default ({ image, title }) =>
+const Header = ({ image, title }) =>
   image ? (
     <Image
       alt={title}
@@ -11,3 +11,5 @@ export default ({ image, title }) =>
       width={1600}
     />
   ) : null
+
+export default Header

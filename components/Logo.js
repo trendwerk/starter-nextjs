@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Data from 'components/Data'
 import Link from 'components/Link'
 
-export default () => {
+const Logo = () => {
   const { app } = useContext(Data)
 
   return (
@@ -25,3 +25,5 @@ export default () => {
     </Link>
   )
 }
+
+export default Logo

@@ -1,4 +1,4 @@
-export default function ({
+const Wrap = function ({
   children,
   className = '',
   width = false,
@@ -27,3 +27,5 @@ export default function ({
     </section>
   )
 }
+
+export default Wrap

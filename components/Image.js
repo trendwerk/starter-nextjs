@@ -3,7 +3,7 @@
 
 const theme = require('../tailwind.config').theme
 
-export default ({
+const Image = ({
   alt = '',
   className = '',
   fit = 'crop',
@@ -66,3 +66,5 @@ export default ({
     </picture>
   )
 }
+
+export default Image

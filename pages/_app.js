@@ -1,5 +1,7 @@
 import 'styles/main.css'
 
-export default function ({ Component, pageProps }) {
+const App = function ({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
+
+export default App

@@ -6,7 +6,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function (data) {
+const Page = function (data) {
   const post = data.post
 
   return (
@@ -27,6 +27,8 @@ export default function (data) {
     </Layout>
   )
 }
+
+export default Page
 
 export async function getStaticProps({ params }) {
   const data = await fetchData(

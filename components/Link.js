@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import getLink from 'utils/getLink'
 
-export default ({ arrow = false, children, className = '', href, onClick }) => {
+const LinkComponent = ({
+  arrow = false,
+  children,
+  className = '',
+  href,
+  onClick,
+}) => {
   const link = getLink(href)
 
   className = arrow ? `inline-flex items-center group ${className}` : className
@@ -24,6 +30,8 @@ export default ({ arrow = false, children, className = '', href, onClick }) => {
     </Link>
   )
 }
+
+export default LinkComponent
 
 export const Content = ({ arrow, children }) => {
   const className = `

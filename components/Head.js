@@ -4,7 +4,7 @@ import Head from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
-export default function ({ title, description, image }) {
+const HeadComponent = function ({ title, description, image }) {
   const { app } = useContext(Data)
   const { asPath } = useRouter()
 
@@ -94,3 +94,5 @@ export default function ({ title, description, image }) {
     </Head>
   )
 }
+
+export default HeadComponent

@@ -5,7 +5,7 @@ import Search from 'components/Search'
 import Logo from 'components/Logo'
 import getMenu from 'utils/getMenu'
 
-export default ({ items }) => {
+const Menu = ({ items }) => {
   const [isOpen, setOpen] = useState(false)
   const menu = getMenu('MAIN', items)
 
@@ -150,3 +150,5 @@ export default ({ items }) => {
     </div>
   )
 }
+
+export default Menu

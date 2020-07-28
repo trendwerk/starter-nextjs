@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Data from 'components/Data'
 import Wrap from 'components/Wrap'
 
-export default () => {
+const Footer = () => {
   const { app } = useContext(Data)
 
   return (
@@ -13,3 +13,5 @@ export default () => {
     </Wrap>
   )
 }
+
+export default Footer

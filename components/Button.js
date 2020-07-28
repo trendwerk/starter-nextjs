@@ -1,6 +1,6 @@
 import Link from 'components/Link'
 
-export default function ({ children, className = '', href, large = false }) {
+const Button = function ({ children, className = '', href, large = false }) {
   return (
     <Link
       className={`
@@ -34,3 +34,5 @@ export default function ({ children, className = '', href, large = false }) {
     </Link>
   )
 }
+
+export default Button

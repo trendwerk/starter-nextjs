@@ -3,7 +3,7 @@ import Link from 'components/Link'
 import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
 
-export default ({ content }) => (
+const Content = ({ content }) => (
   <article className="content max-w-none break-words">
     {parse(content, parser)}
   </article>
@@ -41,3 +41,5 @@ const parser = {
     }
   },
 }
+
+export default Content
