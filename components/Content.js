@@ -53,7 +53,7 @@ const parser = {
             width={width}
             height={height}
             alt={image.attribs.alt}
-            src={image.attribs.src.replace('app/uploads', 'static')}
+            src={image.attribs.src}
           />
 
           {(figure.children[1]?.name === 'figcaption') && (
