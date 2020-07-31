@@ -1,11 +1,5 @@
-.aligncenter {
-  @apply clear-both;
+.aligncenter img {
   @apply mx-auto;
-
-  img {
-    @apply clear-both;
-    @apply mx-auto;
-  }
 }
 
 @screen sm {

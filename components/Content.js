@@ -10,63 +10,69 @@ const Content = ({ content }) => (
 )
 
 const parser = {
-  replace: ({ name, attribs, children }) => {
+  replace: (node) => {
     // Buttons
-    if (name === 'a' && attribs.class && attribs.class.includes('wp-block-button__link')) {
+    if (node.name === 'a' && node.attribs?.class?.includes('wp-block-button__link')) {
       return (
-        <Button className="mb-6" href={attribs.href}>
-          {domToReact(children, parser)}
+        <Button className="mb-6" href={node.attribs.href}>
+          {domToReact(node.children, parser)}
         </Button>
       )
     }
 
     // Links
-    if (name === 'a') {
+    if (node.name === 'a') {
       return (
-        <Link className="link" href={attribs.href}>
-          {domToReact(children, parser)}
+        <Link className="link" href={node.attribs.href}>
+          {domToReact(node.children, parser)}
         </Link>
       )
     }
 
     // Image blocks
-    if (name === 'div' && attribs.class.includes('wp-block-image')) {
+    if (node.attribs?.class?.includes('wp-block-image')) {
+      const figure = (node.name === 'figure') ? node : node.children[0];
+      const image = (figure.children[0].name === 'img') ? figure.children[0] : figure.children[0].children[0];
+
+      let width = 800;
+      let height = undefined;
+
+      if (image.attribs.width || image.attribs.height) {
+        width = image.attribs.width || undefined;
+        height = image.attribs.height || undefined;
+      } else if (figure.attribs.class.includes('size-thumbnail')) {
+        width = 150;
+        height = 150;
+      } else if (figure.attribs.class.includes('size-medium')) {
+        width = 300;
+      }
+
       return (
-        <figure className={`mb-6 ${children[0].attribs.class}`}>
-          {domToReact(children[0].children, parser)}
+        <figure className={`mb-6 ${figure.attribs.class}`}>
+          <Image
+            width={width}
+            height={height}
+            alt={image.attribs.alt}
+            src={image.attribs.src.replace('app/uploads', 'static')}
+          />
+
+          {(figure.children[1]?.name === 'figcaption') && (
+            <figcaption className="
+              italic
+              leading-relaxed
+              pt-2
+              text-center
+              text-gray-400
+              text-sm
+              w-full
+            ">
+              {domToReact(figure.children[1].children, parser)}
+            </figcaption>
+          )}
         </figure>
       )
     }
-
-    // Images
-    if (name === 'img') {
-      return (
-        <Image
-          width={attribs.width || 800}
-          height={attribs.height || undefined}
-          alt={attribs.alt}
-          src={attribs.src.replace('app/uploads', 'static')}
-        />
-      )
-    }
-
-    // Captions
-    if (name === 'figcaption') {
-      return (
-        <figcaption className="
-          italic
-          leading-relaxed
-          pt-2
-          text-center
-          text-gray-400
-          text-sm
-          w-full
-        ">
-          {domToReact(children, parser)}
-        </figcaption>
-      )
-    }
-  },
+  }
 }
 
 export default Content
