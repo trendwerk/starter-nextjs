@@ -12,7 +12,7 @@ const Content = ({ content }) => (
 const parser = {
   replace: ({ name, attribs, children }) => {
     // Buttons
-    if (name === 'a' && attribs.class === 'wp-block-button__link') {
+    if (name === 'a' && attribs.class && attribs.class.includes('wp-block-button__link')) {
       return (
         <Button className="mb-6" href={attribs.href}>
           {domToReact(children, parser)}
@@ -29,11 +29,21 @@ const parser = {
       )
     }
 
+    // Image blocks
+    if (name === 'div' && attribs.class.includes('wp-block-image')) {
+      return (
+        <figure className={`mb-6 ${children[0].attribs.class}`}>
+          {domToReact(children[0].children, parser)}
+        </figure>
+      )
+    }
+
     // Images
     if (name === 'img') {
       return (
         <Image
-          width={800}
+          width={attribs.width || 800}
+          height={attribs.height || undefined}
           alt={attribs.alt}
           src={attribs.src.replace('app/uploads', 'static')}
         />
@@ -46,7 +56,7 @@ const parser = {
         <figcaption className="
           italic
           leading-relaxed
-          pt-3
+          pt-2
           text-center
           text-gray-400
           text-sm

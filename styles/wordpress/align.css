@@ -1,0 +1,21 @@
+.aligncenter {
+  @apply clear-both;
+  @apply mx-auto;
+
+  img {
+    @apply clear-both;
+    @apply mx-auto;
+  }
+}
+
+@screen sm {
+  .alignleft {
+    @apply float-left;
+    @apply mr-6;
+  }
+
+  .alignright {
+    @apply float-right;
+    @apply ml-6;
+  }
+}
