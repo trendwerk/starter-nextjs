@@ -33,6 +33,21 @@ export const mainQuery = `
     language
     title
   }
+  general {
+    fields {
+      address
+      city
+      companyName
+      email
+      facebook
+      instagram
+      linkedin
+      telephone
+      twitter
+      youtube
+      zipcode
+    }
+  }
   menuItems(first: 10000) {
     nodes {
       id

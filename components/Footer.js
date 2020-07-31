@@ -4,11 +4,12 @@ import Wrap from 'components/Wrap'
 
 const Footer = () => {
   const { app } = useContext(Data)
+  const { general } = useContext(Data)
 
   return (
     <Wrap className="bg-gray-800 mt-auto py-6 text-gray-400" noMargin>
       <div className="text-center w-full">
-        &copy; copyright {new Date().getFullYear()} - {app.title}
+        &copy; copyright {new Date().getFullYear()} - {general.companyName || app.title}
       </div>
     </Wrap>
   )
