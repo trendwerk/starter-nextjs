@@ -2,7 +2,7 @@ import Link from 'components/Link'
 import ImageLink from 'components/ImageLink'
 import Date from 'components/Date'
 
-export default ({ post }) => {
+const Post = ({ post }) => {
   const image = post.fields.summaryImage?.url || post.fields.headerImage?.url
 
   return (
@@ -52,3 +52,5 @@ export default ({ post }) => {
     </div>
   )
 }
+
+export default Post

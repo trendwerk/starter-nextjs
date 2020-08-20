@@ -5,7 +5,7 @@ import Post from 'components/Post'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function (data) {
+const Blog = (data) => {
   const posts = data.posts.edges
 
   return (
@@ -22,6 +22,8 @@ export default function (data) {
     </Layout>
   )
 }
+
+export default Blog
 
 export async function getStaticProps() {
   const data = await fetchData(`
