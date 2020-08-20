@@ -10,7 +10,7 @@ export default class extends Document {
 
   render() {
     return (
-      <Html lang={LANGUAGE}>
+      <Html lang={LANGUAGE} className="antialiased">
         <Head />
         <body>
           <Main />
