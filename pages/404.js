@@ -8,7 +8,7 @@ import Wrap from 'components/Wrap'
 
 const Page404 = (data) => (
   <Layout data={data}>
-    <Head title="Home" />
+    <Head title="404" description="" />
 
     <Wrap className="text-center" width="600">
       <Title>Page not found</Title>

@@ -11,7 +11,7 @@ const Pages = function (data) {
 
   return (
     <Layout data={data}>
-      <Head title="Home" />
+      <Head title="Home" description="" />
 
       <Wrap width="800">
         <Title>Home</Title>

@@ -10,7 +10,7 @@ const Blog = (data) => {
 
   return (
     <Layout data={data}>
-      <Head title="Blog" />
+      <Head title="Blog" description="" />
 
       <Wrap width="800">
         <Title>Blog</Title>
