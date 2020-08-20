@@ -26,6 +26,7 @@ const Menu = ({ items }) => {
       <div className="pr-2 lg:hidden">
         <Hamburger
           direction="right"
+          label="Menu"
           size={18}
           rounded
           duration={0.3}
