@@ -5,6 +5,7 @@
   "scripts": {
     "format": "prettier --write '**/*.{js,json}'",
     "build": "next build",
+    "serve": "npm run build && next start",
     "start": "next dev"
   },
   "dependencies": {
