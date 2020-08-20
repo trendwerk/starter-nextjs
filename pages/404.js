@@ -6,7 +6,7 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page404 = () => (
+const Page404 = (data) => (
   <Layout data={data}>
     <Head title="Home" />
 
