@@ -18,7 +18,6 @@ module.exports = {
       },
       width: {
         '3/8': '37.5%',
-        '96': '24rem',
       },
     },
     screens: {
@@ -37,5 +36,12 @@ module.exports = {
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',
+  },
+  experimental: {
+    extendedFontSizeScale: true,
+    extendedSpacingScale: true,
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
   },
 }
