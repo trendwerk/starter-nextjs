@@ -5,9 +5,12 @@ import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
+import Page from 'pages/[page]'
 
-const Pages = function (data) {
-  const pages = data.pages.edges
+const Home = (data) => {
+  if (data.home.nodes.length) {
+    return <Page data={{ ...data, post: data.home.nodes[0] }} />
+  }
 
   return (
     <Layout data={data}>
@@ -22,7 +25,7 @@ const Pages = function (data) {
 
         <h2 className="mb-4">Pages</h2>
         <ul>
-          {pages.map(({ node }) => (
+          {data.pages.nodes.map((node) => (
             <li key={node.id}>
               <Link href={node.uri} className="link" arrow="right">
                 {node.title}
@@ -35,18 +38,29 @@ const Pages = function (data) {
   )
 }
 
-export default Pages
+export default Home
 
 export async function getStaticProps() {
   const data = await fetchData(`
     query Index {
-      pages(first: 10) {
-        edges {
-          node {
-            id
+      home: pageByTemplate(where: { template: "page_on_front" }) {
+        nodes {
+          title
+          content
+          fields {
+            headerImage {
+              url:sourceUrl
+            }
             title
-            uri
+            metaDescription
           }
+        }
+      }
+      pages(first: 10) {
+        nodes {
+          id
+          title
+          uri
         }
       }
       ${mainQuery}

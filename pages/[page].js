@@ -6,7 +6,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page = function (data) {
+const Page = function ({ data }) {
   const post = data.post
 
   return (
@@ -51,7 +51,7 @@ export async function getStaticProps({ params }) {
     { variables: { id: params.page } }
   )
 
-  return { props: data }
+  return { props: { data } }
 }
 
 export async function getStaticPaths() {
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.pages.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
+    paths: data.pages.nodes.filter(({ uri }) => uri !== '/').map(({ uri }) => uri.replace(/\/$/, '')) || [],
     fallback: false,
   }
 }
