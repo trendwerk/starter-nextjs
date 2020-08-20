@@ -36,6 +36,9 @@ module.exports = {
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',
+    options: {
+      whitelist: ['html'],
+    },
   },
   experimental: {
     extendedFontSizeScale: true,
