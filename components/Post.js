@@ -31,7 +31,7 @@ const Post = ({ post }) => {
         height={400}
       />
 
-      <div>
+      <div className="flex-grow">
         <Date className="mb-2 text-sm" date={post.dateFormatted} />
 
         <h2 className="mb-4">
