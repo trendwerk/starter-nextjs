@@ -8,7 +8,9 @@ const redirects = async () => [
   },
 ]
 
+const { SITE_URL, TRACKING_ID, WP_URL } = process.env
+
 module.exports = transpiled({
-  env: { SITE_URL: process.env.SITE_URL, WP_URL: process.env.WP_URL },
+  env: { SITE_URL, TRACKING_ID, WP_URL },
   redirects,
 })
