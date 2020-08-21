@@ -43,7 +43,7 @@ const Post = ({ post }) => {
           </Link>
         </h2>
 
-        <p className="mb-6">{post.summary}</p>
+        <p className="mb-6">{post.fields.summary || post.summary}</p>
 
         <Link href={post.uri} className="link" arrow="right">
           Read more
