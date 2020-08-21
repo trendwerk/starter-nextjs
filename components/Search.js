@@ -70,6 +70,7 @@ const Search = () => {
           focus:border-gray-300
           focus:outline-none
           ml-4
+          appearance-none
           pl-4
           pr-10
           py-2
