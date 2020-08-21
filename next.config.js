@@ -9,6 +9,6 @@ const redirects = async () => [
 ]
 
 module.exports = transpiled({
-  env: { URL: process.env.URL, WP_URL: process.env.WP_URL },
+  env: { SITE_URL: process.env.SITE_URL, WP_URL: process.env.WP_URL },
   redirects,
 })

@@ -6,8 +6,8 @@ const getLink = function (href) {
   }
 
   // Remove app URL or WordPress URL from link
-  if (link.as.indexOf(process.env.URL) === 0) {
-    link.as = link.as.replace(process.env.URL, '')
+  if (link.as.indexOf(process.env.SITE_URL) === 0) {
+    link.as = link.as.replace(process.env.SITE_URL, '')
   } else if (link.as.indexOf(process.env.WP_URL + '/wp/') === 0) {
     link.external = true
   } else if (link.as.indexOf(process.env.WP_URL) === 0) {
