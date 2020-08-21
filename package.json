@@ -22,7 +22,7 @@
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tailwindcss": "^1.5.2"
+    "tailwindcss": "^1.7.3"
   },
   "devDependencies": {
     "prettier": "^2.0.5"
