@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const LANGUAGE = process.env.LANGUAGE
-
 export default class extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -10,7 +8,7 @@ export default class extends Document {
 
   render() {
     return (
-      <Html lang={LANGUAGE} className="antialiased">
+      <Html lang={process.env.LANGUAGE} className="antialiased">
         <Head />
         <body>
           <Main />

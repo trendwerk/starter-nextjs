@@ -7,7 +7,7 @@ export async function fetchData(query, { variables } = {}) {
     ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
 
-  const res = await fetch(process.env.WP_GRAPHQL_URL, {
+  const res = await fetch(`${process.env.WP_URL}/wp/graphql`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
