@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash-es/debounce'
 import Link from 'components/Link'
-import Router from 'next/router'
 
 const Search = () => {
   const [results, setResults] = useState([])
@@ -14,7 +13,6 @@ const Search = () => {
   useEffect(() => {
     const listener = (e) => {
       if (wrapper.current && !wrapper.current.contains(e.target)) {
-        reset()
         clear()
       }
     }
@@ -27,6 +25,8 @@ const Search = () => {
   }, [])
 
   const clear = () => {
+    reset()
+
     if (input.current) {
       input.current.value = ''
     }
@@ -54,11 +54,6 @@ const Search = () => {
       setVisible(true)
     })()
   }, 250)
-
-  Router.events.on('routeChangeStart', () => {
-    reset()
-    clear()
-  })
 
   return (
     <div className="hidden lg:flex items-center relative" ref={wrapper}>
@@ -120,7 +115,11 @@ const Search = () => {
                   transition-colors
                 "
                 >
-                  <Link href={result.slug} className="py-4 px-5 block">
+                  <Link
+                    href={result.slug}
+                    className="py-4 px-5 block"
+                    onClick={() => reset()}
+                  >
                     <strong className="text-sm font-bold mb-2 block">
                       {result.title}
                     </strong>
