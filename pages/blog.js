@@ -15,9 +15,13 @@ const Blog = (data) => {
       <Wrap width="800">
         <Title>Blog</Title>
 
-        {posts.map(({ node }) => (
+        {posts.length ? posts.map(({ node }) => (
           <Post post={node} key={node.id} />
-        ))}
+        )) : (
+          <div>
+            <p>There are no blog posts yet.</p>
+          </div>
+        )}
       </Wrap>
     </Layout>
   )
