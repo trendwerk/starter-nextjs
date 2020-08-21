@@ -10,7 +10,8 @@ const HeadComponent = function ({ title, description, image }) {
 
   title = title ? `${title} - ${app.title}` : app.title
 
-  const canonical = asPath === '/' ? process.env.SITE_URL : process.env.SITE_URL + asPath
+  const canonical =
+    asPath === '/' ? process.env.SITE_URL : process.env.SITE_URL + asPath
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
 

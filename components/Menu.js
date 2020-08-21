@@ -72,7 +72,8 @@ const Items = ({ items, setOpen }) => {
   const menu = getMenu('MAIN', items)
   const { asPath } = useRouter()
 
-  const getChildren = (item) => item.childItems.nodes.length ? item.childItems.nodes : false
+  const getChildren = (item) =>
+    item.childItems.nodes.length ? item.childItems.nodes : false
 
   const isCurrent = (item) => {
     const equal = (item) => asPath === getLink(item.href).as
@@ -85,8 +86,8 @@ const Items = ({ items, setOpen }) => {
   }
 
   return menu.map((item) => (
-      <div
-        className={`
+    <div
+      className={`
       flex
       flex-col
       group
@@ -94,12 +95,12 @@ const Items = ({ items, setOpen }) => {
       relative
       lg:h-full
     `}
-        key={item.id}
-      >
-        <Link
-          href={item.href}
-          onClick={() => setOpen(false)}
-          className={`
+      key={item.id}
+    >
+      <Link
+        href={item.href}
+        onClick={() => setOpen(false)}
+        className={`
           flex
           font-semibold
           hover:text-white
@@ -116,13 +117,13 @@ const Items = ({ items, setOpen }) => {
               : 'text-gray-300 lg:text-gray-800'
           }
         `}
-        >
-          {item.label}
-        </Link>
+      >
+        {item.label}
+      </Link>
 
-        {getChildren(item) && (
-          <div
-            className="
+      {getChildren(item) && (
+        <div
+          className="
           -mt-2
           flex
           flex-col
@@ -146,12 +147,12 @@ const Items = ({ items, setOpen }) => {
           lg:w-64
           lg:z-10
         "
-          >
-            {getChildren(item).map((item) => (
-              <Link
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`
+        >
+          {getChildren(item).map((item) => (
+            <Link
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className={`
                 ${true ? 'ef' : 'ef'}
                 hover:text-white
                 px-5
@@ -161,14 +162,13 @@ const Items = ({ items, setOpen }) => {
                 lg:py-3
                 ${isCurrent(item) ? 'text-blue-300' : 'text-gray-300'}
               `}
-                key={item.id}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    )
-  )
+              key={item.id}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  ))
 }

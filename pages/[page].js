@@ -66,7 +66,10 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.pages.nodes.filter(({ uri }) => uri !== '/').map(({ uri }) => uri.replace(/\/$/, '')) || [],
+    paths:
+      data.pages.nodes
+        .filter(({ uri }) => uri !== '/')
+        .map(({ uri }) => uri.replace(/\/$/, '')) || [],
     fallback: false,
   }
 }

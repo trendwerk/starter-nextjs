@@ -13,7 +13,13 @@ const Page404 = (data) => (
     <Wrap className="text-center" width="600">
       <Title>Page not found</Title>
 
-      <p className="mb-8">The page you are looking for doesn't exist or has been moved. Go to the <Link href="/" className="link">homepage</Link> or use the menu to find the page you are looking for.</p>
+      <p className="mb-8">
+        The page you are looking for doesn't exist or has been moved. Go to the{' '}
+        <Link href="/" className="link">
+          homepage
+        </Link>{' '}
+        or use the menu to find the page you are looking for.
+      </p>
 
       <Button href="/" large>
         Go to the homepage
