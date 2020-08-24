@@ -13,12 +13,12 @@ const BlogCategory = (data) => (
       currentCategory={data.category.id}
       fetchMore={async (cursor) => {
         const result = await fetchData(`
-          query CategoryMorePosts {
-            category: blogCategory(id: "${data.category.slug}", idType: SLUG) {
+          query CategoryMorePosts($id: ID!) {
+            category: blogCategory(id: $id, idType: SLUG) {
               ${buildPostsQuery(cursor)}
             }
           }
-        `)
+        `, { variables: { id: data.category.slug }})
 
         return result.category
       }}
@@ -31,8 +31,8 @@ export default BlogCategory
 export async function getStaticProps({ params }) {
   const data = await fetchData(
     `
-    query BlogCategory {
-      category: blogCategory(id: "${params.slug}", idType: SLUG) {
+    query BlogCategory($id: ID!) {
+      category: blogCategory(id: $id, idType: SLUG) {
         id
         name
         slug
@@ -40,8 +40,8 @@ export async function getStaticProps({ params }) {
       }
       ${categoriesQuery}
       ${mainQuery}
-    }
-  `)
+    },
+  `, { variables: { id: params.slug }})
 
   return { props: data }
 }
