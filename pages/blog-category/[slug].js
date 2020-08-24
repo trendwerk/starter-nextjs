@@ -5,9 +5,10 @@ import BlogArchive from 'components/BlogArchive'
 
 const BlogCategory = (data) => (
   <Layout data={data}>
-    <Head title={data.category.name} description="" />
+    <Head title={data.category.name} description={data.category.description} />
     <BlogArchive
       title={data.category.name}
+      description={data.category.description}
       posts={data.category.posts}
       categories={data.categories}
       currentCategory={data.category.id}
@@ -35,6 +36,7 @@ export async function getStaticProps({ params }) {
       category: blogCategory(id: $id, idType: SLUG) {
         id
         name
+        description
         slug
         ${buildPostsQuery()}
       }
