@@ -2,6 +2,7 @@ import Button from 'components/Button'
 import Link from 'components/Link'
 import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
+import { Fragment } from 'react'
 
 const Content = ({ content }) => (
   <article className="content max-w-none break-words">
@@ -29,6 +30,21 @@ const parser = {
         <Link className="link" href={node.attribs.href}>
           {domToReact(node.children, parser)}
         </Link>
+      )
+    }
+    
+    // Embeds
+    if (node.attribs?.class?.includes('wp-block-embed')) {
+      if (node.parent) {
+        return <Fragment />
+      }
+
+      return (
+        <figure className="mb-6">
+          {node.children[1]?.name === 'figcaption' && (
+            <Figcaption content={node.children[1].children} />
+          )}
+        </figure>
       )
     }
 
@@ -63,19 +79,7 @@ const parser = {
           />
 
           {figure.children[1]?.name === 'figcaption' && (
-            <figcaption
-              className="
-              italic
-              leading-relaxed
-              pt-2
-              text-center
-              text-gray-400
-              text-sm
-              w-full
-            "
-            >
-              {domToReact(figure.children[1].children, parser)}
-            </figcaption>
+            <Figcaption content={figure.children[1].children} />
           )}
         </figure>
       )
@@ -84,3 +88,19 @@ const parser = {
 }
 
 export default Content
+
+const Figcaption = ({content}) => !console.log(content) && (
+  <figcaption
+    className="
+    italic
+    leading-relaxed
+    pt-2
+    text-center
+    text-gray-400
+    text-sm
+    w-full
+  "
+  >
+    {domToReact(content, parser)}
+  </figcaption>
+)
