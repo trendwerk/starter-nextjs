@@ -6,7 +6,14 @@ import Link from 'components/Link'
 
 const Category = ({ category, currentCategory }) => (
   <li key={category.id} className="m-0">
-    <Link href={category.uri} className={`flex py-3 px-3 border-t hover:bg-gray-100 ${currentCategory == category.id && 'font-bold'}`}>{category.name}</Link>
+    <Link href={category.uri} className={`
+      flex
+      py-3
+      px-3
+      border-t
+      hover:bg-gray-100
+      ${currentCategory == category.id && 'font-bold'}
+    `}>{category.name}</Link>
     {(category.children && category.children.edges.length > 0) && (
       <ul className="list-none ml-4">
         {category.children.edges.map(({ node }) => <Category key={node.id} category={node} currentCategory={currentCategory} />)}
@@ -57,13 +64,28 @@ export default function BlogArchive(props) {
           )}
 
           {pageInfo.hasNextPage && (
-            <a className={`${loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'} px-3 py-3 font-bold flex justify-center cursor-pointer`} onClick={() => setLoading(true)}>Load more posts</a>
+            <a className={`
+              ${loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'}
+              px-3
+              py-3
+              font-bold
+              flex
+              justify-center
+              cursor-pointer
+            `} onClick={() => setLoading(true)}>Load more posts</a>
           )}
         </div>
         <div className="lg:w-1/4 lg:mr-16">
           <h3 className="mb-6">Blog categories</h3>
           <ul className="list-none border-b">
-            <Link href="/blog" className={`flex py-3 px-3 border-t hover:bg-gray-100 ${! props.currentCategory && 'font-bold'}`}>All categories</Link>
+            <Link href="/blog" className={`
+              flex
+              py-3
+              px-3
+              border-t
+              hover:bg-gray-100
+              ${! props.currentCategory && 'font-bold'}
+            `}>All categories</Link>
             {props.categories.edges.map(({ category }) => <Category key={category.id} category={category} currentCategory={props.currentCategory} />)}
           </ul>
         </div>
