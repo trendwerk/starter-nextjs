@@ -17,7 +17,7 @@ export default function Category(data) {
 export async function getStaticProps({ params }) {
   const data = await fetchData(
     `
-    {
+    query BlogCategory {
       category: blogCategory(id: "${params.slug}", idType: SLUG) {
         name
       }
@@ -30,7 +30,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const data = await fetchData(`
-    {
+    query BlogCategoriesPaths {
       blogCategories {
         nodes {
           slug
