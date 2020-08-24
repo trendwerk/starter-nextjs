@@ -65,7 +65,7 @@ const Blog = (data) => {
 
       <Wrap>
         <div className="lg:flex flex-row-reverse">
-          <div className="mb-12 lg:mb-0">
+          <div className="flex-1 mb-12 lg:mb-0">
             <Title>Blog</Title>
 
             {posts.length ? posts.map(({ node }) => (
@@ -81,7 +81,12 @@ const Blog = (data) => {
             )}
           </div>
           <div className="lg:w-1/4 lg:mr-16">
-            <h3>Blog categories</h3>
+            <h3 className="mb-6">Blog categories</h3>
+            <ul className="list-none border-b">
+              {data.categories.edges.map(({ category }) => (
+                <li key={category.id} className="m-0 py-3 px-2 border-t">{category.name}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </Wrap>
@@ -94,6 +99,14 @@ export default Blog
 export async function getStaticProps() {
   const data = await fetchData(`
     query Blog {
+      categories: blogCategories(where: { parent: 0 }) {
+        edges {
+          category: node {
+            id
+            name
+          }
+        }
+      }
       ${buildPostsQuery()}
       ${mainQuery}
     }
