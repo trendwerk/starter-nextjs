@@ -34,7 +34,7 @@ export default function BlogArchive(props) {
     <Wrap>
       <div className="lg:flex flex-row-reverse">
         <div className="flex-1 mb-12 lg:mb-0">
-          <Title>Blog</Title>
+          <Title>{props.title}</Title>
 
           {posts.length ? posts.map(({ node }) => (
             <Post post={node} key={node.id} />

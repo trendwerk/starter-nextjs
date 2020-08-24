@@ -1,18 +1,16 @@
-import { fetchData, mainQuery } from 'utils/api'
+import { fetchData, mainQuery, buildPostsQuery, categoriesQuery } from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
+import BlogArchive from 'components/BlogArchive'
 
-export default function Category(data) {
-  const category = data.category
+const BlogCategory = (data) => (
+  <Layout data={data}>
+    <Head title={data.category.name} description="" />
+    <BlogArchive title={data.category.name} posts={data.category.posts} categories={data.categories} />
+  </Layout>
+)
 
-  return (
-    <Layout data={data}>
-      <Head title={category.name} description="" />
-
-      <h1>{category.name}</h1>
-    </Layout>
-  )
-}
+export default BlogCategory
 
 export async function getStaticProps({ params }) {
   const data = await fetchData(
@@ -20,7 +18,9 @@ export async function getStaticProps({ params }) {
     query BlogCategory {
       category: blogCategory(id: "${params.slug}", idType: SLUG) {
         name
+        ${buildPostsQuery()}
       }
+      ${categoriesQuery}
       ${mainQuery}
     }
   `)

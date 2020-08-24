@@ -6,7 +6,7 @@ import BlogArchive from 'components/BlogArchive'
 const Blog = (data) => (
   <Layout data={data}>
     <Head title="Blog" description="" />
-    <BlogArchive posts={data.posts} categories={data.categories} />
+    <BlogArchive title="Blog" posts={data.posts} categories={data.categories} />
   </Layout>
 )
 
