@@ -6,17 +6,23 @@ import BlogArchive from 'components/BlogArchive'
 const BlogCategory = (data) => (
   <Layout data={data}>
     <Head title={data.category.name} description="" />
-    <BlogArchive title={data.category.name} posts={data.category.posts} categories={data.categories} fetchMore={async (cursor) => {
-      const result = await fetchData(`
-        query CategoryMorePosts {
-          category: blogCategory(id: "${data.category.slug}", idType: SLUG) {
-            ${buildPostsQuery(cursor)}
+    <BlogArchive
+      title={data.category.name}
+      posts={data.category.posts}
+      categories={data.categories}
+      currentCategory={data.category.id}
+      fetchMore={async (cursor) => {
+        const result = await fetchData(`
+          query CategoryMorePosts {
+            category: blogCategory(id: "${data.category.slug}", idType: SLUG) {
+              ${buildPostsQuery(cursor)}
+            }
           }
-        }
-      `)
+        `)
 
-      return result.category
-    }} />
+        return result.category
+      }}
+    />
   </Layout>
 )
 
@@ -27,6 +33,7 @@ export async function getStaticProps({ params }) {
     `
     query BlogCategory {
       category: blogCategory(id: "${params.slug}", idType: SLUG) {
+        id
         name
         slug
         ${buildPostsQuery()}

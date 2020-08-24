@@ -93,6 +93,15 @@ export const categoriesQuery = `
         id
         name
         uri
+        children {
+          edges {
+            node {
+              id
+              name
+              uri
+            }
+          }
+        }
       }
     }
   }
