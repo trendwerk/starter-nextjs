@@ -57,3 +57,52 @@ export const mainQuery = `
     }
   }
 `
+
+export const buildPostsQuery = (cursor = '') => `
+  posts(first: 10, after: "${cursor}") {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+        uri
+        dateFormatted
+        summary
+        fields {
+          summaryTitle
+          summary
+          summaryImage {
+            url:sourceUrl
+          }
+          headerImage {
+            url:sourceUrl
+          }
+        }
+      }
+    }
+  }
+`
+
+export const categoriesQuery = `
+  categories: blogCategories(where: { parent: 0 }) {
+    edges {
+      category: node {
+        id
+        name
+        uri
+        children {
+          edges {
+            node {
+              id
+              name
+              uri
+            }
+          }
+        }
+      }
+    }
+  }
+`
