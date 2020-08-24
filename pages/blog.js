@@ -4,6 +4,7 @@ import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Post from 'components/Post'
 import Title from 'components/Title'
+import Link from 'components/Link'
 import Wrap from 'components/Wrap'
 
 const buildPostsQuery = (cursor = '') => `
@@ -84,7 +85,9 @@ const Blog = (data) => {
             <h3 className="mb-6">Blog categories</h3>
             <ul className="list-none border-b">
               {data.categories.edges.map(({ category }) => (
-                <li key={category.id} className="m-0 py-3 px-2 border-t">{category.name}</li>
+                <li key={category.id} className="m-0">
+                  <Link href={category.uri} className="flex py-3 px-3 border-t hover:bg-gray-100">{category.name}</Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -104,6 +107,7 @@ export async function getStaticProps() {
           category: node {
             id
             name
+            uri
           }
         }
       }

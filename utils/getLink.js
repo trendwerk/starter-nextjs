@@ -26,6 +26,8 @@ const getLink = function (href) {
     link.href = '/blog'
   } else if (link.as.indexOf('/blog/') === 0) {
     link.href = '/blog/[post]'
+  } else if (link.as.indexOf('/blog-category/') === 0) {
+    link.href = '/blog-category/[name]'
   } else if (link.as.indexOf('/') === 0) {
     link.href = '/[page]'
   } else {
