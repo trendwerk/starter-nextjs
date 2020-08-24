@@ -57,3 +57,31 @@ export const mainQuery = `
     }
   }
 `
+
+export const buildPostsQuery = (cursor = '') => `
+  posts(first: 2, after: "${cursor}") {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+        uri
+        dateFormatted
+        summary
+        fields {
+          summaryTitle
+          summary
+          summaryImage {
+            url:sourceUrl
+          }
+          headerImage {
+            url:sourceUrl
+          }
+        }
+      }
+    }
+  }
+`
