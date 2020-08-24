@@ -59,7 +59,7 @@ export const mainQuery = `
 `
 
 export const buildPostsQuery = (cursor = '') => `
-  posts(first: 1, after: "${cursor}") {
+  posts(first: 10, after: "${cursor}") {
     pageInfo {
       endCursor
       hasNextPage
