@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { fetchData, buildPostsQuery } from 'utils/api'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 import Post from 'components/Post'
@@ -13,11 +12,8 @@ export default function BlogArchive(props) {
   useEffect(() => {
     if (loading) {
       const getMore = async () => {
-        const result = await fetchData(`
-          query MorePosts {
-            ${buildPostsQuery(pageInfo.endCursor)}
-          }
-        `).catch(() => setLoading(false))
+        const result = await props.fetchMore(pageInfo.endCursor)
+          .catch(() => setLoading(false))
 
         if (result) {
           setLoading(false)

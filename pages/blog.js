@@ -6,7 +6,13 @@ import BlogArchive from 'components/BlogArchive'
 const Blog = (data) => (
   <Layout data={data}>
     <Head title="Blog" description="" />
-    <BlogArchive title="Blog" posts={data.posts} categories={data.categories} />
+    <BlogArchive title="Blog" posts={data.posts} categories={data.categories} fetchMore={cursor => {
+      return fetchData(`
+        query BlogMorePosts {
+          ${buildPostsQuery(cursor)}
+        }
+      `)
+    }} />
   </Layout>
 )
 
