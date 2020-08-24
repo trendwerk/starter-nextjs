@@ -32,15 +32,25 @@ const parser = {
         </Link>
       )
     }
-    
+
     // Embeds
     if (node.attribs?.class?.includes('wp-block-embed')) {
-      if (node.parent) {
-        return <Fragment />
-      }
+      const iframe = node.children[0].children.filter(
+        (node) => node.name === 'iframe'
+      )[0]
 
       return (
         <figure className="mb-6">
+          <div className="relative pb-9/16">
+            <iframe
+              src={iframe.attribs.src}
+              frameBorder={0}
+              allow="fullscreen"
+              className="h-full w-full top-0 left-0 absolute"
+              loading="lazy"
+            />
+          </div>
+
           {node.children[1]?.name === 'figcaption' && (
             <Figcaption content={node.children[1].children} />
           )}
@@ -89,7 +99,7 @@ const parser = {
 
 export default Content
 
-const Figcaption = ({content}) => !console.log(content) && (
+const Figcaption = ({ content }) => (
   <figcaption
     className="
     italic
