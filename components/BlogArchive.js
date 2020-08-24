@@ -37,6 +37,11 @@ export default function BlogArchive(props) {
     }
   }, [loading])
 
+  useEffect(() => {
+    setPosts(props.posts.edges)
+    setPageInfo(props.posts.pageInfo)
+  }, [props.posts])
+
   return (
     <Wrap>
       <div className="lg:flex flex-row-reverse">
