@@ -12,7 +12,7 @@ const Content = ({ content }) => (
 
 const parser = {
   replace: (node) => {
-    // Buttons
+    // Button
     if (
       node.name === 'a' &&
       node.attribs?.class?.includes('wp-block-button__link')
@@ -24,7 +24,7 @@ const parser = {
       )
     }
 
-    // Links
+    // Link
     if (node.name === 'a') {
       return (
         <Link className="link" href={node.attribs.href}>
@@ -33,7 +33,7 @@ const parser = {
       )
     }
 
-    // Embeds
+    // Embed
     if (node.attribs?.class?.includes('wp-block-embed')) {
       const iframe = node.children[0].children.filter(
         (node) => node.name === 'iframe'
@@ -58,38 +58,24 @@ const parser = {
       )
     }
 
-    // Image blocks
+    // Image
     if (node.attribs?.class?.includes('wp-block-image')) {
-      const figure = node.name === 'figure' ? node : node.children[0]
       const image =
-        figure.children[0].name === 'img'
-          ? figure.children[0]
-          : figure.children[0].children[0]
-
-      let width = 800
-      let height = undefined
-
-      if (image.attribs.width || image.attribs.height) {
-        width = image.attribs.width || undefined
-        height = image.attribs.height || undefined
-      } else if (figure.attribs.class.includes('size-thumbnail')) {
-        width = 150
-        height = 150
-      } else if (figure.attribs.class.includes('size-medium')) {
-        width = 300
-      }
+        node.children[0].name === 'img'
+          ? node.children[0]
+          : node.children[0].children[0]
 
       return (
-        <figure className={`mb-6 ${figure.attribs.class}`}>
+        <figure className="mb-6">
           <Image
-            width={width}
-            height={height}
+            width={image.attribs.width}
+            height={image.attribs.height}
             alt={image.attribs.alt}
             src={image.attribs.src}
           />
 
-          {figure.children[1]?.name === 'figcaption' && (
-            <Figcaption content={figure.children[1].children} />
+          {node.children[1]?.name === 'figcaption' && (
+            <Figcaption content={node.children[1].children} />
           )}
         </figure>
       )
