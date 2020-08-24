@@ -63,20 +63,27 @@ const Blog = (data) => {
     <Layout data={data}>
       <Head title="Blog" description="" />
 
-      <Wrap width="800">
-        <Title>Blog</Title>
+      <Wrap>
+        <div className="lg:flex flex-row-reverse">
+          <div className="mb-12 lg:mb-0">
+            <Title>Blog</Title>
 
-        {posts.length ? posts.map(({ node }) => (
-          <Post post={node} key={node.id} />
-        )) : (
-          <div>
-            <p>There are no blog posts yet.</p>
+            {posts.length ? posts.map(({ node }) => (
+              <Post post={node} key={node.id} />
+            )) : (
+              <div>
+                <p>There are no blog posts yet.</p>
+              </div>
+            )}
+
+            {pageInfo.hasNextPage && (
+              <a className={`${loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'} px-3 py-3 font-bold flex justify-center cursor-pointer`} onClick={() => setLoading(true)}>Load more posts</a>
+            )}
           </div>
-        )}
-
-        {pageInfo.hasNextPage && (
-          <a className={`${loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'} px-3 py-3 font-bold flex justify-center cursor-pointer`} onClick={() => setLoading(true)}>Load more posts</a>
-        )}
+          <div className="lg:w-1/4 lg:mr-16">
+            <h3>Blog categories</h3>
+          </div>
+        </div>
       </Wrap>
     </Layout>
   )
