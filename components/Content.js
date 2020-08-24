@@ -60,24 +60,39 @@ const parser = {
 
     // Image
     if (node.attribs?.class?.includes('wp-block-image')) {
-      const image =
-        node.children[0].name === 'img'
-          ? node.children[0]
-          : node.children[0].children[0]
+      const link = node.children.filter((node) => node.name === 'a')
 
+      // Without link
+      if (!link.length) {
+        return <ImageFigure node={node} />
+      }
+
+      // With link to image
+      if (link[0].attribs.href.indexOf(process.env.WP_URL) === 0) {
+        return (
+          <div
+            onClick={() => {
+              const img = link[0].children.filter(
+                (node) => node.name === 'img'
+              )[0]
+              const url =
+                parseInt(img.attribs.width) > 1920
+                  ? `${img.attribs.src}?w=1920`
+                  : img.attribs.src
+
+              console.log(url)
+            }}
+          >
+            <ImageFigure node={node} />
+          </div>
+        )
+      }
+
+      // With external link
       return (
-        <figure className="mb-6">
-          <Image
-            width={image.attribs.width}
-            height={image.attribs.height}
-            alt={image.attribs.alt}
-            src={image.attribs.src}
-          />
-
-          {node.children[1]?.name === 'figcaption' && (
-            <Figcaption content={node.children[1].children} />
-          )}
-        </figure>
+        <Link href={link[0].attribs.href}>
+          <ImageFigure node={node} />
+        </Link>
       )
     }
   },
@@ -100,3 +115,25 @@ const Figcaption = ({ content }) => (
     {domToReact(content, parser)}
   </figcaption>
 )
+
+const ImageFigure = ({ node }) => {
+  const image =
+    node.children[0].name === 'img'
+      ? node.children[0]
+      : node.children[0].children[0]
+
+  return (
+    <figure className="mb-6">
+      <Image
+        width={image.attribs.width}
+        height={image.attribs.height}
+        alt={image.attribs.alt}
+        src={image.attribs.src}
+      />
+
+      {node.children[1]?.name === 'figcaption' && (
+        <Figcaption content={node.children[1].children} />
+      )}
+    </figure>
+  )
+}
