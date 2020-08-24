@@ -59,7 +59,7 @@ export const mainQuery = `
 `
 
 export const buildPostsQuery = (cursor = '') => `
-  posts(first: 2, after: "${cursor}") {
+  posts(first: 1, after: "${cursor}") {
     pageInfo {
       endCursor
       hasNextPage
@@ -81,6 +81,18 @@ export const buildPostsQuery = (cursor = '') => `
             url:sourceUrl
           }
         }
+      }
+    }
+  }
+`
+
+export const categoriesQuery = `
+  categories: blogCategories(where: { parent: 0 }) {
+    edges {
+      category: node {
+        id
+        name
+        uri
       }
     }
   }

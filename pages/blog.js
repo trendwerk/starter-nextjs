@@ -1,4 +1,4 @@
-import { fetchData, mainQuery, buildPostsQuery } from 'utils/api'
+import { fetchData, mainQuery, buildPostsQuery, categoriesQuery } from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import BlogArchive from 'components/BlogArchive'
@@ -15,15 +15,7 @@ export default Blog
 export async function getStaticProps() {
   const data = await fetchData(`
     query Blog {
-      categories: blogCategories(where: { parent: 0 }) {
-        edges {
-          category: node {
-            id
-            name
-            uri
-          }
-        }
-      }
+      ${categoriesQuery}
       ${buildPostsQuery()}
       ${mainQuery}
     }
