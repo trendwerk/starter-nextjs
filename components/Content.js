@@ -2,11 +2,11 @@ import Button from 'components/Button'
 import Link from 'components/Link'
 import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
-import { Fragment } from 'react'
+import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
 
 const Content = ({ content }) => (
   <article className="content max-w-none break-words">
-    {parse(content, parser)}
+    {content && parse(content, parser)}
   </article>
 )
 
@@ -70,21 +70,32 @@ const parser = {
       // With link to image
       if (link[0].attribs.href.indexOf(process.env.WP_URL) === 0) {
         return (
-          <div
-            onClick={() => {
-              const img = link[0].children.filter(
-                (node) => node.name === 'img'
-              )[0]
-              const url =
-                parseInt(img.attribs.width) > 1920
-                  ? `${img.attribs.src}?w=1920`
-                  : img.attribs.src
-
-              console.log(url)
-            }}
-          >
-            <ImageFigure node={node} />
-          </div>
+          <LightboxWrap>
+            <Lightbox
+              customCaptions={
+                node.children[1]?.name === 'figcaption'
+                  ? [{ id: 0, caption: node.children[1].children[0].data }]
+                  : undefined
+              }
+              options={{
+                buttons: {
+                  showDownloadButton: false,
+                  showFullscreenButton: false,
+                  showNextButton: false,
+                  showPrevButton: false,
+                  showThumbnailsButton: false,
+                },
+                settings: {
+                  autoplaySpeed: 0,
+                },
+                thumbnails: {
+                  showThumbnails: false,
+                },
+              }}
+            >
+              <ImageFigure node={node} className="cursor-pointer" />
+            </Lightbox>
+          </LightboxWrap>
         )
       }
 
@@ -116,14 +127,14 @@ const Figcaption = ({ content }) => (
   </figcaption>
 )
 
-const ImageFigure = ({ node }) => {
+const ImageFigure = ({ node, className = '' }) => {
   const image =
     node.children[0].name === 'img'
       ? node.children[0]
       : node.children[0].children[0]
 
   return (
-    <figure className="mb-6">
+    <figure className={`mb-6 ${className}`}>
       <Image
         width={image.attribs.width}
         height={image.attribs.height}
