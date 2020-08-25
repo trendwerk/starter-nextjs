@@ -7,4 +7,5 @@
 @import 'wordpress/**/*';
 /* purgecss end ignore */
 
+@import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
