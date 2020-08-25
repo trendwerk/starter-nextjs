@@ -11,6 +11,7 @@ const Form = () => (
     <Input label="City" />
     <hr className="mt-8" />
     <h2>Some other fields</h2>
+    <Input label="Something" />
     <Radio
       title="Radio buttons"
       name="options"
@@ -20,10 +21,18 @@ const Form = () => (
         'option-3': 'Option 3',
       }}
     />
+    <Select
+      title="Dropdown"
+      options={{
+        'option-1': 'Option 1',
+        'option-2': 'Option 2',
+        'option-3': 'Option 3',
+      }}
+    />
     <Button
       large
       submit
-      className="ml-1/3"
+      className="ml-1/3 mt-3"
       onClick={(e) => {
         e.preventDefault()
         alert('Here you can add your custom submit logic. 📋')
@@ -37,18 +46,18 @@ const Form = () => (
 export default Form
 
 const Input = ({ label }) => (
-  <label className="flex items-center mb-4 last:mb-0">
+  <label className="flex items-center mb-5 last:mb-0">
     <div className="font-bold pr-4 w-1/3">{label}</div>
     <input className="form-input w-2/3" type="text" />
   </label>
 )
 
 const Radio = ({ title, options, name }) => (
-  <div className="flex">
+  <div className="flex mb-5 last:mb-0">
     <div className="font-bold pr-4 w-1/3 mt-3">{title}</div>
     <div>
       {Object.entries(options).map(([value, label], index) => (
-        <label className="flex items-center mb-4 last:mb-0" key={value}>
+        <label className="flex items-center mb-3 last:mb-0" key={value}>
           <input
             className="form-radio mr-4"
             type="radio"
@@ -60,5 +69,16 @@ const Radio = ({ title, options, name }) => (
         </label>
       ))}
     </div>
+  </div>
+)
+
+const Select = ({ title, options }) => (
+  <div className="flex mb-5 last:mb-0">
+    <div className="font-bold pr-4 w-1/3 mt-3">{title}</div>
+    <select className="form-select w-2/3">
+      {Object.entries(options).map(([value, label]) => (
+        <option value={value}>{label}</option>
+      ))}
+    </select>
   </div>
 )
