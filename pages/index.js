@@ -34,6 +34,7 @@ export async function getStaticProps() {
       pages: pageByTemplate(where: { template: "page_on_front" }) {
         nodes {
           ${pageQuery}
+        }
       }
       ${mainQuery}
     }
