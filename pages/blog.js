@@ -1,4 +1,9 @@
-import { fetchData, mainQuery, buildPostsQuery, categoriesQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  buildPostsQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import BlogArchive from 'components/BlogArchive'
@@ -10,7 +15,7 @@ const Blog = (data) => (
       title="Blog"
       posts={data.posts}
       categories={data.categories}
-      fetchMore={cursor => {
+      fetchMore={(cursor) => {
         return fetchData(`
           query BlogMorePosts {
             ${buildPostsQuery(cursor)}

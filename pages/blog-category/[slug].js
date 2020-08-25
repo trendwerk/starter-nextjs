@@ -1,4 +1,9 @@
-import { fetchData, mainQuery, buildPostsQuery, categoriesQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  buildPostsQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import BlogArchive from 'components/BlogArchive'
@@ -13,13 +18,16 @@ const BlogCategory = (data) => (
       categories={data.categories}
       currentCategory={data.category.id}
       fetchMore={async (cursor) => {
-        const result = await fetchData(`
+        const result = await fetchData(
+          `
           query CategoryMorePosts($id: ID!) {
             category: blogCategory(id: $id, idType: SLUG) {
               ${buildPostsQuery(cursor)}
             }
           }
-        `, { variables: { id: data.category.slug }})
+        `,
+          { variables: { id: data.category.slug } }
+        )
 
         return result.category
       }}
@@ -43,7 +51,9 @@ export async function getStaticProps({ params }) {
       ${categoriesQuery}
       ${mainQuery}
     },
-  `, { variables: { id: params.slug }})
+  `,
+    { variables: { id: params.slug } }
+  )
 
   return { props: data }
 }
