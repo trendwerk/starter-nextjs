@@ -6,6 +6,11 @@ const redirects = async () => [
     destination: `${process.env.WP_URL}/wp/wp-admin/`,
     permanent: false,
   },
+  {
+    source: '/wp-admin',
+    destination: `${process.env.WP_URL}/wp/wp-admin/`,
+    permanent: false,
+  },
 ]
 
 const { SITE_URL, TRACKING_ID, WP_URL } = process.env
