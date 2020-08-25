@@ -1,6 +1,6 @@
 const colors = require('@tailwindcss/ui/colors')
-const theme = require('tailwindcss/defaultTheme')
 const config = require('tailwindcss/defaultConfig')
+const theme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
@@ -33,6 +33,7 @@ module.exports = {
     margin: [...config.variants.margin, 'last'],
     translate: [...config.variants.display, 'group-hover'],
   },
+  plugins: [require('@tailwindcss/custom-forms')],
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',

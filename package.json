@@ -9,6 +9,7 @@
     "start": "next dev"
   },
   "dependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "@tailwindcss/ui": "^0.5.0",
     "hamburger-react": "^2.1.1",
     "html-react-parser": "^0.13.0",
