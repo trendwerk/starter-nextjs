@@ -21,6 +21,7 @@ const Form = () => (
         'option-3': 'Option 3',
       }}
     />
+    <Textarea label="Textarea" />
     <Select
       title="Dropdown"
       options={{
@@ -81,4 +82,11 @@ const Select = ({ title, options }) => (
       ))}
     </select>
   </div>
+)
+
+const Textarea = ({ label }) => (
+  <label className="flex items-center mb-5 last:mb-0">
+    <div className="font-bold pr-4 w-1/3">{label}</div>
+    <textarea className="form-textarea w-2/3" rows="4"></textarea>
+  </label>
 )
