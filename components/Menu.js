@@ -113,7 +113,7 @@ const Items = ({ items, setOpen }) => {
           lg:py-0
           ${
             isCurrent(item)
-              ? 'text-blue-300 lg:text-blue-800'
+              ? 'text-brand-500 lg:text-brand-600'
               : 'text-gray-300 lg:text-gray-800'
           }
         `}
@@ -160,7 +160,7 @@ const Items = ({ items, setOpen }) => {
                 text-sm
                 lg:px-0
                 lg:py-3
-                ${isCurrent(item) ? 'text-blue-300' : 'text-gray-300'}
+                ${isCurrent(item) ? 'text-brand-500' : 'text-gray-300'}
               `}
               key={item.id}
             >
