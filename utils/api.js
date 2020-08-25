@@ -57,6 +57,18 @@ export const mainQuery = `
   }
 `
 
+export const pageQuery = `
+  title
+  content
+  fields {
+    headerImage {
+      url:sourceUrl
+    }
+    title
+    metaDescription
+  }
+`
+
 export const buildPostsQuery = (cursor = '') => `
   posts(first: 10, after: "${cursor}") {
     pageInfo {

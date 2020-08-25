@@ -1,4 +1,4 @@
-import { fetchData, mainQuery } from 'utils/api'
+import { fetchData, mainQuery, pageQuery } from 'utils/api'
 import Page from 'pages/[page]'
 import Layout from 'components/Layout'
 import Wrap from 'components/Wrap'
@@ -33,16 +33,7 @@ export async function getStaticProps() {
     query Index {
       pages: pageByTemplate(where: { template: "page_on_front" }) {
         nodes {
-          title
-          content
-          fields {
-            headerImage {
-              url:sourceUrl
-            }
-            title
-            metaDescription
-          }
-        }
+          ${pageQuery}
       }
       ${mainQuery}
     }
