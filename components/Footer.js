@@ -10,12 +10,16 @@ const Footer = () => {
   const { general } = useContext(Data)
   const { menuItems } = useContext(Data)
 
+  const menu1 = getMenu('FOOTER1', menuItems);
+  const menu2 = getMenu('FOOTER2', menuItems);
+  const menu3 = getMenu('FOOTER3', menuItems);
+  const menu4 = getMenu('FOOTER4', menuItems);
   const menu = getMenu('FOOTER', menuItems);
 
   return (
     <Wrap className="bg-gray-800 mt-auto" noMargin>
-      <div className="border-b border-gray-600 py-12 flex">
-        <div>
+      <div className="border-b border-gray-600 py-12 flex justify-between">
+        <div className="min-w-40">
           <div className="mb-8">
             <h3 className="mb-6 text-white">Contact</h3>
 
@@ -47,6 +51,94 @@ const Footer = () => {
 
           <SocialLinks />
         </div>
+
+        {menu1.length > 0 && (
+          <div className="ml-10 hidden sm:block">
+            <h3 className="mb-4 text-white">[Menu title]</h3>
+
+            <div className="flex flex-col items-start">
+              {menu1.map((item) => (
+                <Link
+                  className={`
+                    text-white
+                      py-2
+                      hover:text-brand-500
+                  `}
+                  href={item.href}
+                  key={item.id}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {menu2.length > 0 && (
+          <div className="ml-10 hidden md:block">
+            <h3 className="mb-4 text-white">[Menu title]</h3>
+
+            <div className="flex flex-col items-start">
+              {menu2.map((item) => (
+                <Link
+                  className={`
+                    text-white
+                      py-2
+                      hover:text-brand-500
+                  `}
+                  href={item.href}
+                  key={item.id}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {menu3.length > 0 && (
+          <div className="ml-10 hidden lg:block">
+            <h3 className="mb-4 text-white">[Menu title]</h3>
+
+            <div className="flex flex-col items-start">
+              {menu3.map((item) => (
+                <Link
+                  className={`
+                    text-white
+                      py-2
+                      hover:text-brand-500
+                  `}
+                  href={item.href}
+                  key={item.id}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {menu4.length > 0 && (
+          <div className="ml-10 hidden xl:block">
+            <h3 className="mb-4 text-white">[Menu title]</h3>
+
+            <div className="flex flex-col items-start">
+              {menu4.map((item) => (
+                <Link
+                  className={`
+                    text-white
+                      py-2
+                      hover:text-brand-500
+                  `}
+                  href={item.href}
+                  key={item.id}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="
