@@ -1,7 +1,7 @@
 import Image from 'components/Image'
 import Link from 'components/Link'
 
-export default ({ alt, className = '', height, href, image, width }) =>
+const ImageLink = ({ alt, className = '', height, href, image, width }) =>
   image ? (
     <Link
       className={`
@@ -27,3 +27,5 @@ export default ({ alt, className = '', height, href, image, width }) =>
       />
     </Link>
   ) : null
+
+export default ImageLink

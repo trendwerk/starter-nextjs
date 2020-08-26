@@ -7,7 +7,7 @@ export async function fetchData(query, { variables } = {}) {
     ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
 
-  const res = await fetch(process.env.WP_GRAPHQL_URL, {
+  const res = await fetch(`${process.env.WP_URL}/wp/graphql`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -19,7 +19,6 @@ export async function fetchData(query, { variables } = {}) {
   const json = await res.json()
 
   if (json.errors) {
-    console.error(json.errors)
     throw new Error('Failed to fetch API')
   }
 
@@ -65,6 +64,67 @@ export const mainQuery = `
               id
               label
               path
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const pageQuery = `
+  title
+  content
+  fields {
+    headerImage {
+      url:sourceUrl
+    }
+    title
+    metaDescription
+  }
+`
+
+export const buildPostsQuery = (cursor = '') => `
+  posts(first: 10, after: "${cursor}") {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+        uri
+        dateFormatted
+        summary
+        fields {
+          summaryTitle
+          summary
+          summaryImage {
+            url:sourceUrl
+          }
+          headerImage {
+            url:sourceUrl
+          }
+        }
+      }
+    }
+  }
+`
+
+export const categoriesQuery = `
+  categories: blogCategories(where: { parent: 0 }) {
+    edges {
+      category: node {
+        id
+        name
+        uri
+        children {
+          edges {
+            node {
+              id
+              name
+              uri
             }
           }
         }

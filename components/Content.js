@@ -2,17 +2,21 @@ import Button from 'components/Button'
 import Link from 'components/Link'
 import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
+import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
 
 const Content = ({ content }) => (
   <article className="content max-w-none break-words">
-    {parse(content, parser)}
+    {content && parse(content, parser)}
   </article>
 )
 
 const parser = {
   replace: (node) => {
-    // Buttons
-    if (node.name === 'a' && node.attribs?.class?.includes('wp-block-button__link')) {
+    // Button
+    if (
+      node.name === 'a' &&
+      node.attribs?.class?.includes('wp-block-button__link')
+    ) {
       return (
         <Button className="mb-6" href={node.attribs.href}>
           {domToReact(node.children, parser)}
@@ -20,7 +24,7 @@ const parser = {
       )
     }
 
-    // Links
+    // Link
     if (node.name === 'a') {
       return (
         <Link className="link" href={node.attribs.href}>
@@ -29,50 +33,118 @@ const parser = {
       )
     }
 
-    // Image blocks
-    if (node.attribs?.class?.includes('wp-block-image')) {
-      const figure = (node.name === 'figure') ? node : node.children[0];
-      const image = (figure.children[0].name === 'img') ? figure.children[0] : figure.children[0].children[0];
-
-      let width = 800;
-      let height = undefined;
-
-      if (image.attribs.width || image.attribs.height) {
-        width = image.attribs.width || undefined;
-        height = image.attribs.height || undefined;
-      } else if (figure.attribs.class.includes('size-thumbnail')) {
-        width = 150;
-        height = 150;
-      } else if (figure.attribs.class.includes('size-medium')) {
-        width = 300;
-      }
+    // Embed
+    if (node.attribs?.class?.includes('wp-block-embed')) {
+      const iframe = node.children[0].children.filter(
+        (node) => node.name === 'iframe'
+      )[0]
 
       return (
-        <figure className={`mb-6 ${figure.attribs.class}`}>
-          <Image
-            width={width}
-            height={height}
-            alt={image.attribs.alt}
-            src={image.attribs.src}
-          />
+        <figure className="mb-6">
+          <div className="relative pb-9/16">
+            <iframe
+              src={iframe.attribs.src}
+              frameBorder={0}
+              allow="fullscreen"
+              className="h-full w-full top-0 left-0 absolute"
+              loading="lazy"
+            />
+          </div>
 
-          {(figure.children[1]?.name === 'figcaption') && (
-            <figcaption className="
-              italic
-              leading-relaxed
-              pt-2
-              text-center
-              text-gray-400
-              text-sm
-              w-full
-            ">
-              {domToReact(figure.children[1].children, parser)}
-            </figcaption>
+          {node.children[1]?.name === 'figcaption' && (
+            <Figcaption content={node.children[1].children} />
           )}
         </figure>
       )
     }
-  }
+
+    // Image
+    if (node.attribs?.class?.includes('wp-block-image')) {
+      const link = node.children.filter((node) => node.name === 'a')
+
+      // Without link
+      if (!link.length) {
+        return <ImageFigure node={node} />
+      }
+
+      // With link to image
+      if (link[0].attribs.href.indexOf(process.env.WP_URL) === 0) {
+        return (
+          <LightboxWrap>
+            <Lightbox
+              customCaptions={
+                node.children[1]?.name === 'figcaption'
+                  ? [{ id: 0, caption: node.children[1].children[0].data }]
+                  : undefined
+              }
+              options={{
+                buttons: {
+                  showDownloadButton: false,
+                  showFullscreenButton: false,
+                  showNextButton: false,
+                  showPrevButton: false,
+                  showThumbnailsButton: false,
+                },
+                settings: {
+                  autoplaySpeed: 0,
+                },
+                thumbnails: {
+                  showThumbnails: false,
+                },
+              }}
+            >
+              <ImageFigure node={node} className="cursor-pointer" />
+            </Lightbox>
+          </LightboxWrap>
+        )
+      }
+
+      // With external link
+      return (
+        <Link href={link[0].attribs.href}>
+          <ImageFigure node={node} />
+        </Link>
+      )
+    }
+  },
 }
 
 export default Content
+
+const Figcaption = ({ content }) => (
+  <figcaption
+    className="
+    italic
+    leading-relaxed
+    pt-2
+    text-center
+    text-gray-400
+    text-sm
+    w-full
+  "
+  >
+    {domToReact(content, parser)}
+  </figcaption>
+)
+
+const ImageFigure = ({ node, className = '' }) => {
+  const image =
+    node.children[0].name === 'img'
+      ? node.children[0]
+      : node.children[0].children[0]
+
+  return (
+    <figure className={`mb-6 ${className}`}>
+      <Image
+        width={image.attribs.width}
+        height={image.attribs.height}
+        alt={image.attribs.alt}
+        src={image.attribs.src}
+      />
+
+      {node.children[1]?.name === 'figcaption' && (
+        <Figcaption content={node.children[1].children} />
+      )}
+    </figure>
+  )
+}

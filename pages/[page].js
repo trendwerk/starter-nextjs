@@ -1,4 +1,4 @@
-import { fetchData, mainQuery } from 'utils/api'
+import { fetchData, mainQuery, pageQuery } from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -6,7 +6,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page = function (data) {
+const Page = function ({ data }) {
   const post = data.post
 
   return (
@@ -35,15 +35,7 @@ export async function getStaticProps({ params }) {
     `
     query Post($id: ID!) {
       post: page(id: $id, idType: URI) {
-        title
-        content
-        fields {
-          headerImage {
-            url:sourceUrl
-          }
-          title
-          metaDescription
-        }
+        ${pageQuery}
       }
       ${mainQuery}
     }
@@ -51,7 +43,7 @@ export async function getStaticProps({ params }) {
     { variables: { id: params.page } }
   )
 
-  return { props: data }
+  return { props: { data } }
 }
 
 export async function getStaticPaths() {
@@ -66,7 +58,10 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.pages.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: true,
+    paths:
+      data.pages.nodes
+        .filter(({ uri }) => uri !== '/')
+        .map(({ uri }) => uri.replace(/\/$/, '')) || [],
+    fallback: false,
   }
 }

@@ -2,7 +2,7 @@ import Link from 'components/Link'
 import ImageLink from 'components/ImageLink'
 import Date from 'components/Date'
 
-export default ({ post }) => {
+const Post = ({ post }) => {
   const image = post.fields.summaryImage?.url || post.fields.headerImage?.url
 
   return (
@@ -31,7 +31,7 @@ export default ({ post }) => {
         height={400}
       />
 
-      <div>
+      <div className="flex-grow">
         <Date className="mb-2 text-sm" date={post.dateFormatted} />
 
         <h2 className="mb-4">
@@ -43,7 +43,7 @@ export default ({ post }) => {
           </Link>
         </h2>
 
-        <p className="mb-6">{post.summary}</p>
+        <p className="mb-6">{post.fields.summary || post.summary}</p>
 
         <Link href={post.uri} className="link" arrow="right">
           Read more
@@ -52,3 +52,5 @@ export default ({ post }) => {
     </div>
   )
 }
+
+export default Post

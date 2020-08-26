@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "export": "next build && next export",
     "format": "prettier --write '**/*.{js,json}'",
-    "build": "next build",
+    "serve": "next build && next start",
     "start": "next dev"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.2.0",
-    "@tailwindcss/ui": "^0.4.0",
+    "@tailwindcss/ui": "^0.5.0",
     "hamburger-react": "^2.1.1",
     "html-react-parser": "^0.13.0",
     "lodash-es": "^4.17.15",
@@ -22,7 +22,8 @@
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tailwindcss": "^1.5.2"
+    "simple-react-lightbox": "^3.3.4-1",
+    "tailwindcss": "^1.7.3"
   },
   "devDependencies": {
     "prettier": "^2.0.5"

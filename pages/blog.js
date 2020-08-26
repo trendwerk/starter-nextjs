@@ -1,52 +1,38 @@
-import { fetchData, mainQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  buildPostsQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import Post from 'components/Post'
-import Title from 'components/Title'
-import Wrap from 'components/Wrap'
+import BlogArchive from 'components/BlogArchive'
 
-export default function (data) {
-  const posts = data.posts.edges
+const Blog = (data) => (
+  <Layout data={data}>
+    <Head title="Blog" description="" />
+    <BlogArchive
+      title="Blog"
+      posts={data.posts}
+      categories={data.categories}
+      fetchMore={(cursor) => {
+        return fetchData(`
+          query BlogMorePosts {
+            ${buildPostsQuery(cursor)}
+          }
+        `)
+      }}
+    />
+  </Layout>
+)
 
-  return (
-    <Layout data={data}>
-      <Head title="Blog" />
-
-      <Wrap width="800">
-        <Title>Blog</Title>
-
-        {posts.map(({ node }) => (
-          <Post post={node} key={node.id} />
-        ))}
-      </Wrap>
-    </Layout>
-  )
-}
+export default Blog
 
 export async function getStaticProps() {
   const data = await fetchData(`
     query Blog {
-      posts(first: 10) {
-        edges {
-          node {
-            id
-            title
-            uri
-            dateFormatted
-            summary
-            fields {
-              summaryTitle
-              summary
-              summaryImage {
-                url:sourceUrl
-              }
-              headerImage {
-                url:sourceUrl
-              }
-            }
-          }
-        }
-      }
+      ${categoriesQuery}
+      ${buildPostsQuery()}
       ${mainQuery}
     }
   `)

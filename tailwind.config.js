@@ -16,9 +16,9 @@ module.exports = {
         '1/2': '50%',
         full: '100%',
       },
-      width: {
+      spacing: {
         '3/8': '37.5%',
-        '96': '24rem',
+        '9/16': '56.25%',
       },
     },
     screens: {
@@ -29,7 +29,6 @@ module.exports = {
   },
   variants: {
     borderRadius: [...config.variants.borderRadius, 'first', 'last'],
-    borderWidth: [...config.variants.borderWidth, 'last'],
     display: [...config.variants.display, 'group-hover'],
     margin: [...config.variants.margin, 'last'],
     translate: [...config.variants.display, 'group-hover'],
@@ -37,5 +36,15 @@ module.exports = {
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',
+    options: {
+      whitelist: ['html'],
+    },
+  },
+  experimental: {
+    extendedFontSizeScale: true,
+    extendedSpacingScale: true,
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
   },
 }
