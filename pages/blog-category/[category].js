@@ -64,7 +64,7 @@ export async function getStaticProps({ params }) {
       ${mainQuery}
     },
   `,
-    { variables: { id: params.slug } }
+    { variables: { id: params.category } }
   )
 
   return { props: data }
@@ -82,7 +82,7 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.blogCategories.nodes.map(({ slug }) => ({ params: { slug } })),
+    paths: data.blogCategories.nodes.map(({ slug }) => ({ params: { category: slug } })),
     fallback: false,
   }
 }
