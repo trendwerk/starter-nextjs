@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import clsx from 'clsx'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 import Post from 'components/Post'
@@ -8,14 +9,14 @@ const Category = ({ category, currentCategory }) => (
   <li key={category.id} className="m-0">
     <Link
       href={category.uri}
-      className={`
-      flex
-      py-3
-      px-3
-      border-t
-      hover:bg-gray-100
-      ${currentCategory == category.id ? 'font-bold' : ''}
-    `}
+      className={clsx(
+      'flex',
+      'py-3',
+      'px-3',
+      'border-t',
+      'hover:bg-gray-100',
+      currentCategory == category.id && 'font-bold',
+    )}
     >
       {category.name}
     </Link>
@@ -78,19 +79,15 @@ export default function BlogArchive(props) {
 
           {pageInfo.hasNextPage && (
             <a
-              className={`
-              ${
-                loading
-                  ? 'bg-gray-500 text-gray-300'
-                  : 'bg-gray-800 hover:bg-gray-700 text-white'
-              }
-              px-3
-              py-3
-              font-bold
-              flex
-              justify-center
-              cursor-pointer
-            `}
+              className={clsx(
+                loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white',
+                'px-3',
+                'py-3',
+                'font-bold',
+                'flex',
+                'justify-center',
+                'cursor-pointer',
+              )}
               onClick={() => setLoading(true)}
             >
               Load more posts
@@ -102,14 +99,14 @@ export default function BlogArchive(props) {
           <ul className="list-none border-b">
             <Link
               href="/blog"
-              className={`
-              flex
-              py-3
-              px-3
-              border-t
-              hover:bg-gray-100
-              ${!props.currentCategory ? 'font-bold' : ''}
-            `}
+              className={clsx(
+              'flex',
+              'py-3',
+              'px-3',
+              'border-t',
+              'hover:bg-gray-100',
+              !props.currentCategory && 'font-bold',
+            )}
             >
               All categories
             </Link>
