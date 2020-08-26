@@ -5,35 +5,7 @@ import Wrap from 'components/Wrap'
 import Post from 'components/Post'
 import Link from 'components/Link'
 import Button from 'components/Button'
-
-const Category = ({ category, currentCategory }) => (
-  <li key={category.id} className="m-0">
-    <Link
-      href={category.uri}
-      className={clsx(
-        'flex',
-        'py-3',
-        'px-3',
-        'border-t',
-        'hover:bg-gray-100',
-        currentCategory == category.id && 'font-bold'
-      )}
-    >
-      {category.name}
-    </Link>
-    {category.children && category.children.edges.length > 0 && (
-      <ul className="list-none ml-4">
-        {category.children.edges.map(({ node }) => (
-          <Category
-            key={node.id}
-            category={node}
-            currentCategory={currentCategory}
-          />
-        ))}
-      </ul>
-    )}
-  </li>
-)
+import Categories from 'components/Categories'
 
 export default function BlogArchive(props) {
   const [posts, setPosts] = useState(props.posts.edges)
@@ -64,33 +36,7 @@ export default function BlogArchive(props) {
   }, [props.posts])
 
   return (
-    <Wrap
-      sidebar={<div>
-        <h3 className="mb-6">Blog categories</h3>
-        <ul className="list-none border-b">
-          <Link
-            href="/blog"
-            className={clsx(
-              'flex',
-              'py-3',
-              'px-3',
-              'border-t',
-              'hover:bg-gray-100',
-              !props.currentCategory && 'font-bold'
-            )}
-          >
-            All categories
-          </Link>
-          {props.categories.edges.map(({ category }) => (
-            <Category
-              key={category.id}
-              category={category}
-              currentCategory={props.currentCategory}
-            />
-          ))}
-        </ul>
-      </div>
-    }>
+    <Wrap sidebar={<Categories categories={props.categories} currentCategory={props.currentCategory} />}>
       <Title>{props.title}</Title>
       {props.description && <p className="mb-10">{props.description}</p>}
 
