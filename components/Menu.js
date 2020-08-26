@@ -153,7 +153,6 @@ const Items = ({ menus, setOpen }) => {
               href={item.href}
               onClick={() => setOpen(false)}
               className={`
-                ${true ? 'ef' : 'ef'}
                 hover:text-white
                 px-5
                 py-2
