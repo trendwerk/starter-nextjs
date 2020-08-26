@@ -86,12 +86,12 @@ export const pageQuery = `
     headerImage {
       url:sourceUrl
     }
-    title
+    pageTitle
     metaDescription
   }
 `
 
-export const buildPostsQuery = (cursor = '') => `
+export const postsQuery = (cursor = '') => `
   posts(first: 10, after: "${cursor}") {
     pageInfo {
       endCursor

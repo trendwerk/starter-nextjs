@@ -19,7 +19,7 @@ export default function Post(data) {
   return (
     <Layout data={data}>
       <Head
-        title={post?.fields?.title || post?.title}
+        title={post?.fields?.pageTitle || post?.title}
         description={post?.fields?.metaDescription}
         image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
         post={post}
@@ -61,7 +61,7 @@ export async function getStaticProps({ params }) {
           headerImage {
             url:sourceUrl
           }
-          title
+          pageTitle
           metaDescription
           summary
         }

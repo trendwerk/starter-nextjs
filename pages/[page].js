@@ -1,4 +1,4 @@
-import { fetchData, mainQuery, pageQuery } from 'utils/api'
+import { fetchData, mainQuery, pageQuery, postsQuery, categoriesQuery } from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -12,7 +12,7 @@ const Page = function ({ data }) {
   return (
     <Layout data={data}>
       <Head
-        title={post?.fields?.title || post?.title}
+        title={post?.fields?.pageTitle || post?.title}
         description={post?.fields?.metaDescription}
         image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
       />
@@ -37,6 +37,8 @@ export async function getStaticProps({ params }) {
       post: page(id: $id, idType: URI) {
         ${pageQuery}
       }
+      ${categoriesQuery}
+      ${postsQuery()}
       ${mainQuery}
     }
   `,

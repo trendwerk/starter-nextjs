@@ -1,7 +1,7 @@
 import {
   fetchData,
   mainQuery,
-  buildPostsQuery,
+  postsQuery,
   categoriesQuery,
 } from 'utils/api'
 import Head from 'components/Head'
@@ -22,7 +22,7 @@ const BlogCategory = (data) => (
           `
           query CategoryMorePosts($id: ID!) {
             category: blogCategory(id: $id, idType: SLUG) {
-              ${buildPostsQuery(cursor)}
+              ${postsQuery(cursor)}
             }
           }
         `,
@@ -46,7 +46,7 @@ export async function getStaticProps({ params }) {
         name
         description
         slug
-        ${buildPostsQuery()}
+        ${postsQuery()}
       }
       ${categoriesQuery}
       ${mainQuery}
