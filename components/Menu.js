@@ -1,11 +1,11 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
+import getLink from 'utils/getLink'
+import getMenu from 'utils/getMenu'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
-import Search from 'components/Search'
 import Logo from 'components/Logo'
-import getMenu from 'utils/getMenu'
-import { useRouter } from 'next/router'
-import getLink from 'utils/getLink'
+import Search from 'components/Search'
 
 const Menu = ({ items }) => {
   const [isOpen, setOpen] = useState(false)
