@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 
 const HeadComponent = function ({ title, description, image }) {
   const { app } = useContext(Data)
+  const { general } = useContext(Data)
   const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title
@@ -92,6 +93,33 @@ const HeadComponent = function ({ title, description, image }) {
         rel="stylesheet"
       />
       <link key="manifest" rel="manifest" href="/manifest.json" />
+      <script
+        key="localbusiness"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: `{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "image": "${image}",
+          "name": "${general.companyName || app.title}",
+          ${general.address ? `
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "${general.address}",
+              "addressLocality": "${general.city}",
+              "postalCode": "${general.zipcode}",
+              "addressCountry": "NL"
+            },
+          ` : ''}
+          ${general.email ? `
+            "email": "${general.email}",
+          ` : ''}
+          "priceRange": "€€",
+          ${general.telephone ? `
+            "telephone": "${general.telephone}",
+          ` : ''}
+          "url": "${process.env.SITE_URL}"
+        }`}}
+      />
     </Head>
   )
 }
