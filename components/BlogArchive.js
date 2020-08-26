@@ -36,7 +36,14 @@ export default function BlogArchive(props) {
   }, [props.posts])
 
   return (
-    <Wrap sidebar={<Categories categories={props.categories} currentCategory={props.currentCategory} />}>
+    <Wrap
+      sidebar={
+        <Categories
+          categories={props.categories}
+          currentCategory={props.currentCategory}
+        />
+      }
+    >
       <Title>{props.title}</Title>
       {props.description && <p className="mb-10">{props.description}</p>}
 

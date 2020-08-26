@@ -1,4 +1,10 @@
-import { fetchData, mainQuery, pageQuery, postsQuery, categoriesQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  pageQuery,
+  postsQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -6,7 +12,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page = function ({ data }) {
+export default function Page({ data }) {
   const post = data.post
 
   return (
@@ -27,8 +33,6 @@ const Page = function ({ data }) {
     </Layout>
   )
 }
-
-export default Page
 
 export async function getStaticProps({ params }) {
   const data = await fetchData(

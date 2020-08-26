@@ -5,7 +5,7 @@ import Link from 'components/Link'
 import SocialLinks from 'components/SocialLinks'
 import Wrap from 'components/Wrap'
 
-const Footer = () => {
+export default function Footer() {
   const { app } = useContext(Data)
   const { general } = useContext(Data)
   const { menus } = useContext(Data)
@@ -131,15 +131,15 @@ const Footer = () => {
 
       <div
         className="
-        flex
-        flex-col
-        items-center
-        justify-between
-        lg:flex-row
-        py-6
-        w-full
-      text-white
-      "
+          flex
+          flex-col
+          items-center
+          justify-between
+          lg:flex-row
+          py-6
+          w-full
+        text-white
+        "
       >
         <div className="mb-4 lg:mb-0 text-center">
           &copy; copyright {new Date().getFullYear()} -{' '}
@@ -170,5 +170,3 @@ const Footer = () => {
     </Wrap>
   )
 }
-
-export default Footer

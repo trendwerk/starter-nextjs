@@ -1,4 +1,4 @@
-const Wrap = function ({
+export default function Wrap({
   children,
   className = '',
   width = false,
@@ -28,10 +28,10 @@ const Wrap = function ({
             <div className="flex-1 mb-12 lg:mb-0">{children}</div>
             <div className="lg:w-1/4 lg:mr-16">{sidebar}</div>
           </div>
-        ) : children}
+        ) : (
+          children
+        )}
       </div>
     </section>
   )
 }
-
-export default Wrap

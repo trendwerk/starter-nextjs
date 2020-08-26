@@ -1,8 +1,4 @@
-import {
-  fetchData,
-  mainQuery,
-  categoriesQuery,
-} from 'utils/api'
+import { fetchData, mainQuery, categoriesQuery } from 'utils/api'
 import Content from 'components/Content'
 import Date from 'components/Date'
 import Head from 'components/Head'
@@ -27,7 +23,11 @@ export default function Post(data) {
 
       <Header image={post.fields?.headerImage} title={post?.title} />
 
-      <Wrap sidebar={<Categories categories={data.categories} currentCategory={false} />}>
+      <Wrap
+        sidebar={
+          <Categories categories={data.categories} currentCategory={false} />
+        }
+      >
         <Date className="mb-2 text-sm lg:text-base" date={post.dateFormatted} />
 
         <Title>{post.title}</Title>

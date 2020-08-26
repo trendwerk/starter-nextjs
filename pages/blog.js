@@ -1,9 +1,4 @@
-import {
-  fetchData,
-  mainQuery,
-  postsQuery,
-  categoriesQuery,
-} from 'utils/api'
+import { fetchData, mainQuery, postsQuery, categoriesQuery } from 'utils/api'
 import BlogArchive from 'components/BlogArchive'
 import Content from 'components/Content'
 import Head from 'components/Head'
@@ -12,7 +7,7 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Blog = (data) => {
+export default function Blog(data) {
   const blog = data.blog
 
   return (
@@ -46,8 +41,6 @@ const Blog = (data) => {
     </Layout>
   )
 }
-
-export default Blog
 
 export async function getStaticProps() {
   const data = await fetchData(`

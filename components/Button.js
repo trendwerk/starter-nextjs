@@ -1,7 +1,7 @@
 import Link from 'components/Link'
 import clsx from 'clsx'
 
-const Button = function ({
+export default function Button({
   children,
   className = '',
   disabled,
@@ -35,5 +35,3 @@ const Button = function ({
     </div>
   )
 }
-
-export default Button

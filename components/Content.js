@@ -4,11 +4,13 @@ import Image from 'components/Image'
 import parse, { domToReact } from 'html-react-parser'
 import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
 
-const Content = ({ content }) => (
-  <article className="content max-w-none break-words">
-    {content && parse(content, parser)}
-  </article>
-)
+export default function Content({ content }) {
+  return (
+    <article className="content max-w-none break-words">
+      {content && parse(content, parser)}
+    </article>
+  )
+}
 
 const parser = {
   replace: (node) => {
@@ -108,8 +110,6 @@ const parser = {
     }
   },
 }
-
-export default Content
 
 const Figcaption = ({ content }) => (
   <figcaption

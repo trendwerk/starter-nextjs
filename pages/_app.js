@@ -2,7 +2,7 @@ import 'styles/main.css'
 import Router from 'next/router'
 import { useEffect } from 'react'
 
-const App = function ({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
       return
@@ -21,5 +21,3 @@ const App = function ({ Component, pageProps }) {
 
   return <Component {...pageProps} />
 }
-
-export default App

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import Data from 'components/Data'
 import Link from 'components/Link'
 
-const SocialLinks = () => {
+export default function SocialLinks() {
   const { general } = useContext(Data)
   let links = []
 
@@ -139,5 +139,3 @@ const SocialLinks = () => {
     </div>
   ) : null
 }
-
-export default SocialLinks

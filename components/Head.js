@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import Data from 'components/Data'
-import Head from 'next/head'
+import { default as NextHead } from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
-const HeadComponent = function ({ description, image, post, title }) {
+export default function Head({ description, image, post, title }) {
   const { app } = useContext(Data)
   const { general } = useContext(Data)
   const { asPath } = useRouter()
@@ -79,7 +79,7 @@ const HeadComponent = function ({ description, image, post, title }) {
     : false
 
   return (
-    <Head>
+    <NextHead>
       <title>{title}</title>
       {description && (
         <meta key="description" type="description" value={description} />
@@ -164,8 +164,6 @@ const HeadComponent = function ({ description, image, post, title }) {
           dangerouslySetInnerHTML={{ __html: article }}
         />
       )}
-    </Head>
+    </NextHead>
   )
 }
-
-export default HeadComponent

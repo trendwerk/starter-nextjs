@@ -7,7 +7,7 @@ import Link from 'components/Link'
 import Logo from 'components/Logo'
 import Search from 'components/Search'
 
-const Menu = ({ menus }) => {
+export default function Menu({ menus }) {
   const [isOpen, setOpen] = useState(false)
 
   return (
@@ -65,8 +65,6 @@ const Menu = ({ menus }) => {
     </div>
   )
 }
-
-export default Menu
 
 const Items = ({ menus, setOpen }) => {
   const menu = getMenu('MAIN', menus)

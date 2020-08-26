@@ -3,7 +3,7 @@ import Page from 'pages/[page]'
 import Layout from 'components/Layout'
 import Wrap from 'components/Wrap'
 
-const Home = (data) => {
+export default function Home(data) {
   if (data.pages.nodes.length) {
     return <Page data={{ ...data, post: data.pages.nodes[0] }} />
   }
@@ -25,8 +25,6 @@ const Home = (data) => {
     </Layout>
   )
 }
-
-export default Home
 
 export async function getStaticProps() {
   const data = await fetchData(`

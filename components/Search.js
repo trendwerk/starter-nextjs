@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash-es/debounce'
 import Link from 'components/Link'
 
-const Search = () => {
+export default function Search() {
   const [results, setResults] = useState([])
   const [error, setError] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -150,5 +150,3 @@ const Icon = () => (
     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
   </svg>
 )
-
-export default Search
