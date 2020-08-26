@@ -10,11 +10,11 @@ const Footer = () => {
   const { general } = useContext(Data)
   const { menuItems } = useContext(Data)
 
-  const menu1 = getMenu('FOOTER1', menuItems);
-  const menu2 = getMenu('FOOTER2', menuItems);
-  const menu3 = getMenu('FOOTER3', menuItems);
-  const menu4 = getMenu('FOOTER4', menuItems);
-  const menu = getMenu('FOOTER', menuItems);
+  const menu1 = getMenu('FOOTER1', menuItems)
+  const menu2 = getMenu('FOOTER2', menuItems)
+  const menu3 = getMenu('FOOTER3', menuItems)
+  const menu4 = getMenu('FOOTER4', menuItems)
+  const menu = getMenu('FOOTER', menuItems)
 
   let menus = []
 
@@ -22,7 +22,7 @@ const Footer = () => {
     menus.push({
       id: '1',
       items: menu1,
-      breakpoint: 'sm'
+      breakpoint: 'sm',
     })
   }
 
@@ -30,7 +30,7 @@ const Footer = () => {
     menus.push({
       id: '2',
       items: menu2,
-      breakpoint: 'md'
+      breakpoint: 'md',
     })
   }
 
@@ -38,7 +38,7 @@ const Footer = () => {
     menus.push({
       id: '3',
       items: menu3,
-      breakpoint: 'lg'
+      breakpoint: 'lg',
     })
   }
 
@@ -46,7 +46,7 @@ const Footer = () => {
     menus.push({
       id: '4',
       items: menu4,
-      breakpoint: 'xl'
+      breakpoint: 'xl',
     })
   }
 
@@ -59,26 +59,39 @@ const Footer = () => {
 
             {general.address && (
               <p className="mb-6 text-white">
-                <strong>{general.companyName || app.title}</strong><br/>
-                {general.address}<br/>
+                <strong>{general.companyName || app.title}</strong>
+                <br />
+                {general.address}
+                <br />
                 {general.zipcode} {general.city}
               </p>
             )}
 
             {(general.email || general.telephone) && (
               <p className="text-white">
-                {general.email && <>Email: <Link
-                  href={`mailto:${general.email}`}
-                  className="hover:text-brand-500"
-                >
-                  {general.email}
-                </Link><br/></>}
-                {general.telephone && <>Telephone: <Link
-                    href={`tel:${general.telephone.replace(/[^0-9.]/g, "")}`}
-                    className="hover:text-brand-500"
-                  >
-                    {general.telephone}
-                  </Link></>}
+                {general.email && (
+                  <>
+                    Email:{' '}
+                    <Link
+                      href={`mailto:${general.email}`}
+                      className="hover:text-brand-500"
+                    >
+                      {general.email}
+                    </Link>
+                    <br />
+                  </>
+                )}
+                {general.telephone && (
+                  <>
+                    Telephone:{' '}
+                    <Link
+                      href={`tel:${general.telephone.replace(/[^0-9.]/g, '')}`}
+                      className="hover:text-brand-500"
+                    >
+                      {general.telephone}
+                    </Link>
+                  </>
+                )}
               </p>
             )}
           </div>
@@ -86,8 +99,11 @@ const Footer = () => {
           <SocialLinks />
         </div>
 
-        {menus.map(menu => (
-          <div className={`ml-10 hidden ${menu.breakpoint}:block`} key={menu.id}>
+        {menus.map((menu) => (
+          <div
+            className={`ml-10 hidden ${menu.breakpoint}:block`}
+            key={menu.id}
+          >
             <h3 className="mb-4 text-white">[Menu title]</h3>
 
             <div className="flex flex-col items-start">
@@ -109,7 +125,8 @@ const Footer = () => {
         ))}
       </div>
 
-      <div className="
+      <div
+        className="
         flex
         flex-col
         items-center
@@ -118,8 +135,12 @@ const Footer = () => {
         py-6
         w-full
       text-white
-      ">
-        <div className="mb-4 lg:mb-0 text-center">&copy; copyright {new Date().getFullYear()} - {general.companyName || app.title}</div>
+      "
+      >
+        <div className="mb-4 lg:mb-0 text-center">
+          &copy; copyright {new Date().getFullYear()} -{' '}
+          {general.companyName || app.title}
+        </div>
 
         {menu.length > 0 && (
           <div className="flex flex-wrap justify-center">
