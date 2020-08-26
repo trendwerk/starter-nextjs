@@ -16,7 +16,7 @@ const Button = function ({
     'duration-200',
     'font-semibold',
     'inline-block',
-    'rounded-lg',
+    'rounded',
     'shadow-md',
     'text-center',
     'transition-bg',
