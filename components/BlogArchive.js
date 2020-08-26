@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import clsx from 'clsx'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 import Post from 'components/Post'
-import Link from 'components/Link'
 import Button from 'components/Button'
 import Categories from 'components/Categories'
 
