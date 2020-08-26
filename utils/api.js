@@ -34,17 +34,18 @@ export const mainQuery = `
   }
   general {
     fields {
+      companyName
       address
       city
-      companyName
+      zipcode
       email
+      telephone
       facebook
       instagram
       linkedin
-      telephone
+      pinterest
       twitter
       youtube
-      zipcode
     }
   }
   menuItems(first: 10000) {
