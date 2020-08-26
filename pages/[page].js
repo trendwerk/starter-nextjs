@@ -12,12 +12,12 @@ const Page = function ({ data }) {
   return (
     <Layout data={data}>
       <Head
-        title={post?.fields?.pageTitle || post?.title}
-        description={post?.fields?.metaDescription}
-        image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
+        title={post.fields?.pageTitle || post?.title}
+        description={post.fields?.metaDescription}
+        image={post.fields?.ogImage?.url || post.fields?.headerImage?.url}
       />
 
-      <Header image={post?.fields?.headerImage} title={post?.title} />
+      <Header image={post.fields?.headerImage} title={post?.title} />
 
       <Wrap width="800">
         <Title>{post.title}</Title>

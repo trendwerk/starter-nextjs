@@ -19,13 +19,13 @@ export default function Post(data) {
   return (
     <Layout data={data}>
       <Head
-        title={post?.fields?.pageTitle || post?.title}
-        description={post?.fields?.metaDescription}
-        image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
+        title={post.fields?.pageTitle || post?.title}
+        description={post.fields?.metaDescription}
+        image={post.fields?.ogImage?.url || post.fields?.headerImage?.url}
         post={post}
       />
 
-      <Header image={post?.fields?.headerImage} title={post?.title} />
+      <Header image={post.fields?.headerImage} title={post?.title} />
 
       <Wrap sidebar={<Categories categories={data.categories} currentCategory={false} />}>
         <Date className="mb-2 text-sm lg:text-base" date={post.dateFormatted} />
