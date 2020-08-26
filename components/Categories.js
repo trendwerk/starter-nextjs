@@ -43,7 +43,7 @@ export default function Categories({ categories, currentCategory }) {
             'px-3',
             'border-t',
             'hover:bg-gray-100',
-            !currentCategory && 'font-bold'
+            currentCategory === undefined && 'font-bold'
           )}
         >
           All categories

@@ -1,4 +1,8 @@
-import { fetchData, mainQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Content from 'components/Content'
 import Date from 'components/Date'
 import Head from 'components/Head'
@@ -7,8 +11,9 @@ import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
+import Categories from 'components/Categories'
 
-export default function (data) {
+export default function Post(data) {
   const post = data.post
 
   return (
@@ -22,7 +27,7 @@ export default function (data) {
 
       <Header image={post?.fields?.headerImage} title={post?.title} />
 
-      <Wrap width="800">
+      <Wrap sidebar={<Categories categories={data.categories} currentCategory={false} />}>
         <Date className="mb-2 text-sm lg:text-base" date={post.dateFormatted} />
 
         <Title>{post.title}</Title>
@@ -61,6 +66,7 @@ export async function getStaticProps({ params }) {
           summary
         }
       }
+      ${categoriesQuery}
       ${mainQuery}
     }
   `,
