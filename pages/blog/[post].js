@@ -17,7 +17,7 @@ export default function (data) {
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
         image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
-        article={post}
+        post={post}
       />
 
       <Header image={post?.fields?.headerImage} title={post?.title} />

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
-const HeadComponent = function ({ article, description, image, title }) {
+const HeadComponent = function ({ description, image, post, title }) {
   const { app } = useContext(Data)
   const { general } = useContext(Data)
   const { asPath } = useRouter()
@@ -16,7 +16,9 @@ const HeadComponent = function ({ article, description, image, title }) {
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
 
-  image = image ? image + '?w=1200&h=630&fit=crop' : process.env.SITE_URL + '/share.png'
+  image = image
+    ? image + '?w=1200&h=630&fit=crop'
+    : process.env.SITE_URL + '/share.png'
 
   const organization = `{
     "@context": "https://schema.org",
@@ -24,7 +26,9 @@ const HeadComponent = function ({ article, description, image, title }) {
     "name": "${general.companyName || app.title}",
     "logo": "${process.env.SITE_URL}/logo.png",
     "image": "${process.env.SITE_URL}/share.png",
-    ${general.address ? `
+    ${
+      general.address
+        ? `
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "${general.address}",
@@ -32,17 +36,47 @@ const HeadComponent = function ({ article, description, image, title }) {
         "postalCode": "${general.zipcode}",
         "addressCountry": "NL"
       },
-    ` : ''}
-    ${general.email ? `
+    `
+        : ''
+    }
+    ${
+      general.email
+        ? `
       "email": "${general.email}",
-    ` : ''}
+    `
+        : ''
+    }
     "priceRange": "€€",
-    ${general.telephone ? `
+    ${
+      general.telephone
+        ? `
       "telephone": "${general.telephone}",
-    ` : ''}
+    `
+        : ''
+    }
     "url": "${process.env.SITE_URL}"
-  }`;
+  }`
 
+  const article = post
+    ? `{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "${url}"
+    },
+    "headline": "${title}",
+    "image": "${image}",
+    "description": "${post.fields.summary || post.summary}",
+    "datePublished": "${post.date}",
+    "dateModified": "${post.modified}",
+    "author": {
+      "@type": "Person",
+      "name": "${post.author.node.name}"
+    },
+    "publisher": ${organization}
+  }`
+    : false
 
   return (
     <Head>
@@ -121,30 +155,15 @@ const HeadComponent = function ({ article, description, image, title }) {
       <script
         key="localbusiness"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: organization}}
+        dangerouslySetInnerHTML={{ __html: organization }}
       />
-      {article && <script
-        key="article"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: `{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "${url}"
-          },
-          "headline": "${title}",
-          "image": "${image}",
-          "description": "${article.fields.summary || article.summary}",
-          "datePublished": "${article.date}",
-          "dateModified": "${article.modified}",
-          "author": {
-            "@type": "Person",
-            "name": "${article.author.node.name}"
-          },
-          "publisher": ${organization}
-        }`}}
-      />}
+      {article && (
+        <script
+          key="article"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: article }}
+        />
+      )}
     </Head>
   )
 }

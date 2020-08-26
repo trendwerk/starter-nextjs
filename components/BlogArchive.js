@@ -11,13 +11,13 @@ const Category = ({ category, currentCategory }) => (
     <Link
       href={category.uri}
       className={clsx(
-      'flex',
-      'py-3',
-      'px-3',
-      'border-t',
-      'hover:bg-gray-100',
-      currentCategory == category.id && 'font-bold',
-    )}
+        'flex',
+        'py-3',
+        'px-3',
+        'border-t',
+        'hover:bg-gray-100',
+        currentCategory == category.id && 'font-bold'
+      )}
     >
       {category.name}
     </Link>
@@ -94,13 +94,13 @@ export default function BlogArchive(props) {
             <Link
               href="/blog"
               className={clsx(
-              'flex',
-              'py-3',
-              'px-3',
-              'border-t',
-              'hover:bg-gray-100',
-              !props.currentCategory && 'font-bold',
-            )}
+                'flex',
+                'py-3',
+                'px-3',
+                'border-t',
+                'hover:bg-gray-100',
+                !props.currentCategory && 'font-bold'
+              )}
             >
               All categories
             </Link>
