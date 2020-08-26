@@ -1,8 +1,8 @@
-const getMenu = function (menu, menuItems) {
+const getMenu = function (location, menus) {
   // Filter menu items by menu location and menu parent
-  return menuItems.nodes.filter((item) => {
-    return item.locations.includes(menu) && item.parentId === null
-  })
+  return menus.nodes.filter((menu) => {
+    return menu.locations.includes(location)
+  })[0]
 }
 
 export default getMenu

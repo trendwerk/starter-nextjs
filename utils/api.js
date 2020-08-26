@@ -48,23 +48,29 @@ export const mainQuery = `
       youtube
     }
   }
-  menuItems(first: 10000) {
+  menus {
     nodes {
-      id
-      label
-      href: path
+      name
       locations
-      parentId
-      childItems {
+      items: menuItems(where: {parentId: "null"}) {
         nodes {
           id
           label
           href: path
+          locations
+          parentId
           childItems {
             nodes {
               id
               label
-              path
+              href: path
+              childItems {
+                nodes {
+                  id
+                  label
+                  path
+                }
+              }
             }
           }
         }

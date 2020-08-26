@@ -8,10 +8,10 @@ const Layout = ({ data, children }) => (
       value={{
         app: data.app,
         general: data.general.fields,
-        menuItems: data.menuItems,
+        menus: data.menus,
       }}
     >
-      <Menu items={data.menuItems} />
+      <Menu menus={data.menus} />
       {children}
       <Footer />
     </Data.Provider>

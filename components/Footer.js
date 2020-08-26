@@ -8,44 +8,48 @@ import Wrap from 'components/Wrap'
 const Footer = () => {
   const { app } = useContext(Data)
   const { general } = useContext(Data)
-  const { menuItems } = useContext(Data)
+  const { menus } = useContext(Data)
 
-  const menu1 = getMenu('FOOTER1', menuItems)
-  const menu2 = getMenu('FOOTER2', menuItems)
-  const menu3 = getMenu('FOOTER3', menuItems)
-  const menu4 = getMenu('FOOTER4', menuItems)
-  const menu = getMenu('FOOTER', menuItems)
+  const menu1 = getMenu('FOOTER1', menus)
+  const menu2 = getMenu('FOOTER2', menus)
+  const menu3 = getMenu('FOOTER3', menus)
+  const menu4 = getMenu('FOOTER4', menus)
+  const menu = getMenu('FOOTER', menus)
 
-  let menus = []
+  let footerMenus = []
 
-  if (menu1.length > 0) {
-    menus.push({
+  if (menu1?.items.nodes.length > 0) {
+    footerMenus.push({
       id: '1',
-      items: menu1,
+      name: menu1.name,
+      items: menu1.items.nodes,
       breakpoint: 'sm',
     })
   }
 
-  if (menu2.length > 0) {
-    menus.push({
+  if (menu2?.items.nodes.length > 0) {
+    footerMenus.push({
       id: '2',
-      items: menu2,
+      name: menu2.name,
+      items: menu2.items.nodes,
       breakpoint: 'md',
     })
   }
 
-  if (menu3.length > 0) {
-    menus.push({
+  if (menu3?.items.nodes.length > 0) {
+    footerMenus.push({
       id: '3',
-      items: menu3,
+      name: menu3.name,
+      items: menu3.items.nodes,
       breakpoint: 'lg',
     })
   }
 
-  if (menu4.length > 0) {
-    menus.push({
+  if (menu4?.items.nodes.length > 0) {
+    footerMenus.push({
       id: '4',
-      items: menu4,
+      name: menu4.name,
+      items: menu4.items.nodes,
       breakpoint: 'xl',
     })
   }
@@ -99,12 +103,12 @@ const Footer = () => {
           <SocialLinks />
         </div>
 
-        {menus.map((menu) => (
+        {footerMenus.map((menu) => (
           <div
             className={`ml-10 hidden ${menu.breakpoint}:block`}
             key={menu.id}
           >
-            <h3 className="mb-4 text-white">[Menu title]</h3>
+            <h3 className="mb-4 text-white">{menu.name}</h3>
 
             <div className="flex flex-col items-start">
               {menu.items.map((item) => (
@@ -142,9 +146,9 @@ const Footer = () => {
           {general.companyName || app.title}
         </div>
 
-        {menu.length > 0 && (
+        {menu.items.nodes.length > 0 && (
           <div className="flex flex-wrap justify-center">
-            {menu.map((item) => (
+            {menu.items.nodes.map((item) => (
               <Link
                 className={`
                   text-white

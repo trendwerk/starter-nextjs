@@ -7,7 +7,7 @@ import Link from 'components/Link'
 import Logo from 'components/Logo'
 import Search from 'components/Search'
 
-const Menu = ({ items }) => {
+const Menu = ({ menus }) => {
   const [isOpen, setOpen] = useState(false)
 
   return (
@@ -59,7 +59,7 @@ const Menu = ({ items }) => {
           lg:w-auto
         `}
       >
-        <Items items={items} setOpen={setOpen} />
+        <Items menus={menus} setOpen={setOpen} />
         <Search />
       </div>
     </div>
@@ -68,8 +68,8 @@ const Menu = ({ items }) => {
 
 export default Menu
 
-const Items = ({ items, setOpen }) => {
-  const menu = getMenu('MAIN', items)
+const Items = ({ menus, setOpen }) => {
+  const menu = getMenu('MAIN', menus)
   const { asPath } = useRouter()
 
   const getChildren = (item) =>
@@ -85,7 +85,7 @@ const Items = ({ items, setOpen }) => {
     return getChildren(item) ? getChildren(item).some(equal) : false
   }
 
-  return menu.map((item) => (
+  return menu.items.nodes.map((item) => (
     <div
       className={`
       flex
