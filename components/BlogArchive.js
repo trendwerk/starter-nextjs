@@ -14,7 +14,7 @@ const Category = ({ category, currentCategory }) => (
       px-3
       border-t
       hover:bg-gray-100
-      ${currentCategory == category.id && 'font-bold'}
+      ${currentCategory == category.id ? 'font-bold' : ''}
     `}
     >
       {category.name}
@@ -108,7 +108,7 @@ export default function BlogArchive(props) {
               px-3
               border-t
               hover:bg-gray-100
-              ${!props.currentCategory && 'font-bold'}
+              ${!props.currentCategory ? 'font-bold' : ''}
             `}
             >
               All categories
