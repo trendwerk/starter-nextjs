@@ -17,6 +17,7 @@ export default function (data) {
         title={post?.fields?.title || post?.title}
         description={post?.fields?.metaDescription}
         image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
+        article={post}
       />
 
       <Header image={post?.fields?.headerImage} title={post?.title} />
@@ -43,13 +44,21 @@ export async function getStaticProps({ params }) {
       post(id: $id, idType: URI) {
         title
         content
+        author {
+          node {
+            name
+          }
+        }
+        date
         dateFormatted
+        modified
         fields {
           headerImage {
             url:sourceUrl
           }
           title
           metaDescription
+          summary
         }
       }
       ${mainQuery}
