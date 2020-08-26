@@ -4,6 +4,7 @@ import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 import Post from 'components/Post'
 import Link from 'components/Link'
+import Button from 'components/Button'
 
 const Category = ({ category, currentCategory }) => (
   <li key={category.id} className="m-0">
@@ -78,20 +79,13 @@ export default function BlogArchive(props) {
           )}
 
           {pageInfo.hasNextPage && (
-            <a
-              className={clsx(
-                loading ? 'bg-gray-500 text-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white',
-                'px-3',
-                'py-3',
-                'font-bold',
-                'flex',
-                'justify-center',
-                'cursor-pointer',
-              )}
+            <Button
+              className="flex justify-center"
+              disabled={loading}
               onClick={() => setLoading(true)}
             >
               Load more posts
-            </a>
+            </Button>
           )}
         </div>
         <div className="lg:w-1/4 lg:mr-16">
