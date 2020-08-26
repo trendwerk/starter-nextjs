@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
-import Title from 'components/Title'
-import Wrap from 'components/Wrap'
 import Post from 'components/Post'
 import Button from 'components/Button'
-import Categories from 'components/Categories'
 
 export default function BlogArchive(props) {
   const [posts, setPosts] = useState(props.posts.edges)
@@ -34,17 +31,7 @@ export default function BlogArchive(props) {
   }, [props.posts])
 
   return (
-    <Wrap
-      sidebar={
-        <Categories
-          categories={props.categories}
-          currentCategory={props.currentCategory}
-        />
-      }
-    >
-      <Title>{props.title}</Title>
-      {props.description && <p className="mb-10">{props.description}</p>}
-
+    <>
       {posts.length ? (
         posts.map(({ node }) => <Post post={node} key={node.id} />)
       ) : (
@@ -62,6 +49,6 @@ export default function BlogArchive(props) {
           Load more posts
         </Button>
       )}
-    </Wrap>
+    </>
   )
 }

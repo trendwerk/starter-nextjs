@@ -1,5 +1,6 @@
 import { fetchData, mainQuery, postsQuery, categoriesQuery } from 'utils/api'
 import BlogArchive from 'components/BlogArchive'
+import Categories from 'components/Categories'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -20,24 +21,26 @@ export default function Blog(data) {
 
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
-      <Wrap width="800">
+      <Wrap
+        sidebar={
+          <Categories categories={data.categories} />
+        }
+      >
         <Title>{blog.fields?.title || 'Blog'}</Title>
 
         <Content content={blog.fields?.content} />
-      </Wrap>
 
-      <BlogArchive
-        title="Blog"
-        posts={data.posts}
-        categories={data.categories}
-        fetchMore={(cursor) => {
-          return fetchData(`
-            query BlogMorePosts {
-              ${postsQuery(cursor)}
-            }
-          `)
-        }}
-      />
+        <BlogArchive
+          posts={data.posts}
+          fetchMore={(cursor) => {
+            return fetchData(`
+              query BlogMorePosts {
+                ${postsQuery(cursor)}
+              }
+            `)
+          }}
+        />
+      </Wrap>
     </Layout>
   )
 }
