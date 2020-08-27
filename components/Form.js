@@ -43,7 +43,7 @@ const Form = () => (
     />
     <Button
       large
-      className="ml-1/4 mt-3"
+      className="md:ml-1/4 mt-2 md:mt-3"
       onClick={(e) => {
         e.preventDefault()
         alert('Here you can add your custom submit logic. 📋')
@@ -60,7 +60,7 @@ const Input = ({ label, small }) => (
   <Wrapper label center>
     <Label>{label}</Label>
     <input
-      className={clsx('form-input', small ? 'w-1/3' : 'w-1/2')}
+      className={clsx('form-input', small ? 'md:w-1/3' : 'md:w-1/2')}
       type="text"
     />
   </Wrapper>
@@ -89,7 +89,7 @@ const Radio = ({ title, options, name }) => (
 const Select = ({ title, options, small }) => (
   <Wrapper>
     <Label margin>{title}</Label>
-    <select className={clsx('form-select', small ? 'w-1/3' : 'w-1/2')}>
+    <select className={clsx('form-select', small ? 'md:w-1/3' : 'md:w-1/2')}>
       {Object.entries(options).map(([value, label]) => (
         <option value={value} key={value}>
           {label}
@@ -102,22 +102,22 @@ const Select = ({ title, options, small }) => (
 const Textarea = ({ label }) => (
   <Wrapper label>
     <Label margin>{label}</Label>
-    <textarea className="form-textarea w-3/4" rows="4"></textarea>
+    <textarea className="form-textarea md:w-3/4" rows="4"></textarea>
   </Wrapper>
 )
 
 const Wrapper = ({ center, label, children }) => {
-  const classes = clsx('flex mb-5 last:mb-0', center && 'items-center')
+  const classes = clsx('flex flex-col md:flex-row mb-4 md:mb-5 last:mb-0', center && 'md:items-center')
 
   if (label) {
     return <label className={classes}>{children}</label>
   }
 
-  return <div className={classes}></div>
+  return <div className={classes}>{children}</div>
 }
 
 const Label = ({ margin, children }) => (
-  <div className={clsx('font-bold pr-4 w-1/4', margin && 'mt-3')}>
+  <div className={clsx('mb-2 md:mb-0 font-bold pr-4 md:w-1/4', margin && 'md:mt-3')}>
     {children}
   </div>
 )
