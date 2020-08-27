@@ -81,6 +81,7 @@ export const mainQuery = `
 
 export const pageQuery = `
   title
+  uri
   content
   fields {
     headerImage {
