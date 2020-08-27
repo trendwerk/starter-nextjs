@@ -82,7 +82,9 @@ export async function getStaticPaths() {
   `)
 
   return {
-    paths: data.blogCategories.nodes.map(({ slug }) => ({ params: { category: slug } })),
+    paths: data.blogCategories.nodes.map(({ slug }) => ({
+      params: { category: slug },
+    })),
     fallback: false,
   }
 }
