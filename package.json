@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "export": "next build && next export",
     "format": "prettier --write '**/*.{js,json}'",
     "serve": "next build && next start",
     "start": "next dev"
