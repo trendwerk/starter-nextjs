@@ -12,17 +12,11 @@ import Submenu from 'components/Submenu'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
-import getMenu from 'utils/getMenu'
+import getMenu, { getSubmenu } from 'utils/getMenu'
 
 export default function Page({ data }) {
   const post = data.post
-  const submenu = (() => {
-    const item = getMenu('MAIN', data.menus).items.nodes.filter(
-      (node) => node.href == data.post.uri
-    )
-
-    return item.length ? item[0].childItems.nodes : null
-  })()
+  const submenu = getSubmenu(post, data.menus)
 
   return (
     <Layout data={data}>
@@ -34,7 +28,10 @@ export default function Page({ data }) {
 
       <Header image={post.fields?.headerImage} title={post?.title} />
 
-      <Wrap width={!submenu && 800} sidebar={submenu && <Submenu items={submenu} title={post.title} />}>
+      <Wrap
+        width={!submenu && 800}
+        sidebar={submenu && <Submenu data={submenu} />}
+      >
         <Title>{post.title}</Title>
         <Content content={post.content} />
       </Wrap>
