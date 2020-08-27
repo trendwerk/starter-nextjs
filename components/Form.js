@@ -32,7 +32,6 @@ const Form = () => (
     />
     <Button
       large
-      submit
       className="ml-1/3 mt-3"
       onClick={(e) => {
         e.preventDefault()
@@ -78,7 +77,7 @@ const Select = ({ title, options }) => (
     <div className="font-bold pr-4 w-1/3 mt-3">{title}</div>
     <select className="form-select w-2/3">
       {Object.entries(options).map(([value, label]) => (
-        <option value={value}>{label}</option>
+        <option value={value} key={value}>{label}</option>
       ))}
     </select>
   </div>
