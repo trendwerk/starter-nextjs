@@ -1,13 +1,13 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
+import getLink from 'utils/getLink'
+import getMenu from 'utils/getMenu'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
-import Search from 'components/Search'
 import Logo from 'components/Logo'
-import getMenu from 'utils/getMenu'
-import { useRouter } from 'next/router'
-import getLink from 'utils/getLink'
+import Search from 'components/Search'
 
-const Menu = ({ items }) => {
+export default function Menu({ menus }) {
   const [isOpen, setOpen] = useState(false)
 
   return (
@@ -59,17 +59,15 @@ const Menu = ({ items }) => {
           lg:w-auto
         `}
       >
-        <Items items={items} setOpen={setOpen} />
+        <Items menus={menus} setOpen={setOpen} />
         <Search />
       </div>
     </div>
   )
 }
 
-export default Menu
-
-const Items = ({ items, setOpen }) => {
-  const menu = getMenu('MAIN', items)
+const Items = ({ menus, setOpen }) => {
+  const menu = getMenu('MAIN', menus)
   const { asPath } = useRouter()
 
   const getChildren = (item) =>
@@ -85,7 +83,7 @@ const Items = ({ items, setOpen }) => {
     return getChildren(item) ? getChildren(item).some(equal) : false
   }
 
-  return menu.map((item) => (
+  return menu.items.nodes.map((item) => (
     <div
       className={`
       flex
@@ -113,7 +111,7 @@ const Items = ({ items, setOpen }) => {
           lg:py-0
           ${
             isCurrent(item)
-              ? 'text-blue-300 lg:text-blue-800'
+              ? 'text-brand-500 lg:text-brand-600'
               : 'text-gray-300 lg:text-gray-800'
           }
         `}
@@ -153,14 +151,13 @@ const Items = ({ items, setOpen }) => {
               href={item.href}
               onClick={() => setOpen(false)}
               className={`
-                ${true ? 'ef' : 'ef'}
                 hover:text-white
                 px-5
                 py-2
                 text-sm
                 lg:px-0
                 lg:py-3
-                ${isCurrent(item) ? 'text-blue-300' : 'text-gray-300'}
+                ${isCurrent(item) ? 'text-brand-500' : 'text-gray-300'}
               `}
               key={item.id}
             >

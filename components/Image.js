@@ -3,7 +3,7 @@
 
 const theme = require('../tailwind.config').theme
 
-const Image = ({
+export default function ({
   alt = '',
   className = '',
   fit = 'crop',
@@ -11,7 +11,7 @@ const Image = ({
   src,
   style,
   width,
-}) => {
+}) {
   const allWidths = { ...theme.screens, img: width }
   const dpi1 = Object.values(allWidths).map((w) => parseInt(w))
   const dpi2 = Object.values(allWidths).map((w) => parseInt(w) * 2)
@@ -66,5 +66,3 @@ const Image = ({
     </picture>
   )
 }
-
-export default Image

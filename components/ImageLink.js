@@ -1,8 +1,15 @@
 import Image from 'components/Image'
 import Link from 'components/Link'
 
-const ImageLink = ({ alt, className = '', height, href, image, width }) =>
-  image ? (
+export default function ImageLink({
+  alt,
+  className = '',
+  height,
+  href,
+  image,
+  width,
+}) {
+  return image ? (
     <Link
       className={`
             bg-black
@@ -27,5 +34,4 @@ const ImageLink = ({ alt, className = '', height, href, image, width }) =>
       />
     </Link>
   ) : null
-
-export default ImageLink
+}

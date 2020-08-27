@@ -1,8 +1,9 @@
-const Wrap = function ({
+export default function Wrap({
   children,
   className = '',
   width = false,
   noMargin = false,
+  sidebar,
 }) {
   return (
     <section
@@ -22,10 +23,15 @@ const Wrap = function ({
         `}
         style={{ maxWidth: width ? width + 'px' : null }}
       >
-        {children}
+        {sidebar ? (
+          <div className="lg:flex flex-row-reverse">
+            <div className="flex-1 mb-12 lg:mb-0">{children}</div>
+            <div className="lg:w-1/4 lg:mr-16">{sidebar}</div>
+          </div>
+        ) : (
+          children
+        )}
       </div>
     </section>
   )
 }
-
-export default Wrap

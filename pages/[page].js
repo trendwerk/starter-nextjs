@@ -1,4 +1,10 @@
-import { fetchData, mainQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  pageQuery,
+  postsQuery,
+  categoriesQuery,
+} from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -6,18 +12,18 @@ import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page = function ({ data }) {
+export default function Page({ data }) {
   const post = data.post
 
   return (
     <Layout data={data}>
       <Head
-        title={post?.fields?.title || post?.title}
-        description={post?.fields?.metaDescription}
-        image={post?.fields?.ogImage?.url || post?.fields?.headerImage?.url}
+        title={post.fields?.pageTitle || post?.title}
+        description={post.fields?.metaDescription}
+        image={post.fields?.ogImage?.url || post.fields?.headerImage?.url}
       />
 
-      <Header image={post?.fields?.headerImage} title={post?.title} />
+      <Header image={post.fields?.headerImage} title={post?.title} />
 
       <Wrap width="800">
         <Title>{post.title}</Title>
@@ -28,23 +34,15 @@ const Page = function ({ data }) {
   )
 }
 
-export default Page
-
 export async function getStaticProps({ params }) {
   const data = await fetchData(
     `
     query Post($id: ID!) {
       post: page(id: $id, idType: URI) {
-        title
-        content
-        fields {
-          headerImage {
-            url:sourceUrl
-          }
-          title
-          metaDescription
-        }
+        ${pageQuery}
       }
+      ${categoriesQuery}
+      ${postsQuery()}
       ${mainQuery}
     }
   `,

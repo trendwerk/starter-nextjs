@@ -6,29 +6,30 @@ import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-const Page404 = (data) => (
-  <Layout data={data}>
-    <Head title="404" description="" />
+export default function Page404(data) {
+  return (
+    <Layout data={data}>
+      <Head title="404" description="" />
 
-    <Wrap className="text-center" width="600">
-      <Title>Page not found</Title>
+      <Wrap className="text-center" width="600">
+        <Title>Page not found</Title>
 
-      <p className="mb-8">
-        The page you are looking for doesn't exist or has been moved. Go to the{' '}
-        <Link href="/" className="link">
-          homepage
-        </Link>{' '}
-        or use the menu to find the page you are looking for.
-      </p>
+        <p className="mb-8">
+          The page you are looking for doesn't exist or has been moved. Go to
+          the{' '}
+          <Link href="/" className="link">
+            homepage
+          </Link>{' '}
+          or use the menu to find the page you are looking for.
+        </p>
 
-      <Button href="/" large>
-        Go to the homepage
-      </Button>
-    </Wrap>
-  </Layout>
-)
-
-export default Page404
+        <Button href="/" large>
+          Go to the homepage
+        </Button>
+      </Wrap>
+    </Layout>
+  )
+}
 
 export async function getStaticProps() {
   const data = await fetchData(`

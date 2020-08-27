@@ -1,7 +1,7 @@
 import Image from 'components/Image'
 
-const Header = ({ image, title }) =>
-  image ? (
+export default function Header({ image, title }) {
+  return image ? (
     <Image
       alt={title}
       className="w-full h-auto object-cover"
@@ -11,5 +11,4 @@ const Header = ({ image, title }) =>
       width={1600}
     />
   ) : null
-
-export default Header
+}

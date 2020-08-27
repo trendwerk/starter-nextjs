@@ -32,23 +32,45 @@ export const mainQuery = `
     language
     title
   }
-  menuItems(first: 10000) {
+  general {
+    fields {
+      companyName
+      address
+      city
+      zipcode
+      email
+      telephone
+      facebook
+      instagram
+      linkedin
+      pinterest
+      twitter
+      youtube
+    }
+  }
+  menus {
     nodes {
-      id
-      label
-      href: path
+      name
       locations
-      parentId
-      childItems {
+      items: menuItems(where: {parentId: "null"}) {
         nodes {
           id
           label
           href: path
+          locations
+          parentId
           childItems {
             nodes {
               id
               label
-              path
+              href: path
+              childItems {
+                nodes {
+                  id
+                  label
+                  path
+                }
+              }
             }
           }
         }
@@ -57,7 +79,19 @@ export const mainQuery = `
   }
 `
 
-export const buildPostsQuery = (cursor = '') => `
+export const pageQuery = `
+  title
+  content
+  fields {
+    headerImage {
+      url:sourceUrl
+    }
+    pageTitle
+    metaDescription
+  }
+`
+
+export const postsQuery = (cursor = '') => `
   posts(first: 10, after: "${cursor}") {
     pageInfo {
       endCursor

@@ -1,25 +1,85 @@
 import { useContext } from 'react'
 import Data from 'components/Data'
-import Head from 'next/head'
+import { default as NextHead } from 'next/head'
 import tailwind from 'tailwind.config'
 import { useRouter } from 'next/router'
 
-const HeadComponent = function ({ title, description, image }) {
+export default function Head({ description, image, post, title }) {
   const { app } = useContext(Data)
+  const { general } = useContext(Data)
   const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title
 
-  const canonical =
+  const url =
     asPath === '/' ? process.env.SITE_URL : process.env.SITE_URL + asPath
   const color = tailwind.theme.colors.brand[600]
   const language = app?.language
 
-  image = image ?? 'share.png'
-  image = image + '?w=1200&h=630&fit=crop'
+  image = image
+    ? image + '?w=1200&h=630&fit=crop'
+    : process.env.SITE_URL + '/share.png'
+
+  const organization = `{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "${general.companyName || app.title}",
+    "logo": "${process.env.SITE_URL}/logo.png",
+    "image": "${process.env.SITE_URL}/share.png",
+    ${
+      general.address
+        ? `
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "${general.address}",
+        "addressLocality": "${general.city}",
+        "postalCode": "${general.zipcode}",
+        "addressCountry": "NL"
+      },
+    `
+        : ''
+    }
+    ${
+      general.email
+        ? `
+      "email": "${general.email}",
+    `
+        : ''
+    }
+    "priceRange": "€€",
+    ${
+      general.telephone
+        ? `
+      "telephone": "${general.telephone}",
+    `
+        : ''
+    }
+    "url": "${process.env.SITE_URL}"
+  }`
+
+  const article = post
+    ? `{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "${url}"
+    },
+    "headline": "${title}",
+    "image": "${image}",
+    "description": "${post.fields.summary || post.summary}",
+    "datePublished": "${post.date}",
+    "dateModified": "${post.modified}",
+    "author": {
+      "@type": "Person",
+      "name": "${post.author.node.name}"
+    },
+    "publisher": ${organization}
+  }`
+    : false
 
   return (
-    <Head>
+    <NextHead>
       <title>{title}</title>
       {description && (
         <meta key="description" type="description" value={description} />
@@ -52,7 +112,7 @@ const HeadComponent = function ({ title, description, image }) {
       <meta key="og:site_name" property="og:site_name" content={app.title} />
       <meta key="og:title" property="og:title" content={title} />
       <meta key="og:type" property="og:type" content="website" />
-      <meta key="og:url" property="og:url" content={canonical} />
+      <meta key="og:url" property="og:url" content={url} />
       <meta key="theme-color" name="theme-color" content={color} />
       <meta
         key="twitter:card"
@@ -71,7 +131,7 @@ const HeadComponent = function ({ title, description, image }) {
         sizes="180x180"
         href="/icon-180.png"
       />
-      <link key="canonical" rel="canonical" href={canonical} />
+      <link key="canonical" rel="canonical" href={url} />
       <link
         key="favicon-16"
         rel="icon"
@@ -92,8 +152,18 @@ const HeadComponent = function ({ title, description, image }) {
         rel="stylesheet"
       />
       <link key="manifest" rel="manifest" href="/manifest.json" />
-    </Head>
+      <script
+        key="localbusiness"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: organization }}
+      />
+      {article && (
+        <script
+          key="article"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: article }}
+        />
+      )}
+    </NextHead>
   )
 }
-
-export default HeadComponent
