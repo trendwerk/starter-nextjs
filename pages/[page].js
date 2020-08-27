@@ -21,7 +21,7 @@ export default function Page({ data }) {
       (node) => node.href == data.post.uri
     )
 
-    return item ? item[0].childItems.nodes : null
+    return item.length ? item[0].childItems.nodes : null
   })()
 
   return (
@@ -34,7 +34,7 @@ export default function Page({ data }) {
 
       <Header image={post.fields?.headerImage} title={post?.title} />
 
-      <Wrap width={submenu ? undefined : 800} sidebar={<Submenu items={submenu} title={post.title} />}>
+      <Wrap width={!submenu && 800} sidebar={submenu && <Submenu items={submenu} title={post.title} />}>
         <Title>{post.title}</Title>
         <Content content={post.content} />
       </Wrap>
