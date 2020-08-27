@@ -63,23 +63,31 @@ const parser = {
 
     // Image
     if (node.attribs?.class?.includes('wp-block-image')) {
-      const link = node.children.filter((node) => node.name === 'a')
+      const link =
+        node.children[0].name === 'a'
+          ? node.children[0]
+          : node.children[0].children[0]?.name === 'a'
+          ? node.children[0].children[0]
+          : false
 
       // Without link
-      if (!link.length) {
+      if (!link) {
         return <ImageFigure node={node} />
       }
 
+      const caption =
+        node.children[1]?.name === 'figcaption'
+          ? node.children[1].children[0].data
+          : node.children[0]?.children[1]?.name === 'figcaption'
+          ? node.children[0].children[1].children[0].data
+          : false
+
       // With link to image
-      if (link[0].attribs.href.indexOf(process.env.WP_URL) === 0) {
+      if (link.attribs.href.indexOf(process.env.WP_URL) === 0) {
         return (
           <LightboxWrap>
             <Lightbox
-              customCaptions={
-                node.children[1]?.name === 'figcaption'
-                  ? [{ id: 0, caption: node.children[1].children[0].data }]
-                  : undefined
-              }
+              customCaptions={caption ? [{ id: 0, caption }] : undefined}
               options={{
                 buttons: {
                   showDownloadButton: false,
@@ -104,7 +112,7 @@ const parser = {
 
       // With external link
       return (
-        <Link href={link[0].attribs.href}>
+        <Link href={link.attribs.href}>
           <ImageFigure node={node} />
         </Link>
       )
