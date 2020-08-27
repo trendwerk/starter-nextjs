@@ -10,7 +10,7 @@ export default class extends Document {
     return (
       <Html lang={process.env.LANGUAGE} className="antialiased">
         <Head>{process.env.NODE_ENV === 'production' && <Analytics />}</Head>
-        <body>
+        <body className="leading-tight overflow-x-hidden text-gray-800">
           <Main />
           <NextScript />
         </body>
