@@ -1,8 +1,9 @@
 import Button from 'components/Button'
-import Link from 'components/Link'
+import clsx from 'clsx'
 import Image from 'components/Image'
-import parse, { domToReact } from 'html-react-parser'
 import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
+import Link from 'components/Link'
+import parse, { domToReact } from 'html-react-parser'
 
 export default function Content({ content }) {
   return (
@@ -128,22 +129,35 @@ const Figcaption = ({ content }) => (
 )
 
 const ImageFigure = ({ node, className = '' }) => {
+  const figure = node.name === 'figure' ? node : node.children[0]
   const image =
-    node.children[0].name === 'img'
-      ? node.children[0]
-      : node.children[0].children[0]
+    figure.children[0].name === 'img'
+      ? figure.children[0]
+      : figure.children[0].children[0]
+  let width = 800
+  let height = undefined
+
+  if (image.attribs.width || image.attribs.height) {
+    width = parseInt(image.attribs.width) || undefined
+    height = parseInt(image.attribs.height) || undefined
+  } else if (figure.attribs.class.includes('size-thumbnail')) {
+    width = 150
+    height = 150
+  } else if (figure.attribs.class.includes('size-medium')) {
+    width = 300
+  }
 
   return (
-    <figure className={`mb-6 ${className}`}>
+    <figure className={clsx('mb-6', figure.attribs.class, className)}>
       <Image
-        width={image.attribs.width}
-        height={image.attribs.height}
+        width={width}
+        height={height}
         alt={image.attribs.alt}
         src={image.attribs.src}
       />
 
-      {node.children[1]?.name === 'figcaption' && (
-        <Figcaption content={node.children[1].children} />
+      {figure.children[1]?.name === 'figcaption' && (
+        <Figcaption content={figure.children[1].children} />
       )}
     </figure>
   )
