@@ -84,8 +84,8 @@ const Select = ({ title, options }) => (
 )
 
 const Textarea = ({ label }) => (
-  <label className="flex items-center mb-5 last:mb-0">
-    <div className="font-bold pr-4 w-1/3">{label}</div>
+  <label className="flex mb-5 last:mb-0">
+    <div className="font-bold pr-4 w-1/3 mt-3">{label}</div>
     <textarea className="form-textarea w-2/3" rows="4"></textarea>
   </label>
 )
