@@ -57,15 +57,18 @@ const Form = () => (
 export default Form
 
 const Input = ({ label, small }) => (
-  <label className="flex items-center mb-5 last:mb-0">
-    <div className="font-bold pr-4 w-1/4">{label}</div>
-    <input className={clsx('form-input', small ? 'w-1/3' : 'w-1/2')} type="text" />
-  </label>
+  <Wrapper label center>
+    <Label>{label}</Label>
+    <input
+      className={clsx('form-input', small ? 'w-1/3' : 'w-1/2')}
+      type="text"
+    />
+  </Wrapper>
 )
 
 const Radio = ({ title, options, name }) => (
-  <div className="flex mb-5 last:mb-0">
-    <div className="font-bold pr-4 w-1/4 mt-3">{title}</div>
+  <Wrapper>
+    <Label margin>{title}</Label>
     <div>
       {Object.entries(options).map(([value, label], index) => (
         <label className="flex items-center mb-3 last:mb-0" key={value}>
@@ -80,23 +83,41 @@ const Radio = ({ title, options, name }) => (
         </label>
       ))}
     </div>
-  </div>
+  </Wrapper>
 )
 
 const Select = ({ title, options, small }) => (
-  <div className="flex mb-5 last:mb-0">
-    <div className="font-bold pr-4 w-1/4 mt-3">{title}</div>
+  <Wrapper>
+    <Label margin>{title}</Label>
     <select className={clsx('form-select', small ? 'w-1/3' : 'w-1/2')}>
       {Object.entries(options).map(([value, label]) => (
-        <option value={value} key={value}>{label}</option>
+        <option value={value} key={value}>
+          {label}
+        </option>
       ))}
     </select>
-  </div>
+  </Wrapper>
 )
 
 const Textarea = ({ label }) => (
-  <label className="flex mb-5 last:mb-0">
-    <div className="font-bold pr-4 w-1/4 mt-3">{label}</div>
+  <Wrapper label>
+    <Label margin>{label}</Label>
     <textarea className="form-textarea w-3/4" rows="4"></textarea>
-  </label>
+  </Wrapper>
+)
+
+const Wrapper = ({ center, label, children }) => {
+  const classes = clsx('flex mb-5 last:mb-0', center && 'items-center')
+
+  if (label) {
+    return <label className={classes}>{children}</label>
+  }
+
+  return <div className={classes}></div>
+}
+
+const Label = ({ margin, children }) => (
+  <div className={clsx('font-bold pr-4 w-1/4', margin && 'mt-3')}>
+    {children}
+  </div>
 )
