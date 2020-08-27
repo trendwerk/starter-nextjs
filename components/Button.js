@@ -19,7 +19,7 @@ export default function Button({
     'rounded',
     'shadow-md',
     'text-center',
-    'transition-bg',
+    'transition-colors',
     large ? 'px-8 py-4' : 'px-6 py-3 text-sm',
     !href && (disabled ? 'cursor-not-allowed' : 'cursor-pointer'),
     className
