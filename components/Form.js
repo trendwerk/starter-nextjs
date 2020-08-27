@@ -107,7 +107,10 @@ const Textarea = ({ label }) => (
 )
 
 const Wrapper = ({ center, label, children }) => {
-  const classes = clsx('flex flex-col md:flex-row mb-4 md:mb-5 last:mb-0', center && 'md:items-center')
+  const classes = clsx(
+    'flex flex-col md:flex-row mb-4 md:mb-5 last:mb-0',
+    center && 'md:items-center'
+  )
 
   if (label) {
     return <label className={classes}>{children}</label>
@@ -117,7 +120,12 @@ const Wrapper = ({ center, label, children }) => {
 }
 
 const Label = ({ margin, children }) => (
-  <div className={clsx('mb-2 md:mb-0 font-bold pr-4 md:w-1/4', margin && 'md:mt-3')}>
+  <div
+    className={clsx(
+      'mb-2 md:mb-0 font-bold pr-4 md:w-1/4',
+      margin && 'md:mt-3'
+    )}
+  >
     {children}
   </div>
 )
