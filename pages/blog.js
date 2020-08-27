@@ -21,11 +21,7 @@ export default function Blog(data) {
 
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
-      <Wrap
-        sidebar={
-          <Categories categories={data.categories} />
-        }
-      >
+      <Wrap sidebar={<Categories categories={data.categories} />}>
         <Title>{blog.fields?.title || 'Blog'}</Title>
 
         <Content content={blog.fields?.content} />
