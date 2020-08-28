@@ -1,4 +1,5 @@
 import { fetchData, mainQuery, postsQuery, categoriesQuery, termsQuery } from 'utils/api'
+import { useState, useEffect } from 'react'
 import Posts from 'components/Posts'
 import Categories from 'components/Categories'
 import Content from 'components/Content'
@@ -11,6 +12,7 @@ import Wrap from 'components/Wrap'
 
 export default function Blog(data) {
   const blog = data.blog
+  const [taxFilter, setTaxFilter] = useState({})
 
   return (
     <Layout data={data}>
@@ -23,8 +25,8 @@ export default function Blog(data) {
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
       <Wrap sidebar={[
-        <TermFilter title="Tag" terms={data.blogTags.edges} />,
-        <TermFilter title="Categorie" terms={data.blogCategories.edges} />,
+        <TermFilter title="Tag" terms={data.blogTags.edges} onChange={active => setTaxFilter({...taxFilter, "blog-tag": active })} />,
+        <TermFilter title="Categorie" terms={data.blogCategories.edges} onChange={active => setTaxFilter({...taxFilter, "blog-category": active })} />,
         <Categories categories={data.categories} />
       ]}>
         <Title>{blog.fields?.title || 'Blog'}</Title>

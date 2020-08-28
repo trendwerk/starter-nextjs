@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function TermFilter({ terms, title }) {
+export default function TermFilter({ terms, title, onChange }) {
   const [active, setActive] = useState([])
+
+  useEffect(() => {
+    onChange(active)
+  }, [active])
 
   return (
     <div>
