@@ -51,7 +51,7 @@ export async function getStaticProps({ params }) {
       ${mainQuery}
     }
   `,
-    { variables: { id: params.page } }
+    { variables: { id: params.page.join('/') } }
   )
 
   return { props: { data } }

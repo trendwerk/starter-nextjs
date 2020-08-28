@@ -1,5 +1,5 @@
 import { fetchData, mainQuery, pageQuery } from 'utils/api'
-import Page from 'pages/[page]'
+import Page from 'pages/[...page]'
 import Layout from 'components/Layout'
 import Wrap from 'components/Wrap'
 

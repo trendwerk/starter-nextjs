@@ -29,7 +29,7 @@ const getLink = function (href) {
   } else if (link.as.indexOf('/blog-category/') === 0) {
     link.href = '/blog-category/[category]'
   } else if (link.as.indexOf('/') === 0) {
-    link.href = '/[page]'
+    link.href = '/[...page]'
   } else {
     // External links
     link.href = link.as
