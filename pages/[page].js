@@ -12,7 +12,7 @@ import Submenu from 'components/Submenu'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
-import getMenu, { getSubmenu } from 'utils/getMenu'
+import { getSubmenu } from 'utils/getMenu'
 
 export default function Page({ data }) {
   const post = data.post
