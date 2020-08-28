@@ -92,12 +92,13 @@ export const pageQuery = `
   }
 `
 
-export const postsQuery = ({ cursor = '', taxQuery = '{}' } = {}) => `
+export const postsQuery = ({ cursor = '', taxQuery = '{}', search = '' } = {}) => `
   posts(
     first: 10,
     after: "${cursor}",
     where: {
       taxQuery: ${taxQuery},
+      search: "${search}",
     }
   ) {
     pageInfo {

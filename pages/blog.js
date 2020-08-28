@@ -14,6 +14,7 @@ import Header from 'components/Header'
 import Layout from 'components/Layout'
 import TermFilter from 'components/TermFilter'
 import Title from 'components/Title'
+import SearchFilter from 'components/SearchFilter'
 import Wrap from 'components/Wrap'
 
 const getTaxQuery = (taxFilter) => {
@@ -40,6 +41,7 @@ const getTaxQuery = (taxFilter) => {
 export default function Blog(data) {
   const blog = data.blog
   const [taxFilter, setTaxFilter] = useState({})
+  const [search, setSearch] = useState()
   const [posts, setPosts] = useState(data.posts)
   const [loading, setLoading] = useState(false)
 
@@ -48,7 +50,7 @@ export default function Blog(data) {
       setLoading(true)
       const result = await fetchData(`
         query FilterPosts {
-          ${postsQuery({ taxQuery: getTaxQuery(taxFilter) })}
+          ${postsQuery({ taxQuery: getTaxQuery(taxFilter), search })}
         }
       `)
 
@@ -56,10 +58,10 @@ export default function Blog(data) {
       setPosts(result.posts)
     }
 
-    if (Object.entries(taxFilter).length > 0) {
+    if (Object.entries(taxFilter).length > 0 || search != undefined) {
       getPosts()
     }
-  }, [taxFilter])
+  }, [taxFilter, search])
 
   return (
     <Layout data={data}>
@@ -74,6 +76,7 @@ export default function Blog(data) {
       <Wrap
         className="relative"
         sidebar={[
+          <SearchFilter setSearch={setSearch} />,
           <TermFilter
             title="Tag"
             terms={data.blogTags.edges}
@@ -103,7 +106,7 @@ export default function Blog(data) {
           fetchMore={(cursor) => {
             return fetchData(`
               query BlogMorePosts {
-                ${postsQuery({ cursor, taxQuery: getTaxQuery(taxFilter) })}
+                ${postsQuery({ cursor, taxQuery: getTaxQuery(taxFilter), search })}
               }
             `)
           }}
