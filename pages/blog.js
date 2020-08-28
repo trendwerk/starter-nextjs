@@ -26,7 +26,7 @@ const getTaxQuery = (taxFilter) => {
   }
 
   return `{
-    relation: OR,
+    relation: AND,
     taxArray: [${taxArray}],
   }`
 }
