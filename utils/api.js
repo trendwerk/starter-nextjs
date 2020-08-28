@@ -92,8 +92,14 @@ export const pageQuery = `
   }
 `
 
-export const postsQuery = (cursor = '') => `
-  posts(first: 10, after: "${cursor}") {
+export const postsQuery = ({ cursor = '', taxQuery = '{}' } = {}) => `
+  posts(
+    first: 10,
+    after: "${cursor}",
+    where: {
+      taxQuery: ${taxQuery},
+    }
+  ) {
     pageInfo {
       endCursor
       hasNextPage
@@ -136,6 +142,18 @@ export const categoriesQuery = `
             }
           }
         }
+      }
+    }
+  }
+`
+
+export const termsQuery = (taxonomy) => `
+  ${taxonomy}(where: { parent: 0 }) {
+    edges {
+      node {
+        id
+        name
+        slug
       }
     }
   }

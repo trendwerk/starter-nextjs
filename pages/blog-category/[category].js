@@ -1,5 +1,5 @@
 import { fetchData, mainQuery, postsQuery, categoriesQuery } from 'utils/api'
-import BlogArchive from 'components/BlogArchive'
+import Posts from 'components/Posts'
 import Categories from 'components/Categories'
 import Content from 'components/Content'
 import Head from 'components/Head'
@@ -25,16 +25,16 @@ export default function BlogCategory(data) {
       >
         <Title>{data.category.name}</Title>
 
-        <Content content={`<p>${data.category.description}</p>`} />
+        {data.category.description && <Content content={`<p>${data.category.description}</p>`} />}
 
-        <BlogArchive
+        <Posts
           posts={data.category.posts}
           fetchMore={async (cursor) => {
             const result = await fetchData(
               `
               query CategoryMorePosts($id: ID!) {
                 category: blogCategory(id: $id, idType: SLUG) {
-                  ${postsQuery(cursor)}
+                  ${postsQuery({ cursor })}
                 }
               }
             `,
