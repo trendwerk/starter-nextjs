@@ -2,9 +2,14 @@ import { useState, useEffect } from 'react'
 
 export default function TermFilter({ terms, title, onChange }) {
   const [active, setActive] = useState([])
+  const [changed, setChanged] = useState(false)
 
   useEffect(() => {
-    onChange(active)
+    if (changed) {
+      onChange(active)
+    }
+
+    setChanged(true)
   }, [active])
 
   return (

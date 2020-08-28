@@ -34,7 +34,7 @@ export default function BlogCategory(data) {
               `
               query CategoryMorePosts($id: ID!) {
                 category: blogCategory(id: $id, idType: SLUG) {
-                  ${postsQuery(cursor)}
+                  ${postsQuery({ cursor })}
                 }
               }
             `,
