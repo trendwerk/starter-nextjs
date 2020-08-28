@@ -1,5 +1,5 @@
 import { fetchData, mainQuery, postsQuery, categoriesQuery, termsQuery } from 'utils/api'
-import BlogArchive from 'components/BlogArchive'
+import Posts from 'components/Posts'
 import Categories from 'components/Categories'
 import Content from 'components/Content'
 import Head from 'components/Head'
@@ -31,7 +31,7 @@ export default function Blog(data) {
 
         <Content content={blog.fields?.content} />
 
-        <BlogArchive
+        <Posts
           posts={data.posts}
           fetchMore={(cursor) => {
             return fetchData(`

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Post from 'components/Post'
 import Button from 'components/Button'
 
-export default function BlogArchive(props) {
+export default function Posts(props) {
   const [posts, setPosts] = useState(props.posts.edges)
   const [pageInfo, setPageInfo] = useState(props.posts.pageInfo)
   const [loading, setLoading] = useState(false)
