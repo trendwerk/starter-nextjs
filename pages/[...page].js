@@ -2,8 +2,6 @@ import {
   fetchData,
   mainQuery,
   pageQuery,
-  postsQuery,
-  categoriesQuery,
 } from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
@@ -46,8 +44,6 @@ export async function getStaticProps({ params }) {
       post: page(id: $id, idType: URI) {
         ${pageQuery}
       }
-      ${categoriesQuery}
-      ${postsQuery()}
       ${mainQuery}
     }
   `,
