@@ -94,7 +94,7 @@ export const pageQuery = `
 
 export const postsQuery = ({ cursor = '', taxQuery = '{}' } = {}) => `
   posts(
-    first: 10,
+    first: 1,
     after: "${cursor}",
     where: {
       taxQuery: ${taxQuery},
