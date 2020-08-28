@@ -35,15 +35,18 @@ export default function Blog(data) {
   const blog = data.blog
   const [taxFilter, setTaxFilter] = useState({})
   const [posts, setPosts] = useState(data.posts)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getPosts = async () => {
+      setLoading(true)
       const result = await fetchData(`
         query FilterPosts {
           ${postsQuery({ taxQuery: getTaxQuery(taxFilter)})}
         }
       `)
 
+      setLoading(false)
       setPosts(result.posts)
     }
 
@@ -62,11 +65,12 @@ export default function Blog(data) {
 
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
-      <Wrap sidebar={[
+      <Wrap className="relative" sidebar={[
         <TermFilter title="Tag" terms={data.blogTags.edges} onChange={active => setTaxFilter({...taxFilter, "BLOGTAG": active })} />,
         <TermFilter title="Categorie" terms={data.blogCategories.edges} onChange={active => setTaxFilter({...taxFilter, "BLOGCATEGORY": active })} />,
         <Categories categories={data.categories} />
       ]}>
+        {loading && <div className="bg-white absolute w-full h-full left-0 top-0 z-10 opacity-50" />}
         <Title>{blog.fields?.title || 'Blog'}</Title>
 
         <Content content={blog.fields?.content} />
