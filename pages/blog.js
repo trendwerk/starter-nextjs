@@ -1,10 +1,11 @@
-import { fetchData, mainQuery, postsQuery, categoriesQuery } from 'utils/api'
+import { fetchData, mainQuery, postsQuery, categoriesQuery, termsQuery } from 'utils/api'
 import BlogArchive from 'components/BlogArchive'
 import Categories from 'components/Categories'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
 import Layout from 'components/Layout'
+import TermFilter from 'components/TermFilter'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
@@ -21,7 +22,11 @@ export default function Blog(data) {
 
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
-      <Wrap sidebar={<Categories categories={data.categories} />}>
+      <Wrap sidebar={[
+        <TermFilter title="Tag" terms={data.blogTags.edges} />,
+        <TermFilter title="Categorie" terms={data.blogCategories.edges} />,
+        <Categories categories={data.categories} />
+      ]}>
         <Title>{blog.fields?.title || 'Blog'}</Title>
 
         <Content content={blog.fields?.content} />
@@ -57,6 +62,8 @@ export async function getStaticProps() {
       }
       ${postsQuery()}
       ${categoriesQuery}
+      ${termsQuery('blogTags')}
+      ${termsQuery('blogCategories')}
       ${mainQuery}
     }
   `)

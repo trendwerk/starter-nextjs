@@ -140,3 +140,15 @@ export const categoriesQuery = `
     }
   }
 `
+
+export const termsQuery = (taxonomy) => `
+  ${taxonomy}(where: { parent: 0 }) {
+    edges {
+      node {
+        id
+        name
+        slug
+      }
+    }
+  }
+`
