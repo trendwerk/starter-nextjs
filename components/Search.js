@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash-es/debounce'
 import Link from 'components/Link'
+import SearchInput from 'components/SearchInput'
+import SearchIcon from 'components/SearchIcon'
 
 export default function Search() {
   const [results, setResults] = useState([])
@@ -58,21 +60,8 @@ export default function Search() {
   return (
     <div className="hidden lg:flex items-center relative" ref={wrapper}>
       <div className="relative">
-        <input
-          type="search"
-          className="
-          border
-          focus:border-gray-300
-          focus:outline-none
-          ml-4
-          appearance-none
-          pl-4
-          pr-10
-          py-2
-          rounded-full
-          shadow-inner
-          w-40
-          "
+        <SearchInput
+          className="w-40 ml-4"
           onChange={(e) => {
             if (!e.target.value || e.target.value.length < 3) {
               reset()
@@ -131,22 +120,9 @@ export default function Search() {
           </div>
         )}
       </div>
-      <Icon />
+      <div className="pointer-events-none absolute right-0 mr-4">
+        <SearchIcon />
+      </div>
     </div>
   )
 }
-
-const Icon = () => (
-  <svg
-    className="w-4 h-4 absolute right-0 mr-4 pointer-events-none"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-  </svg>
-)

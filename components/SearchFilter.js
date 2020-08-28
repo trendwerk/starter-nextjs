@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react'
+import SearchInput from 'components/SearchInput'
+import SearchIcon from 'components/SearchIcon'
 
 export default function SearchFilter({ search, setSearch }) {
   const input = useRef()
@@ -6,22 +8,12 @@ export default function SearchFilter({ search, setSearch }) {
   return (
     <div>
       <h3 className="mb-6">Search posts</h3>
-      <form onSubmit={(e) => {
+      <form className="relative flex items-center" onSubmit={(e) => {
         e.preventDefault()
         setSearch(input.current.value)
       }}>
-        <input className="
-          border
-          focus:border-gray-300
-          focus:outline-none
-          appearance-none
-          pl-4
-          pr-10
-          py-2
-          rounded-full
-          shadow-inner
-          w-full
-        " type="search" ref={input} />
+        <SearchInput className="w-full" ref={input} />
+        <button className="absolute right-0 mr-2 p-2 focus:outline-none" type="submit"><SearchIcon /></button>
       </form>
     </div>
   )
