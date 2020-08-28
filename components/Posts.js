@@ -36,7 +36,7 @@ export default function Posts(props) {
         posts.map(({ node }) => <Post post={node} key={node.id} />)
       ) : (
         <div>
-          <p>There are no blog posts yet.</p>
+          <p>We couldn't find any posts matching your criteria.</p>
         </div>
       )}
 
