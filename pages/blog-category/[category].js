@@ -25,7 +25,9 @@ export default function BlogCategory(data) {
       >
         <Title>{data.category.name}</Title>
 
-        {data.category.description && <Content content={`<p>${data.category.description}</p>`} />}
+        {data.category.description && (
+          <Content content={`<p>${data.category.description}</p>`} />
+        )}
 
         <Posts
           posts={data.category.posts}

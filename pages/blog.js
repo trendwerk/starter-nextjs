@@ -1,4 +1,10 @@
-import { fetchData, mainQuery, postsQuery, categoriesQuery, termsQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  postsQuery,
+  categoriesQuery,
+  termsQuery,
+} from 'utils/api'
 import { useState, useEffect } from 'react'
 import Posts from 'components/Posts'
 import Categories from 'components/Categories'
@@ -17,7 +23,7 @@ const getTaxQuery = (taxFilter) => {
     if (terms.length > 0) {
       taxArray += `
         {
-          terms: [${terms.map(term => `"${term}"`).join(',')}],
+          terms: [${terms.map((term) => `"${term}"`).join(',')}],
           taxonomy: ${tax},
           field: SLUG,
         }
@@ -42,7 +48,7 @@ export default function Blog(data) {
       setLoading(true)
       const result = await fetchData(`
         query FilterPosts {
-          ${postsQuery({ taxQuery: getTaxQuery(taxFilter)})}
+          ${postsQuery({ taxQuery: getTaxQuery(taxFilter) })}
         }
       `)
 
@@ -65,12 +71,29 @@ export default function Blog(data) {
 
       <Header image={blog.fields?.headerImage} title={blog.fields?.title} />
 
-      <Wrap className="relative" sidebar={[
-        <TermFilter title="Tag" terms={data.blogTags.edges} onChange={active => setTaxFilter({...taxFilter, "BLOGTAG": active })} />,
-        <TermFilter title="Categorie" terms={data.blogCategories.edges} onChange={active => setTaxFilter({...taxFilter, "BLOGCATEGORY": active })} />,
-        <Categories categories={data.categories} />
-      ]}>
-        {loading && <div className="bg-white absolute w-full h-full left-0 top-0 z-10 opacity-50" />}
+      <Wrap
+        className="relative"
+        sidebar={[
+          <TermFilter
+            title="Tag"
+            terms={data.blogTags.edges}
+            onChange={(active) =>
+              setTaxFilter({ ...taxFilter, BLOGTAG: active })
+            }
+          />,
+          <TermFilter
+            title="Categorie"
+            terms={data.blogCategories.edges}
+            onChange={(active) =>
+              setTaxFilter({ ...taxFilter, BLOGCATEGORY: active })
+            }
+          />,
+          <Categories categories={data.categories} />,
+        ]}
+      >
+        {loading && (
+          <div className="bg-white absolute w-full h-full left-0 top-0 z-10 opacity-50" />
+        )}
         <Title>{blog.fields?.title || 'Blog'}</Title>
 
         <Content content={blog.fields?.content} />

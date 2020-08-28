@@ -23,7 +23,11 @@ export default function TermFilter({ terms, title, onChange }) {
                 className="mr-2"
                 type="checkbox"
                 checked={active.indexOf(node.slug) !== -1}
-                onChange={event => event.target.checked ? setActive([...active, node.slug]) : setActive(active.filter(item => item !== node.slug))}
+                onChange={(event) =>
+                  event.target.checked
+                    ? setActive([...active, node.slug])
+                    : setActive(active.filter((item) => item !== node.slug))
+                }
               />
               {node.name}
             </label>

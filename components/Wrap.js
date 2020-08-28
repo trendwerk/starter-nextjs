@@ -29,9 +29,16 @@ export default function Wrap({
           <div className="lg:flex flex-row-reverse">
             <div className="flex-1 mb-12 lg:mb-0">{children}</div>
             <div className="lg:w-1/4 lg:mr-16">
-              {sidebar.length ? sidebar.map((widget, index) => (
-                <div key={index} className={clsx({'mb-8': index + 1 < sidebar.length})}>{widget}</div>
-              )) : sidebar}
+              {sidebar.length
+                ? sidebar.map((widget, index) => (
+                    <div
+                      key={index}
+                      className={clsx({ 'mb-8': index + 1 < sidebar.length })}
+                    >
+                      {widget}
+                    </div>
+                  ))
+                : sidebar}
             </div>
           </div>
         ) : (
