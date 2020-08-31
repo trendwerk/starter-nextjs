@@ -28,7 +28,7 @@ export default function Page({ data }) {
 
       <Wrap
         width={!submenu && 800}
-        sidebar={submenu && <Submenu data={submenu} />}
+        sidebar={submenu && <Submenu data={submenu} current={post.uri} />}
       >
         <Title>{post.title}</Title>
         <Content content={post.content} />
