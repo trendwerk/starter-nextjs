@@ -1,6 +1,6 @@
 const getLink = function (href) {
   const link = {
-    as: href,
+    as: href ?? '/404',
     href: undefined,
     external: false,
   }
