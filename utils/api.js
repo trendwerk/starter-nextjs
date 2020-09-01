@@ -19,7 +19,9 @@ export async function fetchData(query, { variables } = {}) {
   const json = await res.json()
 
   if (json.errors) {
-    throw new Error('Failed to fetch API')
+    json.errors.map(error => {
+      throw new Error(error.message)
+    })
   }
 
   return json.data
