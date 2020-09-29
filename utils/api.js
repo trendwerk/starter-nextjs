@@ -19,9 +19,7 @@ export async function fetchData(query, { variables } = {}) {
   const json = await res.json()
 
   if (json.errors) {
-    json.errors.map(error => {
-      throw new Error(error.message)
-    })
+    throw new Error(json.errors[0].message)
   }
 
   return json.data
