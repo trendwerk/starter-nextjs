@@ -42,15 +42,19 @@ const parser = {
         (node) => node.name === 'iframe'
       )[0]
 
+      const isVideo = node.attribs?.class?.includes('is-provider-vimeo') || node.attribs?.class?.includes('is-provider-youtube')
+
       return (
         <figure className="mb-6">
-          <div className="relative pb-9/16">
+          <div className={clsx("relative", isVideo && 'pb-9/16')}>
             <iframe
-              src={iframe.attribs.src}
-              frameBorder={0}
               allow="fullscreen"
-              className="h-full w-full top-0 left-0 absolute"
+              className={clsx(isVideo && 'h-full w-full top-0 left-0 absolute')}
+              frameBorder={0}
+              height={iframe.attribs.height}
               loading="lazy"
+              src={iframe.attribs.src}
+              width={iframe.attribs.width}
             />
           </div>
 
