@@ -11,8 +11,8 @@ module.exports = {
         serif: ['Merriweather', 'serif'],
       },
       inset: {
-        '16': '4rem',
-        '20': '5rem',
+        16: '4rem',
+        20: '5rem',
         '1/2': '50%',
         full: '100%',
       },

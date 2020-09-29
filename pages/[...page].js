@@ -1,8 +1,4 @@
-import {
-  fetchData,
-  mainQuery,
-  pageQuery,
-} from 'utils/api'
+import { fetchData, mainQuery, pageQuery } from 'utils/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'

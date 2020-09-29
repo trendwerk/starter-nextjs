@@ -92,7 +92,11 @@ export const pageQuery = `
   }
 `
 
-export const postsQuery = ({ cursor = '', taxQuery = '{}', search = '' } = {}) => `
+export const postsQuery = ({
+  cursor = '',
+  taxQuery = '{}',
+  search = '',
+} = {}) => `
   posts(
     first: 10,
     after: "${cursor}",

@@ -106,7 +106,11 @@ export default function Blog(data) {
           fetchMore={(cursor) => {
             return fetchData(`
               query BlogMorePosts {
-                ${postsQuery({ cursor, taxQuery: getTaxQuery(taxFilter), search })}
+                ${postsQuery({
+                  cursor,
+                  taxQuery: getTaxQuery(taxFilter),
+                  search,
+                })}
               }
             `)
           }}
