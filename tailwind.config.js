@@ -45,7 +45,5 @@ module.exports = {
     extendedFontSizeScale: true,
     extendedSpacingScale: true,
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
+  future: 'all',
 }
