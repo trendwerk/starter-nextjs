@@ -3,7 +3,7 @@
 
 const theme = require('../tailwind.config').theme
 
-export default function ({
+export default function Image({
   alt = '',
   className = '',
   fit = 'crop',
