@@ -56,14 +56,21 @@ export const mainQuery = `
         nodes {
           id
           label
-          href: url
+          href: path
           locations
           parentId
           childItems {
             nodes {
               id
               label
-              href: url
+              href: path
+              childItems {
+                nodes {
+                  id
+                  label
+                  path
+                }
+              }
             }
           }
         }
