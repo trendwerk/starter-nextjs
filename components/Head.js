@@ -82,7 +82,7 @@ export default function Head({ description, image, post, title }) {
     <NextHead>
       <title>{title}</title>
       {description && (
-        <meta key="description" type="description" value={description} />
+        <meta key="description" name="description" content={description} />
       )}
       {description && (
         <meta
