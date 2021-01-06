@@ -1,6 +1,4 @@
-import postQuery from 'queries/postQuery'
-
-export default function postQuery() {
+export default function termQuery() {
   return `
     id
     name
