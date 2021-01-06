@@ -45,7 +45,9 @@ export default function Search() {
       reset()
 
       try {
-        const response = await fetch(`${process.env.WP_URL}/search/?q=${value}`)
+        const response = await fetch(
+          `${process.env.CMS_URL}/search/?q=${value}`
+        )
         const data = await response.json()
 
         setResults(data.results)

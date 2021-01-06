@@ -91,7 +91,7 @@ const parser = {
           : false
 
       // With link to image
-      if (link.attribs.href.indexOf(process.env.WP_URL) === 0) {
+      if (link.attribs.href.indexOf(process.env.CMS_URL) === 0) {
         return (
           <LightboxWrap>
             <Lightbox

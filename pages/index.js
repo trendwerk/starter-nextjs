@@ -17,7 +17,7 @@ export default function Home(data) {
           Please select a static homepage in your{' '}
           <a
             className="link"
-            href={`${process.env.WP_URL}/wp/wp-admin/options-reading.php`}
+            href={`${process.env.CMS_URL}/wp/wp-admin/options-reading.php`}
           >
             reading settings
           </a>{' '}

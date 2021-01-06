@@ -1,7 +1,7 @@
 export default async function getFromApi(query, { variables } = {}) {
   const headers = { 'Content-Type': 'application/json' }
 
-  const response = await fetch(`${process.env.WP_URL}/wp/graphql`, {
+  const response = await fetch(`${process.env.CMS_URL}/wp/graphql`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
