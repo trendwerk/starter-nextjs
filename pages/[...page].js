@@ -40,7 +40,7 @@ export async function getStaticProps({ params }) {
     `
     query Post($id: ID!) {
       post: page(id: $id, idType: URI) {
-        ${pageQuery}
+        ${pageQuery()}
       }
       ${generalQuery()}
     }

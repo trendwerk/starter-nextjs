@@ -33,7 +33,7 @@ export async function getStaticProps() {
     query Index {
       pages: pageByTemplate(where: { template: "page_on_front" }) {
         nodes {
-          ${pageQuery}
+          ${pageQuery()}
         }
       }
       ${generalQuery()}
