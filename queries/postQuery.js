@@ -1,5 +1,3 @@
-import postQuery from 'queries/postQuery'
-
 export default function postQuery() {
   return `
     author {
