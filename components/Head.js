@@ -1,8 +1,9 @@
-import { useContext } from 'react'
-import Data from 'components/Data'
 import { default as NextHead } from 'next/head'
-import tailwind from 'tailwind.config'
+import { useContext } from 'react'
 import { useRouter } from 'next/router'
+import Analytics from 'components/Analytics'
+import Data from 'components/Data'
+import tailwind from 'tailwind.config'
 
 export default function Head({ description, image, post, title }) {
   const { app } = useContext(Data)
@@ -164,6 +165,7 @@ export default function Head({ description, image, post, title }) {
           dangerouslySetInnerHTML={{ __html: article }}
         />
       )}
+      <Analytics />
     </NextHead>
   )
 }

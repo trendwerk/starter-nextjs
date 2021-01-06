@@ -8,12 +8,11 @@ export default function App({ Component, pageProps }) {
       return
     }
 
+    // Google Analtics
     const sendView = (path) => {
       window.gtag('config', process.env.TRACKING_ID, { page_path: path })
     }
-
     Router.events.on('routeChangeComplete', sendView)
-
     return () => {
       Router.events.off('routeChangeComplete', sendView)
     }
