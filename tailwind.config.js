@@ -1,11 +1,10 @@
-const colors = require('@tailwindcss/ui/colors')
 const config = require('tailwindcss/defaultConfig')
 const theme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
-    borderColor: { ...colors, default: colors.gray[200] },
-    colors: { ...colors, brand: colors.blue },
+    borderColor: { ...theme.colors, DEFAULT: theme.colors.gray[200] },
+    colors: { ...theme.colors, brand: theme.colors.blue },
     extend: {
       fontFamily: {
         serif: ['Merriweather', 'serif'],
@@ -27,13 +26,7 @@ module.exports = {
       ...theme.screens,
     },
   },
-  variants: {
-    borderRadius: [...config.variants.borderRadius, 'first', 'last'],
-    display: [...config.variants.display, 'group-hover'],
-    margin: [...config.variants.margin, 'last'],
-    translate: [...config.variants.display, 'group-hover'],
-  },
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [require('@tailwindcss/forms')],
   purge: {
     content: ['./components/**/*.js', './pages/**/*.js'],
     mode: 'all',
@@ -41,9 +34,10 @@ module.exports = {
       whitelist: ['html'],
     },
   },
-  experimental: {
-    extendedFontSizeScale: true,
-    extendedSpacingScale: true,
+  variants: {
+    borderRadius: [...config.variants.borderRadius, 'first', 'last'],
+    display: [...config.variants.display, 'group-hover'],
+    margin: [...config.variants.margin, 'last'],
+    translate: [...config.variants.display, 'group-hover'],
   },
-  future: 'all',
 }
