@@ -1,9 +1,14 @@
 import Button from 'components/Button'
 import classnames from 'classnames'
+import dynamic from 'next/dynamic'
 import Image from 'components/Image'
 import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
 import Link from 'components/Link'
 import parse, { domToReact } from 'html-react-parser'
+
+const Video = dynamic(() => import('components/Video'), {
+  loading: () => <Loading />,
+})
 
 export default function Content({ content }) {
   return (
@@ -48,19 +53,7 @@ const parser = {
 
       return (
         <figure className="mb-6">
-          <div className={classnames('relative', isVideo && 'pb-9/16')}>
-            <iframe
-              allow="fullscreen"
-              className={classnames(
-                isVideo && 'h-full w-full top-0 left-0 absolute'
-              )}
-              frameBorder={0}
-              height={iframe.attribs.height}
-              loading="lazy"
-              src={iframe.attribs.src}
-              width={iframe.attribs.width}
-            />
-          </div>
+          <Video src={iframe.attribs.src} title={iframe.attribs.title} />
 
           {node.children[1]?.name === 'figcaption' && (
             <Figcaption content={node.children[1].children} />
