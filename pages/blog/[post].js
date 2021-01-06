@@ -21,7 +21,7 @@ export default function Post(data) {
         title={post.fields?.pageTitle || post?.title}
         description={post.fields?.metaDescription}
         image={post.fields?.ogImage?.url || post.fields?.headerImage?.url}
-        post={post}
+        article={post}
       />
 
       <Header image={post.fields?.headerImage} title={post?.title} />

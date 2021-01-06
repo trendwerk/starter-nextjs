@@ -5,9 +5,9 @@ import Analytics from 'components/Analytics'
 import GeneralContext from 'components/GeneralContext'
 import tailwind from 'tailwind.config'
 
-export default function Head({ description, image, post, title }) {
-  const { app } = useContext(GeneralContext)
-  const { general } = useContext(GeneralContext)
+export default function Head({ article, description = false, image, title }) {
+  const { app, general } = useContext(GeneralContext)
+
   const { asPath } = useRouter()
 
   title = title ? `${title} - ${app.title}` : app.title
@@ -30,53 +30,56 @@ export default function Head({ description, image, post, title }) {
     ${
       general.address
         ? `
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "${general.address}",
-        "addressLocality": "${general.city}",
-        "postalCode": "${general.zipcode}",
-        "addressCountry": "NL"
-      },
-    `
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "${general.address}",
+            "addressLocality": "${general.city}",
+            "postalCode": "${general.zipcode}",
+            "addressCountry": "NL"
+          },
+        `
         : ''
     }
     ${
       general.email
         ? `
-      "email": "${general.email}",
-    `
+          "email": "${general.email}",
+        `
         : ''
     }
     "priceRange": "€€",
     ${
       general.telephone
         ? `
-      "telephone": "${general.telephone}",
-    `
+          "telephone": "${general.telephone}",
+        `
         : ''
     }
     "url": "${process.env.SITE_URL}"
   }`
 
-  const article = post
+  const article = article
     ? `{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "${url}"
-    },
-    "headline": "${title}",
-    "image": "${image}",
-    "description": "${post.fields.summary || post.summary}",
-    "datePublished": "${post.date}",
-    "dateModified": "${post.modified}",
-    "author": {
-      "@type": "Person",
-      "name": "${post.author.node.name}"
-    },
-    "publisher": ${organization}
-  }`
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "${url}"
+      },
+      "headline": "${title}",
+      "image": "${image}",
+      "description": "${article.fields.summary || article.summary}",
+      "datePublished": "${article.date}",
+      "dateModified": "${article.modified}",
+      "author": {
+        "@type": "Person",
+        "name": "${article.author.node.name}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "${general.companyName || app.title}"
+      }
+    }`
     : false
 
   return (
