@@ -1,4 +1,6 @@
-const SearchInput = React.forwardRef(({ className, onChange }, ref) => {
+import { forwardRef } from 'react'
+
+const SearchInput = forwardRef(({ className, onChange }, ref) => {
   return (
     <input
       type="search"
