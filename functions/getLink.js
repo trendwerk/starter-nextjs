@@ -1,4 +1,4 @@
-import cleanUrl from 'utils/cleanUrl'
+import cleanUrl from 'functions/cleanUrl'
 
 export default function getLink(href) {
   if (!href) {
