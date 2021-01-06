@@ -1,6 +1,6 @@
 import 'styles/main.css'
-import Router from 'next/router'
 import { useEffect } from 'react'
+import Router from 'next/router'
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {

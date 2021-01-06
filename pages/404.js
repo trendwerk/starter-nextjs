@@ -1,5 +1,6 @@
-import { fetchData, mainQuery } from 'functions/api'
 import Button from 'components/Button'
+import generalQuery from 'queries/generalQuery'
+import getFromApi from 'functions/getFromApi'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
@@ -32,9 +33,9 @@ export default function Page404(data) {
 }
 
 export async function getStaticProps() {
-  const data = await fetchData(`
+  const data = await getFromApi(`
     query Index {
-      ${mainQuery}
+      ${generalQuery()}
     }
   `)
   return { props: data }

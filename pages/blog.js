@@ -1,20 +1,17 @@
-import {
-  fetchData,
-  mainQuery,
-  postsQuery,
-  categoriesQuery,
-  termsQuery,
-} from 'functions/api'
 import { useState, useEffect } from 'react'
-import Posts from 'components/Posts'
 import Categories from 'components/Categories'
 import Content from 'components/Content'
+import generalQuery from 'queries/generalQuery'
+import getFromApi from 'functions/getFromApi'
 import Head from 'components/Head'
 import Header from 'components/Header'
 import Layout from 'components/Layout'
-import TermFilter from 'components/TermFilter'
-import Title from 'components/Title'
+import Posts from 'components/Posts'
+import postsQuery from 'queries/postsQuery'
 import SearchFilter from 'components/SearchFilter'
+import TermFilter from 'components/TermFilter'
+import termsQuery from 'queries/termsQuery'
+import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 const getTaxQuery = (taxFilter) => {
@@ -48,7 +45,7 @@ export default function Blog(data) {
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true)
-      const result = await fetchData(`
+      const result = await getFromApi(`
         query FilterPosts {
           ${postsQuery({ taxQuery: getTaxQuery(taxFilter), search })}
         }
@@ -104,7 +101,7 @@ export default function Blog(data) {
         <Posts
           posts={posts}
           fetchMore={(cursor) => {
-            return fetchData(`
+            return getFromApi(`
               query BlogMorePosts {
                 ${postsQuery({
                   cursor,
@@ -121,7 +118,7 @@ export default function Blog(data) {
 }
 
 export async function getStaticProps() {
-  const data = await fetchData(`
+  const data = await getFromApi(`
     query Blog {
       blog {
         fields {
@@ -135,10 +132,10 @@ export async function getStaticProps() {
         }
       }
       ${postsQuery()}
-      ${categoriesQuery}
-      ${termsQuery('blogTags')}
-      ${termsQuery('blogCategories')}
-      ${mainQuery}
+      ${categoriesQuery()}
+      ${termsQuery({ taxonomy: 'blogTags' })}
+      ${termsQuery({ taxonomy: 'blogCategories' })}
+      ${generalQuery()}
     }
   `)
 

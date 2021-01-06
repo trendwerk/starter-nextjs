@@ -1,13 +1,16 @@
-import { fetchData, mainQuery, categoriesQuery } from 'functions/api'
+import Categories from 'components/Categories'
+import categoriesQuery from 'queries/categoriesQuery'
 import Content from 'components/Content'
 import Date from 'components/Date'
+import generalQuery from 'queries/generalQuery'
+import getFromApi from 'functions/getFromApi'
 import Head from 'components/Head'
 import Header from 'components/Header'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
+import postQuery from 'queries/postQuery'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
-import Categories from 'components/Categories'
 
 export default function Post(data) {
   const post = data.post
@@ -43,31 +46,14 @@ export default function Post(data) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(
+  const data = await getFromApi(
     `
     query Post($id: ID!) {
       post(id: $id, idType: URI) {
-        title
-        content
-        author {
-          node {
-            name
-          }
-        }
-        date
-        dateFormatted
-        modified
-        fields {
-          headerImage {
-            url:sourceUrl
-          }
-          pageTitle
-          metaDescription
-          summary
-        }
+        ${postQuery()}
       }
-      ${categoriesQuery}
-      ${mainQuery}
+      ${categoriesQuery()}
+      ${generalQuery()}
     }
   `,
     { variables: { id: '/blog/' + params.post } }
@@ -77,7 +63,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const data = await fetchData(`
+  const data = await getFromApi(`
   query PostPaths {
       posts(first: 10000) {
         nodes {

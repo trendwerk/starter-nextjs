@@ -1,6 +1,8 @@
-import { fetchData, mainQuery, pageQuery } from 'functions/api'
-import Page from 'pages/[...page]'
+import generalQuery from 'queries/generalQuery'
+import getFromApi from 'functions/getFromApi'
 import Layout from 'components/Layout'
+import Page from 'pages/[...page]'
+import pageQuery from 'queries/pageQuery'
 import Wrap from 'components/Wrap'
 
 export default function Home(data) {
@@ -27,14 +29,14 @@ export default function Home(data) {
 }
 
 export async function getStaticProps() {
-  const data = await fetchData(`
+  const data = await getFromApi(`
     query Index {
       pages: pageByTemplate(where: { template: "page_on_front" }) {
         nodes {
           ${pageQuery}
         }
       }
-      ${mainQuery}
+      ${generalQuery()}
     }
   `)
   return { props: data }

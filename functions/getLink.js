@@ -1,4 +1,4 @@
-const getLink = function (href) {
+export default function getLink(href) {
   const link = {
     as: href,
     href: undefined,
@@ -38,5 +38,3 @@ const getLink = function (href) {
 
   return link
 }
-
-export default getLink

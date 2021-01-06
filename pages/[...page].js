@@ -1,12 +1,14 @@
-import { fetchData, mainQuery, pageQuery } from 'functions/api'
 import Content from 'components/Content'
+import generalQuery from 'queries/generalQuery'
+import getFromApi from 'functions/getFromApi'
+import getSubmenu from 'functions/getSubmenu'
 import Head from 'components/Head'
 import Header from 'components/Header'
-import Submenu from 'components/Submenu'
 import Layout from 'components/Layout'
+import pageQuery from 'queries/pageQuery'
+import Submenu from 'components/Submenu'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
-import { getSubmenu } from 'functions/getMenu'
 
 export default function Page({ data }) {
   const post = data.post
@@ -34,13 +36,13 @@ export default function Page({ data }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await fetchData(
+  const data = await getFromApi(
     `
     query Post($id: ID!) {
       post: page(id: $id, idType: URI) {
         ${pageQuery}
       }
-      ${mainQuery}
+      ${generalQuery()}
     }
   `,
     { variables: { id: params.page.join('/') } }
@@ -50,7 +52,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const data = await fetchData(`
+  const data = await getFromApi(`
   query PostPaths {
       pages(first: 10000) {
         nodes {
