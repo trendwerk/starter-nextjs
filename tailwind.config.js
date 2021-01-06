@@ -1,11 +1,15 @@
-const config = require('tailwindcss/defaultConfig')
 const theme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
-    borderColor: { ...theme.colors, DEFAULT: theme.colors.gray[200] },
-    colors: { ...theme.colors, brand: theme.colors.blue },
+    borderColor: (theme) => ({
+      ...theme('colors'),
+      DEFAULT: theme('colors.gray.200', 'currentColor'),
+    }),
     extend: {
+      colors: {
+        brand: theme.colors.blue,
+      },
       fontFamily: {
         serif: ['Merriweather', 'serif'],
       },
@@ -19,11 +23,11 @@ module.exports = {
         '3/8': '37.5%',
         '9/16': '56.25%',
       },
-    },
-    screens: {
-      '2xs': '360px',
-      xs: '480px',
-      ...theme.screens,
+
+      screens: {
+        '2xs': '360px',
+        xs: '480px',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
@@ -35,9 +39,11 @@ module.exports = {
     },
   },
   variants: {
-    borderRadius: [...config.variants.borderRadius, 'first', 'last'],
-    display: [...config.variants.display, 'group-hover'],
-    margin: [...config.variants.margin, 'last'],
-    translate: [...config.variants.display, 'group-hover'],
+    extend: {
+      borderRadius: ['first', 'last'],
+      display: ['group-hover'],
+      margin: ['last'],
+      translate: ['group-hover'],
+    },
   },
 }

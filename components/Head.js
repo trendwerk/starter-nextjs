@@ -13,7 +13,7 @@ export default function Head({ description, image, post, title }) {
 
   const url =
     asPath === '/' ? process.env.SITE_URL : process.env.SITE_URL + asPath
-  const color = tailwind.theme.colors.brand[600]
+  const color = tailwind.theme.extend.colors.brand[600]
   const language = app?.language
 
   image = image
