@@ -58,7 +58,7 @@ export default function Head({ article, description = false, image, title }) {
     "url": "${process.env.SITE_URL}"
   }`
 
-  const article = article
+  article = article
     ? `{
       "@context": "https://schema.org",
       "@type": "Article",
