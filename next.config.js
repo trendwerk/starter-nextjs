@@ -7,6 +7,11 @@ const redirects = async () => [
     permanent: false,
   },
   {
+    source: '/cms',
+    destination: `${process.env.CMS_URL}/wp/wp-admin/`,
+    permanent: false,
+  },
+  {
     source: '/wp-admin',
     destination: `${process.env.CMS_URL}/wp/wp-admin/`,
     permanent: false,

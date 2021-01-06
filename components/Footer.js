@@ -1,14 +1,14 @@
 import { useContext } from 'react'
-import Data from 'components/Data'
+import GeneralContext from 'components/GeneralContext'
 import getMenu from 'functions/getMenu'
 import Link from 'components/Link'
 import SocialLinks from 'components/SocialLinks'
 import Wrap from 'components/Wrap'
 
 export default function Footer() {
-  const { app } = useContext(Data)
-  const { general } = useContext(Data)
-  const { menus } = useContext(Data)
+  const { app } = useContext(GeneralContext)
+  const { general } = useContext(GeneralContext)
+  const { menus } = useContext(GeneralContext)
 
   const menu1 = getMenu('FOOTER1', menus)
   const menu2 = getMenu('FOOTER2', menus)

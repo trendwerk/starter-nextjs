@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import Data from 'components/Data'
+import GeneralContext from 'components/GeneralContext'
 import Link from 'components/Link'
 
 export default function SocialLinks() {
-  const { general } = useContext(Data)
+  const { general } = useContext(GeneralContext)
   let links = []
 
   if (general.facebook) {

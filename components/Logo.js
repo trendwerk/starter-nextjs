@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import Data from 'components/Data'
+import GeneralContext from 'components/GeneralContext'
 import Link from 'components/Link'
 
 export default function Logo() {
-  const { app } = useContext(Data)
+  const { app } = useContext(GeneralContext)
 
   return (
     <Link
