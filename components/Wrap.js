@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import classnames from 'classnames'
 
 export default function Wrap({
   children,
@@ -33,7 +33,9 @@ export default function Wrap({
                 ? sidebar.map((widget, index) => (
                     <div
                       key={index}
-                      className={clsx({ 'mb-8': index + 1 < sidebar.length })}
+                      className={classnames({
+                        'mb-8': index + 1 < sidebar.length,
+                      })}
                     >
                       {widget}
                     </div>

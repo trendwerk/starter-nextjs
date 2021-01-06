@@ -1,5 +1,5 @@
 import Button from 'components/Button'
-import clsx from 'clsx'
+import classnames from 'classnames'
 import Image from 'components/Image'
 import LightboxWrap, { SRLWrapper as Lightbox } from 'simple-react-lightbox'
 import Link from 'components/Link'
@@ -42,14 +42,18 @@ const parser = {
         (node) => node.name === 'iframe'
       )[0]
 
-      const isVideo = node.attribs?.class?.includes('is-provider-vimeo') || node.attribs?.class?.includes('is-provider-youtube')
+      const isVideo =
+        node.attribs?.class?.includes('is-provider-vimeo') ||
+        node.attribs?.class?.includes('is-provider-youtube')
 
       return (
         <figure className="mb-6">
-          <div className={clsx("relative", isVideo && 'pb-9/16')}>
+          <div className={classnames('relative', isVideo && 'pb-9/16')}>
             <iframe
               allow="fullscreen"
-              className={clsx(isVideo && 'h-full w-full top-0 left-0 absolute')}
+              className={classnames(
+                isVideo && 'h-full w-full top-0 left-0 absolute'
+              )}
               frameBorder={0}
               height={iframe.attribs.height}
               loading="lazy"
@@ -160,7 +164,7 @@ const ImageFigure = ({ node, className = '' }) => {
   }
 
   return (
-    <figure className={clsx('mb-6', figure.attribs.class, className)}>
+    <figure className={classnames('mb-6', figure.attribs.class, className)}>
       <Image
         width={width}
         height={height}

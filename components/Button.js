@@ -1,5 +1,5 @@
 import Link from 'components/Link'
-import clsx from 'clsx'
+import classnames from 'classnames'
 
 export default function Button({
   children,
@@ -9,7 +9,7 @@ export default function Button({
   href,
   large = false,
 }) {
-  const classNames = clsx(
+  const classNames = classnames(
     disabled
       ? ['bg-brand-400', 'text-brand-200']
       : ['bg-brand-600', 'hover:bg-brand-700', 'text-white'],

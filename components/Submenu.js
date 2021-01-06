@@ -1,5 +1,5 @@
 import Link from './Link'
-import clsx from 'clsx'
+import classnames from 'classnames'
 
 export default function Submenu({ data, current }) {
   return (
@@ -12,7 +12,7 @@ export default function Submenu({ data, current }) {
           return (
             <li key={item.id} className="my-0">
               <Link
-                className={clsx(
+                className={classnames(
                   'py-3 px-3 border-t hover:bg-gray-100 flex',
                   isCurrent && 'font-bold'
                 )}

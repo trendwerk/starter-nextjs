@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import classnames from 'classnames'
 import Link from 'components/Link'
 
 export default function Categories({ categories, currentCategory }) {
@@ -8,7 +8,7 @@ export default function Categories({ categories, currentCategory }) {
       <ul className="list-none border-b">
         <Link
           href="/blog"
-          className={clsx(
+          className={classnames(
             'flex',
             'py-3',
             'px-3',
@@ -35,7 +35,7 @@ const Category = ({ category, currentCategory }) => (
   <li key={category.id} className="m-0">
     <Link
       href={category.uri}
-      className={clsx(
+      className={classnames(
         'flex',
         'py-3',
         'px-3',

@@ -1,5 +1,5 @@
 import Button from 'components/Button'
-import clsx from 'clsx'
+import classnames from 'classnames'
 
 const Form = () => (
   <form>
@@ -60,7 +60,7 @@ const Input = ({ label, small }) => (
   <Wrapper label center>
     <Label>{label}</Label>
     <input
-      className={clsx('form-input', small ? 'md:w-1/3' : 'md:w-1/2')}
+      className={classnames('form-input', small ? 'md:w-1/3' : 'md:w-1/2')}
       type="text"
     />
   </Wrapper>
@@ -89,7 +89,9 @@ const Radio = ({ title, options, name }) => (
 const Select = ({ title, options, small }) => (
   <Wrapper>
     <Label margin>{title}</Label>
-    <select className={clsx('form-select', small ? 'md:w-1/3' : 'md:w-1/2')}>
+    <select
+      className={classnames('form-select', small ? 'md:w-1/3' : 'md:w-1/2')}
+    >
       {Object.entries(options).map(([value, label]) => (
         <option value={value} key={value}>
           {label}
@@ -107,7 +109,7 @@ const Textarea = ({ label }) => (
 )
 
 const Wrapper = ({ center, label, children }) => {
-  const classes = clsx(
+  const classes = classnames(
     'flex flex-col md:flex-row mb-4 md:mb-5 last:mb-0',
     center && 'md:items-center'
   )
@@ -121,7 +123,7 @@ const Wrapper = ({ center, label, children }) => {
 
 const Label = ({ margin, children }) => (
   <div
-    className={clsx(
+    className={classnames(
       'mb-2 md:mb-0 font-bold pr-4 md:w-1/4',
       margin && 'md:mt-3'
     )}
