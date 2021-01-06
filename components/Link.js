@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import getLink from 'utils/getLink'
+import getLink from 'functions/getLink'
 
 export default function LinkComponent({
   arrow = false,

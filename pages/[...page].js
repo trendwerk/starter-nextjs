@@ -1,4 +1,4 @@
-import { fetchData, mainQuery, pageQuery } from 'utils/api'
+import { fetchData, mainQuery, pageQuery } from 'functions/api'
 import Content from 'components/Content'
 import Head from 'components/Head'
 import Header from 'components/Header'
@@ -6,7 +6,7 @@ import Submenu from 'components/Submenu'
 import Layout from 'components/Layout'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
-import { getSubmenu } from 'utils/getMenu'
+import { getSubmenu } from 'functions/getMenu'
 
 export default function Page({ data }) {
   const post = data.post

@@ -1,4 +1,4 @@
-import { fetchData, mainQuery } from 'utils/api'
+import { fetchData, mainQuery } from 'functions/api'
 import Button from 'components/Button'
 import Head from 'components/Head'
 import Layout from 'components/Layout'

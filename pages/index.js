@@ -1,4 +1,4 @@
-import { fetchData, mainQuery, pageQuery } from 'utils/api'
+import { fetchData, mainQuery, pageQuery } from 'functions/api'
 import Page from 'pages/[...page]'
 import Layout from 'components/Layout'
 import Wrap from 'components/Wrap'

@@ -1,4 +1,9 @@
-import { fetchData, mainQuery, postsQuery, categoriesQuery } from 'utils/api'
+import {
+  fetchData,
+  mainQuery,
+  postsQuery,
+  categoriesQuery,
+} from 'functions/api'
 import Posts from 'components/Posts'
 import Categories from 'components/Categories'
 import Content from 'components/Content'

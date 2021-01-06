@@ -1,4 +1,4 @@
-import { fetchData, mainQuery, categoriesQuery } from 'utils/api'
+import { fetchData, mainQuery, categoriesQuery } from 'functions/api'
 import Content from 'components/Content'
 import Date from 'components/Date'
 import Head from 'components/Head'

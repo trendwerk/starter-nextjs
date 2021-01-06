@@ -4,7 +4,7 @@ import {
   postsQuery,
   categoriesQuery,
   termsQuery,
-} from 'utils/api'
+} from 'functions/api'
 import { useState, useEffect } from 'react'
 import Posts from 'components/Posts'
 import Categories from 'components/Categories'

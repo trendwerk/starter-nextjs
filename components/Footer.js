@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import Data from 'components/Data'
-import getMenu from 'utils/getMenu'
+import getMenu from 'functions/getMenu'
 import Link from 'components/Link'
 import SocialLinks from 'components/SocialLinks'
 import Wrap from 'components/Wrap'
