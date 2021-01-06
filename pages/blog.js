@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Categories from 'components/Categories'
+import categoriesQuery from 'queries/categoriesQuery'
 import Content from 'components/Content'
 import generalQuery from 'queries/generalQuery'
 import getFromApi from 'functions/getFromApi'
