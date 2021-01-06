@@ -156,6 +156,18 @@ export default function Head({ article, description = false, image, title }) {
         rel="stylesheet"
       />
       <link key="manifest" rel="manifest" href="/manifest.json" />
+      <link
+        key="preconnect-ga"
+        rel="preconnect"
+        href="https://www.google-analytics.com"
+        crossOrigin
+      />
+      <link
+        key="preconnect-gtm"
+        rel="preconnect"
+        href="https://www.googletagmanager.com"
+        crossOrigin
+      />
       <script
         key="localbusiness"
         type="application/ld+json"
