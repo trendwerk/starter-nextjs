@@ -83,6 +83,10 @@ const Items = ({ menus, setOpen }) => {
     return getChildren(item) ? getChildren(item).some(equal) : false
   }
 
+  if (!menu) {
+    return null
+  }
+
   return menu.items.nodes.map((item) => (
     <div
       className={`

@@ -146,7 +146,7 @@ export default function Footer() {
           {general.companyName || app.title}
         </div>
 
-        {menu.items.nodes.length > 0 && (
+        {menu && menu.items.nodes.length > 0 && (
           <div className="flex flex-wrap justify-center">
             {menu.items.nodes.map((item) => (
               <Link
