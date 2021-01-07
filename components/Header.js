@@ -2,15 +2,19 @@ import Image from 'components/Image'
 
 export default function Header({ image, title }) {
   return image ? (
-    <Image
-      alt={title}
-      className="w-full h-auto object-cover"
-      height={800}
-      layout="fill"
-      priority
-      src={image.url}
-      style={{ maxHeight: '600px' }}
-      width={1600}
-    />
+    <div
+      className="relative w-full h-auto"
+      style={{ height: '50vw', maxHeight: '600px' }}
+    >
+      <Image
+        alt={title}
+        className="object-cover"
+        height={800}
+        layout="fill"
+        priority
+        src={image.url}
+        width={1600}
+      />
+    </div>
   ) : null
 }
