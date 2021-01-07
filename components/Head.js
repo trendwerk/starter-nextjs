@@ -157,6 +157,12 @@ export default function Head({ article, description = false, image, title }) {
       />
       <link key="manifest" rel="manifest" href="/manifest.json" />
       <link
+        key="preconnect-fonts-static"
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin
+      />
+      <link
         key="preconnect-ga"
         rel="preconnect"
         href="https://www.google-analytics.com"
