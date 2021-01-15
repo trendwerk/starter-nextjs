@@ -8,7 +8,7 @@ export default class extends Document {
 
   render() {
     return (
-      <Html lang={process.env.LANGUAGE} className="antialiased">
+      <Html lang={process.env.LANGUAGE}>
         <Head />
         <body className="overflow-x-hidden text-gray-800 antialiased">
           <Main />

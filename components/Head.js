@@ -152,9 +152,17 @@ export default function Head({ article, description = false, image, title }) {
       />
       <link
         key="font"
+        as="style"
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
-        rel="stylesheet"
+        onload="this.onload=null;this.rel='stylesheet'"
+        rel="preload"
       />
+      <noscript key="font-noscript">
+        <link
+          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
+          rel="stylesheet"
+        />
+      </noscript>
       <link key="manifest" rel="manifest" href="/manifest.json" />
       <link
         key="preconnect-fonts-static"
