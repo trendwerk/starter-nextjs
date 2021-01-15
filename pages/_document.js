@@ -10,7 +10,7 @@ export default class extends Document {
     return (
       <Html lang={process.env.LANGUAGE} className="antialiased">
         <Head />
-        <body className="overflow-x-hidden text-gray-800">
+        <body className="overflow-x-hidden text-gray-800 antialiased">
           <Main />
           <NextScript />
         </body>
