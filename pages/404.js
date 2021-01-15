@@ -38,5 +38,5 @@ export async function getStaticProps() {
       ${generalQuery()}
     }
   `)
-  return { props: data }
+  return { props: data, revalidate: 60 }
 }

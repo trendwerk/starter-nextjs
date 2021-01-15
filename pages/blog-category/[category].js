@@ -72,7 +72,7 @@ export async function getStaticProps({ params }) {
     { variables: { id: params.category } }
   )
 
-  return { props: data }
+  return { props: data, revalidate: 60 }
 }
 
 export async function getStaticPaths() {
