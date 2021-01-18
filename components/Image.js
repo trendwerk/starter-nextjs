@@ -10,7 +10,6 @@ export default function Image({
   withPlaceholder = false,
   layout = 'responsive',
   height,
-  sizes,
   src,
   priority = undefined,
   width,
@@ -35,7 +34,6 @@ export default function Image({
       layout={layout}
       priority={priority}
       quality={80}
-      sizes={sizes || `${width}px`}
       src={src}
       width={width}
     />
