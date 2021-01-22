@@ -168,19 +168,19 @@ export default function Head({ article, description = false, image, title }) {
         key="preconnect-fonts-static"
         rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossOrigin
+        crossOrigin="true"
       />
       <link
         key="preconnect-ga"
         rel="preconnect"
         href="https://www.google-analytics.com"
-        crossOrigin
+        crossOrigin="true"
       />
       <link
         key="preconnect-gtm"
         rel="preconnect"
         href="https://www.googletagmanager.com"
-        crossOrigin
+        crossOrigin="true"
       />
       <script
         key="localbusiness"
