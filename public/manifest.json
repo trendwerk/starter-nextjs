@@ -3,6 +3,12 @@
   "short_name": "Site",
   "icons": [
     {
+      "src": "/icon-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
