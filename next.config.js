@@ -1,11 +1,6 @@
-const transpiled = require('next-transpile-modules')(['lodash-es'])
-
-const { SITE_URL, TRACKING_ID, CMS_URL } = process.env
-
-module.exports = transpiled({
-  env: { SITE_URL, TRACKING_ID, CMS_URL },
+module.exports = {
   images: {
-    domains: ['localhost', CMS_URL.replace(/^https?:\/\//, '')],
+    domains: ['localhost', process.env.CMS_URL.replace(/^https?:\/\//, '')],
   },
   async redirects() {
     return [
@@ -26,4 +21,4 @@ module.exports = transpiled({
       },
     ]
   },
-})
+}

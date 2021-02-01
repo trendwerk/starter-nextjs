@@ -11,10 +11,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "hamburger-react": "^2.4.0",
-    "html-react-parser": "^0.14.0",
-    "lodash-es": "^4.17.20",
     "next": "^10.0.4",
-    "next-transpile-modules": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "simple-react-lightbox": "^3.5.2"
