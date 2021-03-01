@@ -92,7 +92,7 @@ export default function Form({ fields: defaults }) {
       // Validation error message
       setAlert({
         message:
-          'Het formulier kon niet worden verstuurd. Controleer je input en probeer het nog een keer.',
+          'Het formulier kon niet worden verstuurd omdat niet alle velden correct zijn ingevuld. Controleer je input en probeer het nog een keer.',
         type: 'error',
       })
     }
