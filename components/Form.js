@@ -8,51 +8,46 @@ import validateEmail from 'functions/validateEmail'
 import validateTelephone from 'functions/validateTelephone'
 
 export default function Form() {
-  const fieldsDefault = [
+  const fieldsObject = [
     {
       id: 'name',
       label: 'Naam',
       type: 'text',
-      value: '',
       required: true,
-      error: false,
     },
     {
       id: 'company',
       label: 'Bedrijfsnaam',
       type: 'text',
-      value: '',
       required: true,
-      error: false,
     },
     {
       id: 'email',
       label: 'Email',
       type: 'email',
-      value: '',
       required: true,
-      error: false,
     },
     {
       id: 'telephone',
       label: 'Telefoon',
       type: 'telephone',
-      value: '',
       required: true,
-      error: false,
     },
     {
       id: 'message',
       label: 'Uw bericht',
       type: 'textarea',
-      value: '',
-      required: false,
-      error: false,
     },
   ]
 
-  const [fields, setFields] = useState(fieldsDefault)
-  const [success, setSuccess] = useState('')
+  const defaults = fieldsObject.map((field) => {
+    field.error = false
+    field.value = ''
+    return field
+  })
+
+  const [fields, setFields] = useState(defaults)
+  const [alert, setAlert] = useState(false)
 
   const updateField = (id, e) => {
     e.preventDefault()
@@ -77,12 +72,12 @@ export default function Form() {
         if (field.required && field.value == '') {
           field.error = `${field.label} is een verplicht veld.`
         } else if (field.type == 'email' && !validateEmail(field.value)) {
-          field.error = 'Vul a.u.b. een geldig e-mailadres in.'
+          field.error = 'Vul alsjeblieft een geldig e-mailadres in.'
         } else if (
           field.type == 'telephone' &&
           !validateTelephone(field.value)
         ) {
-          field.error = 'Vul a.u.b. een geldig telefoonnummer in.'
+          field.error = 'Vul alsjeblieft een geldig telefoonnummer in.'
         }
 
         return field
@@ -93,23 +88,33 @@ export default function Form() {
 
     // Submit form if there are no errors
     if (fields.filter((field) => field.error != '').length == 0) {
-      setSuccess('er zijn geen errors')
-
       try {
         fetch('/api/submit-form', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(fields),
         }).then(function () {
-          setFields(fieldsDefault)
-          setSuccess(
-            'Bedankt voor je bericht! We nemen binnenkort contact met je op.'
-          )
+          setFields(defaults)
+          setAlert({
+            message:
+              'Bedankt voor je bericht! We nemen binnenkort contact met je op.',
+            type: 'success',
+          })
         })
       } catch (error) {
         console.log(error)
-        setSuccess('')
+        setAlert({
+          message:
+            'Er ging helaas iets mis met het versturen van het formulier. Probeer het nog een keer of neem op een andere manier contact met ons op.',
+          type: 'error',
+        })
       }
+    } else {
+      setAlert({
+        message:
+          'Het formulier kon niet worden verstuurd. Controleer je input en probeer het nog een keer.',
+        type: 'error',
+      })
     }
   }
 
@@ -154,9 +159,9 @@ export default function Form() {
         </label>
       ))}
 
-      {success && (
-        <Alert className="mb-4 md:ml-1/4" type="success">
-          {success}
+      {alert && (
+        <Alert className="mb-4 md:ml-1/4" type={alert.type}>
+          {alert.message}
         </Alert>
       )}
 
