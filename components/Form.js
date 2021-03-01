@@ -77,11 +77,16 @@ export default function Form() {
   return (
     <form>
       <Field label="Naam *">
-        <Input onChange={(e) => updateField('name', e)} value={fields.name} />
+        <Input
+          className="md:w-1/2"
+          onChange={(e) => updateField('name', e)}
+          value={fields.name}
+        />
       </Field>
 
       <Field label="Bedrijfsnaam *">
         <Input
+          className="md:w-1/2"
           onChange={(e) => updateField('company', e)}
           value={fields.company}
         />
@@ -89,6 +94,7 @@ export default function Form() {
 
       <Field label="E-mail *">
         <Input
+          className="md:w-1/2"
           onChange={(e) => updateField('email', e)}
           type="email"
           value={fields.email}
@@ -97,6 +103,7 @@ export default function Form() {
 
       <Field label="Telefoon *">
         <Input
+          className="md:w-1/2"
           onChange={(e) => updateField('telephone', e)}
           value={fields.telephone}
         />
@@ -104,6 +111,7 @@ export default function Form() {
 
       <Field label="Uw bericht">
         <Textarea
+          className="md:w-3/4"
           onChange={(e) => updateField('message', e)}
           value={fields.message}
         />
