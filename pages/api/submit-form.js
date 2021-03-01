@@ -12,7 +12,7 @@ export default async function (request, response) {
       text: fields.message,
       html: `
         <p>Er is een contactformulier ingevuld op de website van ${
-          process.env.SITENAME
+          process.env.SITE_NAME
         } met de volgende gegeven:</p>
         <ul>
           ${Object.keys(fields)
