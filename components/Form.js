@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Alert from 'components/Alert'
 import Button from 'components/Button'
 import classnames from 'classnames'
@@ -7,54 +7,34 @@ import Textarea from 'components/form/Textarea'
 import validateEmail from 'functions/validateEmail'
 import validateTelephone from 'functions/validateTelephone'
 
-export default function Form() {
-  const fieldsObject = [
-    {
-      id: 'name',
-      label: 'Naam',
-      type: 'text',
-      required: true,
-    },
-    {
-      id: 'company',
-      label: 'Bedrijfsnaam',
-      type: 'text',
-      required: true,
-    },
-    {
-      id: 'email',
-      label: 'Email',
-      type: 'email',
-      required: true,
-    },
-    {
-      id: 'telephone',
-      label: 'Telefoon',
-      type: 'telephone',
-      required: true,
-    },
-    {
-      id: 'message',
-      label: 'Uw bericht',
-      type: 'textarea',
-    },
-  ]
-
-  const defaults = fieldsObject.map((field) => {
-    field.error = false
-    field.value = ''
-    return field
-  })
-
-  const [fields, setFields] = useState(defaults)
+export default function Form({ fields: defaults }) {
+  const [fields, setFields] = useState([])
   const [alert, setAlert] = useState(false)
 
+  // Set empty fields on initial render
+  useEffect(() => {
+    resetFields()
+  }, [])
+
+  // Reset fields to empty values without errors
+  const resetFields = () => {
+    setFields(
+      defaults.map((field) => {
+        field.error = false
+        field.value = ''
+        return field
+      })
+    )
+  }
+
+  // Update fields when field input is changed
   const updateField = (id, e) => {
     e.preventDefault()
 
     setFields(
       [...fields].map((field) => {
         if (field.id == id) {
+          console.log(e.target.value)
           field.value = e.target.value
           field.error = false
         }
@@ -63,6 +43,7 @@ export default function Form() {
     )
   }
 
+  // Submit form
   const submit = (e) => {
     e.preventDefault()
 
@@ -84,8 +65,6 @@ export default function Form() {
       })
     )
 
-    console.log(fields.filter((field) => field.error != '').length)
-
     // Submit form if there are no errors
     if (fields.filter((field) => field.error != '').length == 0) {
       try {
@@ -94,7 +73,7 @@ export default function Form() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(fields),
         }).then(function () {
-          setFields(defaults)
+          resetFields()
           setAlert({
             message:
               'Bedankt voor je bericht! We nemen binnenkort contact met je op.',
@@ -102,14 +81,16 @@ export default function Form() {
           })
         })
       } catch (error) {
-        console.log(error)
+        // API  error message
         setAlert({
           message:
             'Er ging helaas iets mis met het versturen van het formulier. Probeer het nog een keer of neem op een andere manier contact met ons op.',
           type: 'error',
         })
+        console.log(error)
       }
     } else {
+      // Validation error message
       setAlert({
         message:
           'Het formulier kon niet worden verstuurd. Controleer je input en probeer het nog een keer.',
@@ -121,7 +102,10 @@ export default function Form() {
   return (
     <form>
       {fields.map((field) => (
-        <label className={classnames('flex flex-col md:flex-row mb-4')}>
+        <label
+          className={classnames('flex flex-col md:flex-row mb-4')}
+          key={field.id}
+        >
           <div
             className={classnames(
               'font-bold mb-2 md:my-2 md:w-1/4 md:pr-4',

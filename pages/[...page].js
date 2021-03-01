@@ -31,7 +31,32 @@ export default function Page({ data }) {
       >
         <Title>{post.title}</Title>
         <Content content={post.content} />
-        <Form />
+        <Form
+          fields={[
+            {
+              id: 'name',
+              label: 'Naam',
+              required: true,
+            },
+            {
+              id: 'email',
+              label: 'Email',
+              type: 'email',
+              required: true,
+            },
+            {
+              id: 'telephone',
+              label: 'Telefoon',
+              type: 'telephone',
+              required: true,
+            },
+            {
+              id: 'message',
+              label: 'Uw bericht',
+              type: 'textarea',
+            },
+          ]}
+        />
       </Wrap>
     </Layout>
   )
