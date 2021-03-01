@@ -34,7 +34,6 @@ export default function Form({ fields: defaults }) {
     setFields(
       [...fields].map((field) => {
         if (field.id == id) {
-          console.log(e.target.value)
           field.value = e.target.value
           field.error = false
         }
