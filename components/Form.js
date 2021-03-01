@@ -75,7 +75,7 @@ export default function Form() {
   }
 
   return (
-    <form className="mb-16">
+    <form>
       <Field label="Naam *">
         <Input onChange={(e) => updateField('name', e)} value={fields.name} />
       </Field>
@@ -110,18 +110,18 @@ export default function Form() {
       </Field>
 
       {errors.map((error, index) => (
-        <Alert className="mb-5 md:ml-1/4" key={index} type="error">
+        <Alert className="mb-6 md:ml-1/4" key={index} type="error">
           {error}
         </Alert>
       ))}
 
       {success && (
-        <Alert className="mb-5 md:ml-1/4" type="success">
+        <Alert className="mb-6 md:ml-1/4" type="success">
           {success}
         </Alert>
       )}
 
-      <Button className="md:ml-1/4" large whiteHover onClick={(e) => submit(e)}>
+      <Button className="md:ml-1/4" onClick={(e) => submit(e)}>
         Bericht versturen
       </Button>
     </form>
@@ -129,11 +129,10 @@ export default function Form() {
 }
 
 const Field = ({ children, label }) => (
-  <label className={classnames('flex flex-col md:flex-row mb-5 last:mb-0')}>
-    <div className={classnames('mb-2 md:mb-0 font-bold pr-4 md:w-1/4')}>
+  <label className={classnames('flex flex-col md:flex-row mb-6')}>
+    <div className={classnames('font-bold mb-2 md:my-2 md:w-1/4 md:pr-4')}>
       {label}
     </div>
-
     {children}
   </label>
 )

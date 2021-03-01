@@ -5,10 +5,10 @@ export default function Alert({ className, children, link, type = 'warning' }) {
   return (
     <div
       className={classnames(
-        'p-3 rounded-sm flex items-center leading-6 text-base',
+        'p-3 rounded flex items-center leading-6 text-base',
         type == 'error' && 'bg-red-500 text-white',
-        type == 'warning' && 'bg-yellow-500 text-gray-500',
-        type == 'success' && 'bg-green-500 text-gray-500',
+        type == 'warning' && 'bg-yellow-400',
+        type == 'success' && 'bg-green-500 text-white',
         className
       )}
     >

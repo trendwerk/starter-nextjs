@@ -24,9 +24,7 @@ export default function Page404(data) {
           or use the menu to find the page you are looking for.
         </p>
 
-        <Button href="/" large>
-          Go to the homepage
-        </Button>
+        <Button href="/">Go to the homepage</Button>
       </Wrap>
     </Layout>
   )
