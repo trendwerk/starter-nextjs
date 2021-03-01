@@ -5,7 +5,6 @@ import getMenu from 'functions/getMenu'
 import Hamburger from 'hamburger-react'
 import Link from 'components/Link'
 import Logo from 'components/Logo'
-import Search from 'components/Search'
 
 export default function Menu({ menus }) {
   const [isOpen, setOpen] = useState(false)
@@ -60,7 +59,6 @@ export default function Menu({ menus }) {
         `}
       >
         <Items menus={menus} setOpen={setOpen} />
-        <Search />
       </div>
     </div>
   )
