@@ -9,6 +9,7 @@
     "start": "next dev"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
     "classnames": "^2.2.6",
     "hamburger-react": "^2.4.0",
     "html-react-parser": "^1.2.4",

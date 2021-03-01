@@ -1,4 +1,5 @@
 import Content from 'components/Content'
+import Form from 'components/Form'
 import generalQuery from 'queries/generalQuery'
 import getFromApi from 'functions/getFromApi'
 import getSubmenu from 'functions/getSubmenu'
@@ -30,6 +31,7 @@ export default function Page({ data }) {
       >
         <Title>{post.title}</Title>
         <Content content={post.content} />
+        <Form />
       </Wrap>
     </Layout>
   )

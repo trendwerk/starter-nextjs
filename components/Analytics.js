@@ -3,7 +3,7 @@ export default function Analytics() {
     <>
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.TRACKING_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
       />
       <script
         dangerouslySetInnerHTML={{
@@ -15,7 +15,7 @@ export default function Analytics() {
           }
 
           gtag('js', new Date());
-          gtag('config', '${process.env.TRACKING_ID}', {
+          gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}', {
             page_path: window.location.pathname
           });
         `,
