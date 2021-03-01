@@ -11,19 +11,19 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "hamburger-react": "^2.4.0",
-    "next": "^10.0.4",
+    "next": "^10.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "simple-react-lightbox": "^3.5.2"
+    "simple-react-lightbox": "^3.6.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.2.1",
-    "autoprefixer": "^10.2.0",
-    "postcss": "^8.2.2",
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.6",
     "postcss-easy-import": "^3.0.0",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.3"
   }
 }
