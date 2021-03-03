@@ -1,13 +1,11 @@
 import Button from 'components/Button'
-import generalQuery from 'queries/generalQuery'
-import getFromApi from 'functions/getFromApi'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function Page404(data) {
+export default function NotFound({ data }) {
   return (
     <Layout data={data}>
       <Head title="404" description="" />
@@ -28,13 +26,4 @@ export default function Page404(data) {
       </Wrap>
     </Layout>
   )
-}
-
-export async function getStaticProps() {
-  const data = await getFromApi(`
-    query Index {
-      ${generalQuery()}
-    }
-  `)
-  return { props: data, revalidate: 60 }
 }

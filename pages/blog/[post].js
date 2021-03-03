@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Categories from 'components/Categories'
 import categoriesQuery from 'queries/categoriesQuery'
 import Content from 'components/Content'
@@ -8,23 +9,36 @@ import Head from 'components/Head'
 import Header from 'components/Header'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
+import Loading from 'components/Loading'
+import NotFound from 'components/NotFound'
 import postQuery from 'queries/postQuery'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
 export default function Post(data) {
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <Loading fullScreen />
+  }
+
+  if (!data.post) {
+    return <NotFound data={data} />
+  }
+
   const post = data.post
+  const fields = post.fields
 
   return (
     <Layout data={data}>
       <Head
-        title={post.fields?.pageTitle || post?.title}
-        description={post.fields?.metaDescription}
-        image={post.fields?.ogImage?.url || post.fields?.headerImage?.url}
+        title={fields?.pageTitle || post?.title}
+        description={fields?.metaDescription}
+        image={fields?.ogImage?.url || fields?.headerImage?.url}
         article={post}
       />
 
-      <Header image={post.fields?.headerImage} title={post?.title} />
+      <Header image={fields?.headerImage} title={post?.title} />
 
       <Wrap
         sidebar={
@@ -65,7 +79,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const data = await getFromApi(`
   query PostPaths {
-      posts(first: 10000) {
+      posts(first: 1000) {
         nodes {
           uri
         }
@@ -75,6 +89,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.posts.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: false,
+    fallback: true,
   }
 }
