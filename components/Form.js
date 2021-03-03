@@ -85,6 +85,9 @@ export default function Form({ fields: defaults }) {
               'Er ging helaas iets mis met het versturen van het formulier. Probeer het nog een keer of neem op een andere manier contact met ons op.',
             type: 'error',
           })
+          response.json().then((data) => {
+            console.error(data)
+          })
         }
       })
     } else {
