@@ -50,7 +50,7 @@ export default function Form({ fields: defaults }) {
     setFields(
       [...fields].map((field) => {
         if (field.required && field.value == '') {
-          field.error = `${field.label} is een verplicht veld.`
+          field.error = `"${field.label}" is een verplicht veld.`
         } else if (field.type == 'email' && !validateEmail(field.value)) {
           field.error = 'Vul alsjeblieft een geldig e-mailadres in.'
         } else if (
@@ -66,28 +66,27 @@ export default function Form({ fields: defaults }) {
 
     // Submit form if there are no errors
     if (fields.filter((field) => field.error != '').length == 0) {
-      try {
-        fetch('/api/submit-form', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(fields),
-        }).then(function () {
+      fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields),
+      }).then((response) => {
+        if (response.status === 200) {
           resetFields()
           setAlert({
             message:
               'Bedankt voor je bericht! We nemen binnenkort contact met je op.',
             type: 'success',
           })
-        })
-      } catch (error) {
-        // API  error message
-        setAlert({
-          message:
-            'Er ging helaas iets mis met het versturen van het formulier. Probeer het nog een keer of neem op een andere manier contact met ons op.',
-          type: 'error',
-        })
-        console.log(error)
-      }
+        } else {
+          // API error message
+          setAlert({
+            message:
+              'Er ging helaas iets mis met het versturen van het formulier. Probeer het nog een keer of neem op een andere manier contact met ons op.',
+            type: 'error',
+          })
+        }
+      })
     } else {
       // Validation error message
       setAlert({
