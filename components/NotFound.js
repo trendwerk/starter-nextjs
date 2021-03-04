@@ -8,7 +8,7 @@ import Wrap from 'components/Wrap'
 export default function NotFound({ data }) {
   return (
     <Layout data={data}>
-      <Head title="404" description="" />
+      <Head title="404" index={false} />
 
       <Wrap className="text-center" width="600">
         <Title>Page not found</Title>

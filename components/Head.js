@@ -5,7 +5,13 @@ import Analytics from 'components/Analytics'
 import GeneralContext from 'components/GeneralContext'
 import tailwind from 'tailwind.config'
 
-export default function Head({ article, description = false, image, title }) {
+export default function Head({
+  article,
+  description = false,
+  image,
+  index = true,
+  title,
+}) {
   const { app, general } = useContext(GeneralContext)
 
   const { asPath } = useRouter()
@@ -117,6 +123,7 @@ export default function Head({ article, description = false, image, title }) {
       <meta key="og:title" property="og:title" content={title} />
       <meta key="og:type" property="og:type" content="website" />
       <meta key="og:url" property="og:url" content={url} />
+      <meta key="robots" name="robots" content={index ? 'index' : 'noindex'} />
       <meta key="theme-color" name="theme-color" content={color} />
       <meta
         key="twitter:card"
