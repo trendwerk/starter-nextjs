@@ -1,0 +1,78 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
+  @apply font-serif;
+}
+
+h1 {
+  @apply text-2xl;
+  @apply sm:text-3xl;
+  @apply lg:text-4xl;
+}
+
+h2 {
+  @apply text-xl;
+  @apply sm:text-2xl;
+}
+
+h3 {
+  @apply text-lg;
+  @apply sm:text-xl;
+}
+
+h4,
+h5,
+h6 {
+  @apply text-base;
+  @apply sm:text-lg;
+}
+
+p {
+  @apply leading-relaxed;
+  @apply text-gray-500;
+}
+
+ol,
+ul {
+  @apply list-inside;
+  @apply text-gray-500;
+}
+
+ol {
+  @apply list-decimal;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol ol,
+ul ul {
+  @apply ml-6;
+}
+
+li {
+  @apply my-2;
+}
+
+blockquote {
+  @apply border-gray-800;
+  @apply border-l-2;
+  @apply italic;
+  @apply pl-6;
+}
+
+blockquote p {
+  @apply mb-2;
+}
+
+cite {
+  @apply font-semibold;
+  @apply not-italic;
+  @apply text-base;
+  @apply text-gray-800;
+}

@@ -1,0 +1,25 @@
+.aligncenter img {
+  @apply mx-auto;
+}
+
+.alignleft {
+  @apply sm:float-left;
+  @apply sm:mr-6;
+}
+
+.alignright {
+  @apply sm:float-right;
+  @apply sm:ml-6;
+}
+
+.has-text-align-center {
+  @apply text-center;
+}
+
+.has-text-align-left {
+  @apply text-left;
+}
+
+.has-text-align-right {
+  @apply text-right;
+}

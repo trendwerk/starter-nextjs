@@ -1,9 +1,0 @@
-ol {
-  @apply list-decimal;
-  @apply list-inside;
-  @apply text-gray-500;
-}
-
-ol ol {
-  @apply ml-6;
-}
