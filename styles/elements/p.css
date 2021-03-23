@@ -1,0 +1,4 @@
+p {
+  @apply leading-relaxed;
+  @apply text-gray-500;
+}

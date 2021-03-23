@@ -1,0 +1,11 @@
+.has-text-align-center {
+  @apply text-center;
+}
+
+.has-text-align-left {
+  @apply text-left;
+}
+
+.has-text-align-right {
+  @apply text-right;
+}
