@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 const theme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -8,25 +9,27 @@ module.exports = {
     }),
     extend: {
       colors: {
+        gray: colors.coolGray,
         brand: theme.colors.blue,
       },
       fontFamily: {
         serif: ['Merriweather', 'serif'],
       },
       inset: {
+        '1/2': '50%',
         16: '4rem',
         20: '5rem',
-        '1/2': '50%',
         full: '100%',
       },
       spacing: {
         '3/8': '37.5%',
         '9/16': '56.25%',
+        18: '4.5rem',
       },
-
       screens: {
         '2xs': '360px',
         xs: '480px',
+        ...theme.screens,
       },
     },
   },

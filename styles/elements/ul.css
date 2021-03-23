@@ -1,6 +1,7 @@
 ul {
-  @apply list;
   @apply list-disc;
+  @apply list-inside;
+  @apply text-gray-500;
 }
 
 ul ul {
