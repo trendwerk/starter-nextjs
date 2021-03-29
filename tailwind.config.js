@@ -26,11 +26,11 @@ module.exports = {
         '9/16': '56.25%',
         18: '4.5rem',
       },
-      screens: {
-        '2xs': '360px',
-        xs: '480px',
-        ...theme.screens,
-      },
+    },
+    screens: {
+      '2xs': '360px',
+      xs: '480px',
+      ...theme.screens,
     },
   },
   plugins: [require('@tailwindcss/forms')],
