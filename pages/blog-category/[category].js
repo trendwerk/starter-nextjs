@@ -90,6 +90,6 @@ export async function getStaticPaths() {
     paths: data.blogCategories.nodes.map(({ slug }) => ({
       params: { category: slug },
     })),
-    fallback: 'blocking',
+    fallback: false,
   }
 }
