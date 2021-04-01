@@ -75,6 +75,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.posts.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: false,
+    fallback: 'blocking',
   }
 }

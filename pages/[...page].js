@@ -67,6 +67,6 @@ export async function getStaticPaths() {
       data.pages.nodes
         .filter(({ uri }) => uri !== '/')
         .map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: false,
+    fallback: 'blocking',
   }
 }
