@@ -10,7 +10,7 @@ import postsQuery from 'queries/postsQuery'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function BlogCategory(data) {
+export default function BlogCategory({ data }) {
   return (
     <Layout data={data}>
       <Head
@@ -72,7 +72,11 @@ export async function getStaticProps({ params }) {
     { variables: { id: params.category } }
   )
 
-  return { props: data, revalidate: 60 }
+  if (!data.category) {
+    return { notFound: true }
+  }
+
+  return { props: { data }, revalidate: 60 }
 }
 
 export async function getStaticPaths() {
@@ -90,6 +94,6 @@ export async function getStaticPaths() {
     paths: data.blogCategories.nodes.map(({ slug }) => ({
       params: { category: slug },
     })),
-    fallback: false,
+    fallback: 'blocking',
   }
 }

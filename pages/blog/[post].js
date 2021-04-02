@@ -12,7 +12,7 @@ import postQuery from 'queries/postQuery'
 import Title from 'components/Title'
 import Wrap from 'components/Wrap'
 
-export default function Post(data) {
+export default function Post({ data }) {
   const post = data.post
 
   return (
@@ -59,7 +59,11 @@ export async function getStaticProps({ params }) {
     { variables: { id: '/blog/' + params.post } }
   )
 
-  return { props: data, revalidate: 60 }
+  if (!data.post) {
+    return { notFound: true }
+  }
+
+  return { props: { data }, revalidate: 60 }
 }
 
 export async function getStaticPaths() {
@@ -75,6 +79,6 @@ export async function getStaticPaths() {
 
   return {
     paths: data.posts.nodes.map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: false,
+    fallback: 'blocking',
   }
 }

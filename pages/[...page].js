@@ -48,7 +48,11 @@ export async function getStaticProps({ params }) {
     { variables: { id: params.page.join('/') } }
   )
 
-  return { props: { data } }
+  if (!data.post) {
+    return { notFound: true }
+  }
+
+  return { props: { data }, revalidate: 60 }
 }
 
 export async function getStaticPaths() {
@@ -67,6 +71,6 @@ export async function getStaticPaths() {
       data.pages.nodes
         .filter(({ uri }) => uri !== '/')
         .map(({ uri }) => uri.replace(/\/$/, '')) || [],
-    fallback: false,
+    fallback: 'blocking',
   }
 }
